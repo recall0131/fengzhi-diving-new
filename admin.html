@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>潜水管理后台</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans SC',sans-serif;background:#f4f6f8;padding:20px;color:#333}
+.panel{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;max-width:900px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+h2{color:#006994;font-size:17px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #eee}
+h3{font-size:14px;color:#555;margin:16px 0 8px}
+label{display:block;font-size:13px;color:#666;margin:8px 0 4px}
+input,textarea{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px}
+input:focus{outline:none;border-color:#006994}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{background:#006994;color:#fff;border:none;padding:9px 22px;border-radius:8px;cursor:pointer;font-size:14px;display:inline-block}
+.btn:hover{background:#005a7f}.btn-green{background:#28a745}.btn-green:hover{background:#1e7e34}.btn-red{background:#dc3545}.btn-red:hover{background:#c82333}
+.item{background:#f8f9fa;padding:14px;border-radius:8px;border:1px solid #eee;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.item-info h4{font-size:14px;margin-bottom:4px}.item-info p{font-size:12px;color:#888}
+.item-actions{display:flex;gap:8px}
+.msg{font-size:13px;margin-top:8px;display:block}.msg.ok{color:#28a745}.msg.err{color:#dc3545}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #eee}
+th{background:#f8f9fa;color:#666;font-weight:500}
+.tab-nav{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap}
+.tab{background:#e9ecef;border:none;padding:8px 18px;border-radius:8px;cursor:pointer;font-size:14px}
+.tab.active{background:#006994;color:#fff}
+.tab-content{display:none}.tab-content.active{display:block}
+</style></head><body>
+<h1 style="color:#006994;font-size:20px;margin-bottom:20px">🤿 潜水网站管理后台</h1>
+<div class="tab-nav">
+  <button class="tab active" onclick="showTab('hero')">Hero</button>
+  <button class="tab" onclick="showTab('services')">服务</button>
+  <button class="tab" onclick="showTab('courses')">课程</button>
+  <button class="tab" onclick="showTab('destinations')">目的地</button>
+  <button class="tab" onclick="showTab('nav')">导航</button>
+  <button class="tab" onclick="showTab('pwd')">账号</button>
+</div>
+<div class="tab-content active" id="tab-hero">
+  <div class="panel"><h2>Hero（中文）</h2><div class="grid">
+    <div><label>主标题</label><input id="h_zh_title"></div>
+    <div><label>副标题</label><input id="h_zh_sub"></div>
+    <div><label>主按钮文字</label><input id="h_zh_cta"></div>
+    <div><label>主按钮链接</label><input id="h_zh_cta_lnk"></div>
+    <div><label>次按钮文字</label><input id="h_zh_cta2"></div>
+    <div><label>次按钮链接</label><input id="h_zh_cta2_lnk"></div>
+  </div><button class="btn" onclick="saveHero('zh')">保存</button> <span class="msg" id="hmsg"></span></div>
+  <div class="panel"><h2>Hero（英文）</h2><div class="grid">
+    <div><label>主标题</label><input id="h_en_title"></div>
+    <div><label>副标题</label><input id="h_en_sub"></div>
+    <div><label>主按钮文字</label><input id="h_en_cta"></div>
+    <div><label>主按钮链接</label><input id="h_en_cta_lnk"></div>
+    <div><label>次按钮文字</label><input id="h_en_cta2"></div>
+    <div><label>次按钮链接</label><input id="h_en_cta2_lnk"></div>
+  </div><button class="btn" onclick="saveHero('en')">保存</button> <span class="msg" id="hemsg"></span></div>
+</div>
+<div class="tab-content" id="tab-services">
+  <div class="panel"><h2>服务列表</h2><div id="svc_list"></div>
+    <h3>新增服务</h3><div class="grid">
+    <div><label>名称</label><input id="svc_name" placeholder="如：潜水体验"></div>
+    <div><label>描述</label><input id="svc_desc" placeholder="简短描述"></div></div>
+    <button class="btn btn-green" onclick="addSvc()">添加</button> <span class="msg" id="svcmsg"></span></div>
+</div>
+<div class="tab-content" id="tab-courses">
+  <div class="panel"><h2>课程列表</h2><table><thead><tr><th>名称</th><th>标签</th><th>价格</th><th>天数</th><th>操作</th></tr></thead><tbody id="crs_list"></tbody></table>
+    <h3>新增课程</h3><div class="grid">
+    <div><label>名称</label><input id="crs_name" placeholder="如：OW 开放水域潜水员"></div>
+    <div><label>标签</label><input id="crs_tag" placeholder="零基础/进阶/高级"></div>
+    <div><label>价格</label><input id="crs_price" placeholder="如：¥2,800"></div>
+    <div><label>天数</label><input id="crs_days" placeholder="如：4天"></div>
+  </div><div style="margin-top:12px"><label>描述</label><input id="crs_desc" placeholder="课程描述"></div>
+    <button class="btn btn-green" onclick="addCrs()">添加课程</button> <span class="msg" id="crsmsg"></span></div>
+</div>
+<div class="tab-content" id="tab-destinations">
+  <div class="panel"><h2>目的地列表</h2><table><thead><tr><th>名称</th><th>标签</th><th>CODE</th><th>操作</th></tr></thead><tbody id="dst_list"></tbody></table>
+    <h3>新增目的地</h3><div class="grid">
+    <div><label>名称</label><input id="dst_name" placeholder="如：帕劳"></div>
+    <div><label>标签</label><input id="dst_tag" placeholder="如：蓝洞 · 海洋生物"></div>
+    <div><label>CODE</label><input id="dst_code" placeholder="如：palau"></div>
+  </div><button class="btn btn-green" onclick="addDst()">添加</button> <span class="msg" id="dstmsg"></span></div>
+</div>
+<div class="tab-content" id="tab-nav">
+  <div class="panel"><h2>导航菜单</h2><div id="nav_list"></div>
+    <h3>新增菜单项</h3><div class="grid">
+    <div><label>名称</label><input id="nav_name" placeholder="如：课程"></div>
+    <div><label>链接</label><input id="nav_url" placeholder="如：/zh/diving-courses"></div>
+  </div><button class="btn btn-green" onclick="addNav()">添加</button> <span class="msg" id="navmsg"></span></div>
+</div>
+<div class="tab-content" id="tab-pwd">
+  <div class="panel"><h2>账号信息</h2><p style="color:#888;font-size:13px">admin@imperialdiving.com / admin123</p>
+    <h3>改密码</h3><div><label>新密码</label><input type="password" id="npwd" placeholder="留空不改"></div>
+    <button class="btn btn-green" onclick="chPwd()">确认修改</button> <span class="msg" id="pwdmsg"></span></div>
+</div>
+<script>
+function showTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');document.querySelector('[onclick="showTab(\''+id+'\')"]').classList.add('active');}
+async function load(){const h=await fetch('/api/admin/heroes').then(r=>r.json());['zh','en'].forEach(l=>{const s=h[l]||{};document.getElementById('h_'+l+'_title').value=s.title||'';document.getElementById('h_'+l+'_sub').value=s.subtitle||'';document.getElementById('h_'+l+'_cta').value=s.cta_text||'';document.getElementById('h_'+l+'_cta_lnk').value=s.cta_link||'';document.getElementById('h_'+l+'_cta2').value=s.cta_secondary_text||'';document.getElementById('h_'+l+'_cta2_lnk').value=s.cta_secondary_link||'';});loadSvcs();loadCrss();loadDsts();loadNav();}
+async function saveHero(l){const d={};['title','subtitle','cta_text','cta_link','cta_secondary_text','cta_secondary_link'].forEach(k=>{d[k]=document.getElementById('h_'+l+'_'+k).value;});const r=await fetch('/api/admin/heroes/'+l,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});const m=document.getElementById(l==='zh'?'hmsg':'hemsg');m.textContent=r.ok?'✅ 已保存':'❌ 保存失败';m.className=r.ok?'msg ok':'msg err';}
+async function loadSvcs(){const r=await fetch('/api/admin/services').then(r=>r.json());document.getElementById('svc_list').innerHTML=(r||[]).map(s=>'<div class="item"><div class="item-info"><h4>'+s.feature_title+'</h4><p>'+(s.feature_description||'')+'</p></div><button class="btn btn-red" onclick="delSvc(\''+s.id+'\')">删除</button></div>').join('')||'<p style="color:#888;font-size:13px">暂无数据</p>';}
+async function addSvc(){const d={feature_title:document.getElementById('svc_name').value,feature_description:document.getElementById('svc_desc').value,feature_lang:'zh'};const r=await fetch('/api/admin/services',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});const m=document.getElementById('svcmsg');if(r.ok){m.textContent='✅ 已添加';m.className='msg ok';document.getElementById('svc_name').value='';document.getElementById('svc_desc').value='';loadSvcs();}else{m.textContent='❌ 添加失败';m.className='msg err';}}
+async function delSvc(id){if(!confirm('确认删除?'))return;await fetch('/api/admin/services/'+id,{method:'DELETE'});loadSvcs();}
+async function loadCrss(){const r=await fetch('/api/admin/courses').then(r=>r.json());document.getElementById('crs_list').innerHTML=(r||[]).map(c=>'<tr><td>'+c.course_name+'</td><td>'+c.course_tag+'</td><td>'+c.course_price+'</td><td>'+c.course_days+'</td><td><button class="btn btn-red" onclick="delCrs(\''+c.id+'\')">删除</button></td></tr>').join('')||'<tr><td colspan="5" style="color:#888">暂无数据</td></tr>';}
+async function addCrs(){const d={course_name:document.getElementById('crs_name').value,course_tag:document.getElementById('crs_tag').value,course_price:document.getElementById('crs_price').value,course_days:document.getElementById('crs_days').value,course_description:document.getElementById('crs_desc').value,course_lang:'zh'};const r=await fetch('/api/admin/courses',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});const m=document.getElementById('crsmsg');if(r.ok){m.textContent='✅ 已添加';m.className='msg ok';['crs_name','crs_tag','crs_price','crs_days','crs_desc'].forEach(id=>document.getElementById(id).value='');loadCrss();}else{m.textContent='❌ 添加失败';m.className='msg err';}}
+async function delCrs(id){if(!confirm('确认删除?'))return;await fetch('/api/admin/courses/'+id,{method:'DELETE'});loadCrss();}
+async function loadDsts(){const r=await fetch('/api/admin/destinations').then(r=>r.json());document.getElementById('dst_list').innerHTML=(r||[]).map(d=>'<tr><td>'+d.dest_name+'</td><td>'+d.dest_tag+'</td><td><code>'+d.dest_code+'</code></td><td><button class="btn btn-red" onclick="delDst(\''+d.id+'\')">删除</button></td></tr>').join('')||'<tr><td colspan="4" style="color:#888">暂无数据</td></tr>';}
+async function addDst(){const d={dest_name:document.getElementById('dst_name').value,dest_tag:document.getElementById('dst_tag').value,dest_code:document.getElementById('dst_code').value,dest_lang:'zh'};const r=await fetch('/api/admin/destinations',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});const m=document.getElementById('dstmsg');if(r.ok){m.textContent='✅ 已添加';m.className='msg ok';['dst_name','dst_tag','dst_code'].forEach(id=>document.getElementById(id).value='');loadDsts();}else{m.textContent='❌ 添加失败';m.className='msg err';}}
+async function delDst(id){if(!confirm('确认删除?'))return;await fetch('/api/admin/destinations/'+id,{method:'DELETE'});loadDsts();}
+async function loadNav(){const r=await fetch('/api/admin/navigation').then(r=>r.json());document.getElementById('nav_list').innerHTML=(r||[]).map(n=>'<div class="item"><div class="item-info"><h4>'+n.nav_name+'</h4><p>'+n.nav_url+'</p></div><button class="btn btn-red" onclick="delNav(\''+n.id+'\')">删除</button></div>').join('')||'<p style="color:#888;font-size:13px">暂无数据</p>';}
+async function addNav(){const d={nav_name:document.getElementById('nav_name').value,nav_url:document.getElementById('nav_url').value,nav_lang:'zh'};const r=await fetch('/api/admin/navigation',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});const m=document.getElementById('navmsg');if(r.ok){m.textContent='✅ 已添加';m.className='msg ok';document.getElementById('nav_name').value='';document.getElementById('nav_url').value='';loadNav();}else{m.textContent='❌ 添加失败';m.className='msg err';}}
+async function delNav(id){if(!confirm('确认删除?'))return;await fetch('/api/admin/navigation/'+id,{method:'DELETE'});loadNav();}
+async function chPwd(){const np=document.getElementById('npwd').value;if(!np)return;const r=await fetch('/api/admin/password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:np})});const m=document.getElementById('pwdmsg');if(r.ok){m.textContent='✅ 密码已修改';m.className='msg ok';document.getElementById('npwd').value='';}else{m.textContent='❌ 修改失败';m.className='msg err';}}
+load();
+</script></body></html>

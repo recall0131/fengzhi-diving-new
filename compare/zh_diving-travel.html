@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>潜水旅行 - 奉旨潜水</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .trips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .trip-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .trip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .trip-card.featured {
+            border: 3px solid #006994;
+        }
+        
+        .trip-header {
+            background: #006994;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .trip-header h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .trip-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .trip-body {
+            padding: 30px;
+        }
+        
+        .trip-price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #006994;
+            margin-bottom: 20px;
+        }
+        
+        .trip-body ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .trip-body li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+        
+        .trip-body li:before {
+            content: "✓";
+            color: #006994;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #006994;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #005a7f;
+        }
+        
+        .trip-card.featured .cta-button {
+            background: white;
+            color: #006994;
+        }
+        
+        .trip-card.featured .cta-button:hover {
+            background: #f8f9fa;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .trips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 奉旨潜水</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">首页</a>
+                <a href="diving-experience.html">潜水体验</a>
+                <a href="diving-courses.html">潜水课程</a>
+                <a href="diving-travel.html">潜水旅行</a>
+                <a href="index.html#destinations">目的地</a>
+            <a href="/en/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">EN</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🌊 潜水旅行</h1>
+        <p>探索世界顶级潜水目的地</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2>为什么选择我们的潜水旅行？</h2>
+            <p>我们精选全球顶级潜水目的地，为您提供一站式潜水旅行服务。从机票、住宿到潜水装备、专业向导，我们为您安排一切，让您只需专注于享受潜水的乐趣。</p>
+            
+            <h2>我们的服务</h2>
+            <ul>
+                <li><strong>机票预订：</strong>帮您预订最优惠的机票</li>
+                <li><strong>住宿安排：</strong>精选舒适便捷的住宿</li>
+                <li><strong>交通接送：</strong>机场、码头、潜水点全程接送</li>
+                <li><strong>潜水装备：</strong>提供全套专业潜水装备</li>
+                <li><strong>专业向导：</strong>经验丰富的潜水向导陪同</li>
+                <li><strong>保险保障：</strong>全程潜水保险</li>
+                <li><strong>餐饮安排：</strong>当地特色餐饮</li>
+                <li><strong>摄影服务：</strong>专业水下摄影师记录精彩瞬间</li>
+            </ul>
+            
+            <h2>热门旅行套餐</h2>
+        </div>
+        
+        <div class="trips-grid">
+            <!-- 马尔代夫 -->
+            <div class="trip-card featured">
+                <div class="trip-header">
+                    <h3>🏝️ 马尔代夫 7天6晚</h3>
+                    <span class="trip-badge">热门推荐</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">热带天堂，清澈的海水和绚丽的珊瑚礁，5天潜水，每天2-3潜。</p>
+                    <div class="trip-price">¥18,800</div>
+                    <ul>
+                        <li>6晚水上屋住宿</li>
+                        <li>5天潜水（每天2-3潜）</li>
+                        <li>全套潜水装备</li>
+                        <li>专业潜水向导</li>
+                        <li>机场接送</li>
+                        <li>三餐及饮料</li>
+                        <li>免费拍照服务</li>
+                        <li>潜水保险</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">立即预订</a>
+                </div>
+            </div>
+            
+            <!-- 帕劳 -->
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h3>🕳️ 帕劳 5天4晚</h3>
+                    <span class="trip-badge">蓝洞探险</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">世界顶级潜水圣地，壮观的蓝洞和丰富的海洋生物。</p>
+                    <div class="trip-price">¥15,800</div>
+                    <ul>
+                        <li>4晚度假村住宿</li>
+                        <li>4天潜水（每天2潜）</li>
+                        <li>全套潜水装备</li>
+                        <li>专业潜水向导</li>
+                        <li>机场接送</li>
+                        <li>三餐及饮料</li>
+                        <li>蓝洞、水母湖体验</li>
+                        <li>潜水保险</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">立即预订</a>
+                </div>
+            </div>
+            
+            <!-- 斐济 -->
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h3>🦈 斐济 6天5晚</h3>
+                    <span class="trip-badge">鲨鱼天堂</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">鲨鱼喂食体验，可以看到多达8种鲨鱼。</p>
+                    <div class="trip-price">¥16,800</div>
+                    <ul>
+                        <li>5晚度假村住宿</li>
+                        <li>5天潜水（每天2潜）</li>
+                        <li>全套潜水装备</li>
+                        <li>专业潜水向导</li>
+                        <li>机场接送</li>
+                        <li>三餐及饮料</li>
+                        <li>鲨鱼喂食体验</li>
+                        <li>潜水保险</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">立即预订</a>
+                </div>
+            </div>
+            
+            <!-- 印度尼西亚 -->
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h3>🐠 印尼科莫多 7天6晚</h3>
+                    <span class="trip-badge">巨蜥探险</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">科莫多巨蜥、蝠鲼、鲨鱼和丰富的珊瑚礁。</p>
+                    <div class="trip-price">¥14,800</div>
+                    <ul>
+                        <li>6晚度假村住宿</li>
+                        <li>6天潜水（每天2潜）</li>
+                        <li>全套潜水装备</li>
+                        <li>专业潜水向导</li>
+                        <li>机场接送</li>
+                        <li>三餐及饮料</li>
+                        <li>科莫多巨蜥游览</li>
+                        <li>潜水保险</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">立即预订</a>
+                </div>
+            </div>
+            
+            <!-- 埃及 -->
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h3>🏛️ 埃及红海 6天5晚</h3>
+                    <span class="trip-badge">沉船探险</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">壮观的珊瑚礁、沉船遗迹和丰富的海洋生物。</p>
+                    <div class="trip-price">¥12,800</div>
+                    <ul>
+                        <li>5晚度假村住宿</li>
+                        <li>5天潜水（每天2潜）</li>
+                        <li>全套潜水装备</li>
+                        <li>专业潜水向导</li>
+                        <li>机场接送</li>
+                        <li>三餐及饮料</li>
+                        <li>沉船潜体验</li>
+                        <li>潜水保险</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">立即预订</a>
+                </div>
+            </div>
+            
+            <!-- 西沙 -->
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h3>🌊 中国西沙 4天3晚</h3>
+                    <span class="trip-badge">国内首选</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">中国南海的潜水天堂，清澈的海水和丰富的珊瑚礁。</p>
+                    <div class="trip-price">¥9,800</div>
+                    <ul>
+                        <li>3晚邮轮住宿</li>
+                        <li>3天潜水（每天2潜）</li>
+                        <li>全套潜水装备</li>
+                        <<li>专业潜水向导</li>
+                        <li>码头接送</li>
+                        <li>三餐及饮料</li>
+                        <li>西沙群岛游览</li>
+                        <li>潜水保险</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">立即预订</a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 60px; text-align: center;">
+            <h2 style="color: #006994; margin-bottom: 20px;">定制您的专属潜水之旅</h2>
+            <p style="color: #666; margin-bottom: 30px;">如果您有特定的目的地或特殊需求，我们可以为您量身定制专属潜水旅行套餐。</p>
+            <a href="index.html#contact" class="cta-button" style="display: inline-block; padding: 15px 40px;">联系我们定制</a>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="diving-experience.html">潜水体验</a>
+            <a href="diving-courses.html">潜水课程</a>
+            <a href="diving-travel.html">潜水旅行</a>
+            <a href="index.html#destinations">目的地</a>
+        </div>
+        <p>© 2026 奉旨潜水 - 官方网站</p>
+        <p>联系我们：imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

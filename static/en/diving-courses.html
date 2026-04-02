@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diving Courses - Imperial Diving</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .course-card.featured {
+            border: 3px solid #006994;
+        }
+        
+        .course-header {
+            background: #006994;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .course-header h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .course-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .course-body {
+            padding: 30px;
+        }
+        
+        .course-price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #006994;
+            margin-bottom: 20px;
+        }
+        
+        .course-body ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .course-body li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+        
+        .course-body li:before {
+            content: "✓";
+            color: #006994;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #006994;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #005a7f;
+        }
+        
+        .course-card.featured .cta-button {
+            background: white;
+            color: #006994;
+        }
+        
+        .course-card.featured .cta-button:hover {
+            background: #f8f9fa;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 Imperial Diving</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="diving-experience.html">Diving Experience</a>
+                <a href="diving-courses.html">Diving Courses</a>
+                <a href="diving-travel.html">Diving Trips</a>
+                <a href="index.html#destinations">Destinations</a>
+            <a href="/zh/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">Chinese</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>📚 Diving Courses</h1>
+        <p>From Beginner to Advanced, Get International Certification</p>
+    </section>
+    
+    <section class="container">
+        <h2 class="section-title">Our Courses</h2>
+        <div class="courses-grid">
+            <!-- OWD Course -->
+            <div class="course-card featured">
+                <div class="course-header">
+                    <h3>🤿 Open Water Diver (OWD)</h3>
+                    <span class="course-badge">Most Popular</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">The most popular beginner course, learn basic diving skills and get a globally recognized PADI certificate.</p>
+                    <div class="course-price">¥2,800</div>
+                    <ul>
+                        <li>5 theory sessions</li>
+                        <li>5 pool practice sessions</li>
+                        <li>4 open water dives</li>
+                        <li>Full diving equipment included</li>
+                        <li>International certification</li>
+                        <li>Lifetime validity</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Sign Up Now</a>
+                </div>
+            </div>
+            
+            <!-- AOWD Course -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>🎯 Advanced Open Water (AOWD)</h3>
+                    <span class="course-badge">Advanced</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">Enhance your diving skills with night diving, deep diving, wreck diving, and more exciting activities.</p>
+                    <div class="course-price">¥2,200</div>
+                    <ul>
+                        <li>5 specialty dives</li>
+                        <li>Deep diving (max 30m)</li>
+                        <li>Underwater navigation</li>
+                        <li>Night diving experience</li>
+                        <li>Wreck diving exploration</li>
+                        <li>Advanced certificate</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Sign Up Now</a>
+                </div>
+            </div>
+            
+            <!-- Rescue Course -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>🛡️ Rescue Diver</h3>
+                    <span class="course-badge">Expert</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">Learn emergency rescue skills, improve safety awareness and self-rescue capabilities.</p>
+                    <div class="course-price">¥1,800</div>
+                    <ul>
+                        <li>Self-rescue techniques</li>
+                        <li>Tired diver rescue</li>
+                        <li>Emergency situation handling</li>
+                        <li>First aid and CPR</li>
+                        <li>Rescue equipment usage</li>
+                        <li>Rescue certificate</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Sign Up Now</a>
+                </div>
+            </div>
+            
+            <!-- DM Course -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>👨‍🏫 Divemaster (DM)</h3>
+                    <span class="course-badge">Professional</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">First step to becoming a professional diver, learn to organize and lead diving activities.</p>
+                    <div class="course-price">¥4,800</div>
+                    <ul>
+                        <li>Divemaster responsibilities</li>
+                        <li>Diving activity organization</li>
+                        <li>Student mentoring</li>
+                        <li>Equipment maintenance</li>
+                        <li>Emergency response</li>
+                        <li>Professional certificate</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Sign Up Now</a>
+                </div>
+            </div>
+            
+            <!-- Specialty Courses -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>🌟 Specialty Courses</h3>
+                    <span class="course-badge">Skill Enhancement</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">Deepen specific skills and become an expert diver in a particular field.</p>
+                    <div class="course-price">From ¥800</div>
+                    <ul>
+                        <li>Deep diving specialty</li>
+                        <li>Wreck diving specialty</li>
+                        <li>Night diving specialty</li>
+                        <li>Underwater photography specialty</li>
+                        <li>Fish identification specialty</li>
+                        <li>Other specialties available</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">View Details</a>
+                </div>
+            </div>
+            
+            <!-- Instructor Course -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>🎓 Open Water Scuba Instructor (OWSI)</h3>
+                    <span class="course-badge">Career</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">Become a PADI instructor and start your diving teaching career.</p>
+                    <div class="course-price">¥8,800</div>
+                    <ul>
+                        <li>Teaching methods</li>
+                        <li>Course design</li>
+                        <li>Student assessment</li>
+                        <li>Commercial diving operations</li>
+                        <li>Industry standards</li>
+                        <li>Instructor certificate</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Inquire Details</a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 60px; text-align: center;">
+            <h2 style="color: #006994; margin-bottom: 20px;">Why Choose Us?</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+                <div style="padding: 20px;">
+                    <h3 style="color: #006994; margin-bottom: 10px;">👨‍🏫 Internationally Certified Instructors</h3>
+                    <p style="color: #666;">PADI, SSI, and other agency certified instructors</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h3 style="color: #006994; margin-bottom: 10px;">📚 Small Class Sizes</h3>
+                    <p style="color: #666;">Maximum 4 students per class, personalized guidance</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h3 style="color: #006994; margin-bottom: 10px;">🛡️ Safety First</h3>
+                    <p style="color: #666;">Strict safety standards and equipment</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h3 style="color: #006994; margin-bottom: 10px;">🌍 Globally Recognized</h3>
+                    <p style="color: #666;">Certificates valid worldwide, lifetime validity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="diving-experience.html">Diving Experience</a>
+            <a href="diving-courses.html">Diving Courses</a>
+            <a href="diving-travel.html">Diving Trips</a>
+            <a href="index.html#destinations">Destinations</a>
+        </div>
+        <p>© 2026 Imperial Diving - Official Website</p>
+        <p>Contact Us: imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

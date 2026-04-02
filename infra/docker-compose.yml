@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-fengzui}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-your_secure_password}
+      POSTGRES_DB: ${DB_NAME:-fengzui_diving}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ../backend/
+    restart: always
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-fengzui}
+      DB_PASSWORD: ${DB_PASSWORD:-your_secure_password}
+      DB_NAME: ${DB_NAME:-fengzui_diving}
+      JWT_SECRET: ${JWT_SECRET:-your_jwt_secret_key}
+      PORT: 3001
+    depends_on:
+      - postgres
+    ports:
+      - "3001:3001"
+
+  frontend:
+    build: ../frontend/
+    restart: always
+    environment:
+      NEXT_PUBLIC_API_URL: ${API_URL:-https://fengzuidiving.com/api}
+      NEXT_PUBLIC_I18N: zh,en
+    ports:
+      - "3002:3000"
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "4443:443"
+    volumes:
+      - /home/resort_deja_vu_deploy/ssl:/etc/nginx/ssl
+      - ./nginx/fengzhi.conf:/etc/nginx/conf.d/fengzhi.conf
+    depends_on:
+      - frontend
+      - backend
+
+volumes:
+  postgres_data:

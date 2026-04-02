@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>墨西哥 - 奉旨潜水</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 60px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            color: #006994;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #006994;
+            margin-top: 15px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 奉旨潜水</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">首页</a>
+                <a href="diving-experience.html">潜水体验</a>
+                <a href="diving-courses.html">潜水课程</a>
+                <a href="diving-travel.html">潜水旅行</a>
+                <a href="index.html#destinations">目的地</a>
+            <a href="/en/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">EN</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🦭 墨西哥</h1>
+        <p>MEXICO - 加勒比海明珠</p>
+    </section>
+    
+    <section class="container">
+
+    <div class="breadcrumb" style="padding: 15px 0; font-size: 14px; color: #666;">
+        <a href="index.html" style="color: #006994;">首页</a> &gt;
+        <a href="diving-travel.html" style="color: #006994;">潜水旅行</a> &gt;
+        <span>墨西哥</span>
+    </div>
+
+        <div class="content">
+            <h2 class="section-title">国家潜资源</h2>
+            <p>墨西哥拥有世界著名的科苏梅尔岛，位于加勒比海。这里有壮观的珊瑚礁、洞穴潜水机会和丰富的海洋生物，是美洲潜水爱好者的热门目的地。</p>
+            
+            <h2>潜水特点</h2>
+            <ul>
+                <li><strong>珊瑚礁：</strong>世界级的珊瑚礁生态系统</li>
+                <li><strong>洞穴潜水：</strong>著名的洞穴和cenote潜点</li>
+                <li><strong>丰富的海洋生物：</strong>鲨鱼、海龟、魔鬼鱼等</li>
+                <li><strong>能见度高：</strong>海水清澈，能见度高</li>
+                <li><strong>全年可潜：</strong>水温26-29℃</li>
+                <li><strong>适合各等级：</strong>从初学者到技术潜水员</li>
+            </ul>
+            
+            <h2>推荐潜水行程</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🦭 科苏梅尔之旅</h3>
+                    <p>探索科苏梅尔潜点</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>6晚度假村住宿</li>
+                        <li>5天潜水（每天2潜）</li>
+                        <li>科苏梅尔专攻</li>
+                        <li>全套装备</li>
+                    </ul>
+                    <div class="price">¥13,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🕳️ 洞穴潜水之旅</h3>
+                    <p>探索洞穴和cenote</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>7晚度假村住宿</li>
+                        <li>6天潜水</li>
+                        <li>专业向导</li>
+                        <li>免费拍照</li>
+                    </ul>
+                    <div class="price">¥15,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🐠 珊瑚礁之旅</h3>
+                    <p>探索墨西哥珊瑚礁</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>5晚度假村住宿</li>
+                        <li>4天潜水</li>
+                        <li>珊瑚礁专攻</li>
+                        <li>文化体验</li>
+                    </ul>
+                    <div class="price">¥12,800起</div>
+                </div>
+            </div>
+            
+            <h2>推荐潜水度假村</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🌊 Cozumel Dive Resort</h3>
+                    <p>科苏梅尔度假村</p>
+                    <p>位置：科苏梅尔</p>
+                    <p>特色：私人潜点</p>
+                    <div class="price">★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🏖️ Cancun Beach Club</h3>
+                    <p>坎昆度假村</p>
+                    <p>位置：坎昆</p>
+                    <p>特色：海滨潜点</p>
+                    <div class="price">★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌴 Playa del Carmen Resort</h3>
+                    <p>普拉亚德尔卡曼度假村</p>
+                    <p>位置：普拉亚德尔卡曼</p>
+                    <p>特色：家庭友好</p>
+                    <div class="price">★★★★</div>
+                </div>
+            </div>
+            
+            <h2>推荐潜店</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🤿 Cozumel Diving Center</h3>
+                    <p>科苏梅尔专业潜店</p>
+                    <p>认证：PADI、SSI</p>
+                    <p>服务：课程、装备、向导</p>
+                    <div class="price">推荐指数：⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌊 Cenote Divers</h3>
+                    <p>洞穴潜水专业潜店</p>
+                    <p>认证：PADI、CMAS</p>
+                    <p>服务：从初学到教练</p>
+                    <div class="price">推荐指数：⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦋 Mexico Ocean Divers</h3>
+                    <p>墨西哥大型潜店</p>
+                    <p>认证：PADI</p>
+                    <p>服务：多种潜水项目</p>
+                    <div class="price">推荐指数：⭐⭐⭐⭐</div>
+                </div>
+            </div>
+            
+            <h2>推荐船宿</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🚢 Mexico Aggressor</h3>
+                    <p>奢华船宿，探索墨西哥海域</p>
+                    <p>容量：20位客人</p>
+                    <p>特色：SPA、按摩服务</p>
+                    <div class="price">7天6晚：¥19,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>⛵ Nautilus Explorer</h3>
+                    <p>豪华游艇，顶级服务</p>
+                    <p>容量：22位客人</p>
+                    <p>特色：私人阳台、美食</p>
+                    <div class="price">7天6晚：¥21,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🐋 Sea Explorer</h3>
+                    <p>专业潜水船宿</p>
+                    <p>容量：24位客人</p>
+                    <p>特色：洞穴专家</p>
+                    <div class="price">7天6晚：¥17,800起</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 10px;">
+                <h2 style="color: #006994; margin-bottom: 20px;">准备好探索墨西哥了吗？</h2>
+                <p style="margin-bottom: 30px;">立即预订，开启您的加勒比海之旅！</p>
+                <a href="index.html#contact" style="display: inline-block; padding: 15px 40px; background: #006994; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">立即预订</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="diving-experience.html">潜水体验</a>
+            <a href="diving-courses.html">潜水课程</a>
+            <a href="diving-travel.html">潜水旅行</a>
+            <a href="index.html#destinations">目的地</a>
+        </div>
+        <p>© 2026 奉旨潜水 - 官方网站</p>
+        <p>联系我们：imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

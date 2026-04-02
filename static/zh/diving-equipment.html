@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>潜水装备 - 奉旨潜水</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 60px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            color: #006994;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #006994;
+            margin-top: 15px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 奉旨潜水</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">首页</a>
+                <a href="diving-experience.html">潜水体验</a>
+                <a href="diving-courses.html">潜水课程</a>
+                <a href="diving-travel.html">潜水旅行</a>
+                <a href="diving-equipment.html">潜水装备</a>
+                <a href="index.html#destinations">目的地</a>
+            <a href="/en/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">EN</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🤿 潜水装备</h1>
+        <p>专业潜水装备，安全第一</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2 class="section-title">为什么选择专业潜水装备？</h2>
+            <p>专业潜水装备是潜水安全和舒适的基础。合适的装备不仅能提升潜水体验，更是潜水员生命安全的保障。</p>
+            
+            <h2>必备潜水装备</h2>
+            <ul>
+                <li><strong>潜水服：</strong>保护身体免受寒冷和海洋生物伤害</li>
+                <li><strong>呼吸调节器：</strong>水下呼吸的核心设备</li>
+                <li><strong>浮力控制装置（BCD）：</strong>控制浮力和姿态</li>
+                <li><strong>潜水镜：</strong>提供清晰的水下视野</li>
+                <li><strong>潜水脚蹼：</strong>提高水下移动效率</li>
+                <li><strong>潜水电脑表：</strong>监控深度、时间和减压</li>
+                <li><strong>潜水刀：</strong>紧急情况下切割装备</li>
+            </ul>
+            
+            <h2>推荐潜水装备</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🤿 潜水服</h3>
+                    <p>5mm湿衣，适合温带水域</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>高弹性氯丁橡胶</li>
+                        <li>双层密封设计</li>
+                        <li>保暖性能优异</li>
+                    </ul>
+                    <div class="price">¥1,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>😤 呼吸调节器</h3>
+                    <p>一级+二级调节器套装</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>平衡式设计</li>
+                        <li>呼吸阻力低</li>
+                        <li>可靠性高</li>
+                    </ul>
+                    <div class="price">¥3,500起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🎈 浮力控制装置</h3>
+                    <p>背飞式BCD，多功能设计</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>大容量气室</li>
+                        <li>集成配重系统</li>
+                        <li>舒适背板设计</li>
+                    </ul>
+                    <div class="price">¥2,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>👁️ 潜水镜</h3>
+                    <p>广角镜，超大视野</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>防雾镜片</li>
+                        <li>硅胶裙边</li>
+                        <li>可调节头带</li>
+                    </ul>
+                    <div class="price">¥500起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦶 潜水脚蹼</h3>
+                    <p>开放式脚蹼，高效推进</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>长叶片设计</li>
+                        <li>轻量化材料</li>
+                        <li>舒适脚套</li>
+                    </ul>
+                    <div class="price">¥800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>⌚ 潜水电脑表</h3>
+                    <p>腕式电脑表，多功能显示</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>深度/时间显示</li>
+                        <li>减压计算</li>
+                        <li>水温显示</li>
+                    </ul>
+                    <div class="price">¥2,000起</div>
+                </div>
+            </div>
+            
+            <h2>装备选购建议</h2>
+            <ul>
+                <li><strong>根据潜水环境选择：</strong>热带水域选择薄湿衣，温带水域选择厚湿衣</li>
+                <li><strong>考虑身体尺寸：</strong>合适的尺寸是舒适和安全的关键</li>
+                <li><strong>优先选择知名品牌：</strong>质量有保障，售后服务完善</li>
+                <li><strong>定期维护保养：</strong>延长装备使用寿命，确保安全</li>
+                <li><strong>咨询专业人士：</strong>向教练或潜店工作人员寻求建议</li>
+            </ul>
+            
+            <h2>装备维护保养</h2>
+            <ul>
+                <li><strong>每次潜水后：</strong>用清水冲洗装备，去除盐分和沙粒</li>
+                <li><strong>定期检查：</strong>检查密封件、连接处是否有损坏</li>
+                <li><strong>专业保养：</strong>呼吸调节器每年专业保养一次</li>
+                <li><strong>正确存放：</strong>避免阳光直射，保持干燥通风</li>
+                <li><strong>备用装备：</strong>重要装备准备备用，以防万一</li>
+            </ul>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 10px;">
+                <h2 style="color: #006994; margin-bottom: 20px;">需要选购潜水装备？</h2>
+                <p style="margin-bottom: 30px;">联系我们，获取专业建议和优惠价格！</p>
+                <a href="index.html#contact" style="display: inline-block; padding: 15px 40px; background: #006994; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">联系我们</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="diving-experience.html">潜水体验</a>
+            <a href="diving-courses.html">潜水课程</a>
+            <a href="diving-travel.html">潜水旅行</a>
+            <a href="diving-equipment.html">潜水装备</a>
+            <a href="index.html#destinations">目的地</a>
+        </div>
+        <p>© 2026 奉旨潜水 - 官方网站</p>
+        <p>联系我们：imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

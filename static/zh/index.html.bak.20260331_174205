@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奉旨潜水 - Imperial Diving</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .hero button {
+            padding: 15px 40px;
+            font-size: 18px;
+            background: white;
+            color: #006994;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        
+        .hero button:hover {
+            transform: scale(1.05);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .services {
+            background: #f8f9fa;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #006994;
+        }
+        
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .destination-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .destination-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #006994;
+        }
+        
+        .destination-card p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .country-badge {
+            display: inline-block;
+            background: #006994;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .services-grid,
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 奉旨潜水</h1></a>
+            <div class="navbar-links">
+                <a href="diving-experience.html">潜水体验</a>
+                <a href="diving-courses.html">潜水课程</a>
+                <a href="diving-travel.html">潜水旅行</a>
+                <a href="diving-equipment.html">潜水装备</a>
+                <a href="#destinations">目的地</a>
+                <a href="#contact">联系我们</a>
+            <a href="/en/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">EN</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🤿 奉旨潜水</h1>
+        <p>Imperial Diving - 探索世界顶级潜水圣地</p>
+        <p style="font-size: 18px; margin-bottom: 30px;">专业潜水培训 · 全球顶级目的地 · 安全第一</p>
+        <button onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'})">
+            开始潜水之旅
+        </button>
+    </section>
+    
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">我们的服务</h2>
+            <div class="services-grid">
+                <a href="diving-experience.html" class="service-card">
+                    <h3>🤿 潜水体验</h3>
+                    <p>适合初学者的体验式潜水，在专业教练陪同下，安全探索海底世界。</p>
+                </a>
+                <a href="diving-courses.html" class="service-card">
+                    <h3>📚 潜水课程</h3>
+                    <p>从入门到进阶的专业潜水培训，获得国际认证的潜水证书。</p>
+                </a>
+                <a href="diving-travel.html" class="service-card">
+                    <h3>🌊 潜水旅行</h3>
+                    <p>精选全球顶级潜水目的地，提供一站式潜水旅行服务。</p>
+                </a>
+                <a href="diving-equipment.html" class="service-card">
+                    <h3>🤿 潜水装备</h3>
+                    <p>专业潜水装备销售与租赁，提供安全可靠的潜水设备。</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container" id="destinations">
+        <h2 class="section-title">热门目的地</h2>
+        <div class="destinations-grid">
+            <!-- 马尔代夫 -->
+            <a href="maldives.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🏝️ 马尔代夫</h3>
+                    <p>热带天堂，清澈的海水和绚丽的珊瑚礁。能见度高，海洋生物丰富，可以看到鲨鱼、魔鬼鱼、海龟等。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 马累环礁<br>
+                        • 阿里环礁<br>
+                        • 南马累环礁<br>
+                        • 巴阿环礁<br>
+                        • 芭环礁
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 印度尼西亚 -->
+            <a href="indonesia.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🐠 印度尼西亚</h3>
+                    <p>世界著名的潜水圣地，可以看到科莫多巨蜥、蝠鲼、鲨鱼和丰富的珊瑚礁生态系统。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 科莫多国家公园<br>
+                        • 巴厘岛<br>
+                        • 四王群岛<br>
+                        • 苏拉威西<br>
+                        • 龙目岛
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 菲律宾 -->
+            <a href="philippines.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🐙 菲律宾</h3>
+                    <p>联合国教科文组织世界遗产，拥有世界级的珊瑚礁和丰富的海洋生物多样性。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 图巴塔哈礁<br>
+                        • 阿尼洛<br>
+                        • 宿务<br>
+                        • 薄荷岛<br>
+                        • 巴拉望
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 马来西亚 -->
+            <a href="malaysia.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🦈 马来西亚</h3>
+                    <p>世界顶级的潜水圣地，以杰克鱼风暴、鲨鱼和丰富的海洋生物而闻名。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 西巴丹岛<br>
+                        • 诗巴丹<br>
+                        • 马布岛<br>
+                        • 仙本那<br>
+                        • 斗湖
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 埃及 -->
+            <a href="egypt.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🏛️ 埃及</h3>
+                    <p>世界著名的潜水胜地，拥有壮观的珊瑚礁、沉船遗迹和丰富的海洋生物。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 红海<br>
+                        • 赫尔格达<br>
+                        • 沙姆沙伊赫<br>
+                        • 马萨阿拉姆<br>
+                        • 达哈布
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 帕劳 -->
+            <a href="palau.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🕳️ 帕劳</h3>
+                    <p>世界顶级潜水圣地，壮观的蓝洞和丰富的海洋生物，鲨鱼、魔鬼鱼、海龟应有尽有。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 帕劳蓝洞<br>
+                        • 水母湖<br>
+                        • 德罗切水道<br>
+                        • 珊瑚礁<br>
+                        • 鲨鱼城
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 斐济 -->
+            <a href="fiji.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🦈 斐济</h3>
+                    <p>以鲨鱼喂食体验而闻名，可以看到多达8种鲨鱼，是鲨鱼爱好者的天堂。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 贝卡环礁<br>
+                        • 太平洋港<br>
+                        • 塔韦乌尼岛<br>
+                        • 瓦努阿岛<br>
+                        • 索莫索莫海峡
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 毛里求斯 -->
+            <a href="mauritius.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🐢 毛里求斯</h3>
+                    <p>清澈的海水和丰富的珊瑚礁，可以看到海龟、鲨鱼和色彩斑斓的热带鱼群。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 毛里求斯海域<br>
+                        • 鹿岛<br>
+                        • 马埃岛<br>
+                        • 卡特拉岛<br>
+                        • 罗德里格斯岛
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 墨西哥 -->
+            <a href="mexico.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🦭 墨西哥</h3>
+                    <p>世界著名的潜水胜地，拥有壮观的珊瑚礁、洞穴潜水机会和丰富的海洋生物。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 科苏梅尔<br>
+                        • 坎昆<br>
+                        • 普拉亚德尔卡曼<br>
+                        • 尤卡坦半岛<br>
+                        • 穆赫雷斯岛
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 厄瓜多尔 -->
+            <a href="ecuador.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🦎 厄瓜多尔</h3>
+                    <p>世界自然遗产，独特的海洋生态系统，可以看到企鹅、海鬣蜥、锤头鲨等珍稀物种。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 加拉帕戈斯群岛<br>
+                        • 圣克鲁斯岛<br>
+                        • 伊莎贝拉岛<br>
+                        • 费尔南迪纳岛<br>
+                        • 圣地亚哥岛
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 中国 -->
+            <a href="china.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🌊 中国</h3>
+                    <p>中国南海的潜水天堂，拥有清澈的海水、丰富的珊瑚礁和热带鱼群，是国内顶级潜水目的地。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 西沙群岛<br>
+                        • 南沙群岛<br>
+                        • 海南岛<br>
+                        • 三亚<br>
+                        • 涠洲岛
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 美国 -->
+            <a href="usa.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🌺 美国</h3>
+                    <p>世界著名的潜水胜地，拥有熔岩管潜水、丰富的珊瑚礁和海龟、魔鬼鱼等海洋生物。</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>热门潜点：</strong><br>
+                        • 夏威夷<br>
+                        • 瓦胡岛<br>
+                        • 毛伊岛<br>
+                        • 大岛<br>
+                        • 考爱岛
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <section class="container" id="contact" style="background: #f8f9fa; border-radius: 10px;">
+        <h2 class="section-title">联系我们</h2>
+        <div style="max-width: 600px; margin: 0 auto;">
+            <form id="contactForm" action="https://formspree.io/f/xwvnzkol" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+                <input type="text" name="name" id="name" placeholder="您的姓名" required style="padding: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+                <input type="email" name="email" id="email" placeholder="您的邮箱" required style="padding: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+                <textarea name="message" id="message" placeholder="您的留言" rows="5" required style="padding: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; resize: vertical;"></textarea>
+                <input type="hidden" name="ip_address" id="ip_address">
+                <input type="hidden" name="user_agent" id="user_agent">
+                <input type="hidden" name="timestamp" id="timestamp">
+                <button type="submit" id="submitBtn" style="padding: 15px 40px; background: #006994; color: white; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer;">
+                    发送留言
+                </button>
+            </form>
+            <p id="statusMsg" style="text-align: center; margin-top: 15px; font-size: 14px; color: #666;">
+                留言将直接发送到 imperialdiving2015@gmail.com
+            </p>
+            <script>
+                // 防flood保护
+                const FORMSPREE_FORM_ID = 'xwvnzkol';
+                const SUBMIT_COOLDOWN = 60000; // 60秒冷却时间
+                const MAX_SUBMITS_PER_HOUR = 5; // 每小时最多5次
+                
+                document.addEventListener('DOMContentLoaded', function() {
+                    const form = document.getElementById('contactForm');
+                    const submitBtn = document.getElementById('submitBtn');
+                    const statusMsg = document.getElementById('statusMsg');
+                    
+                    // 获取客户端信息
+                    fetch('https://api.ipify.org?format=json')
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('ip_address').value = data.ip;
+                        })
+                        .catch(() => {
+                            document.getElementById('ip_address').value = 'Unknown';
+                        });
+                    
+                    document.getElementById('user_agent').value = navigator.userAgent;
+                    document.getElementById('timestamp').value = new Date().toISOString();
+                    
+                    // 检查提交频率
+                    function checkSubmitRate() {
+                        const lastSubmit = localStorage.getItem('lastSubmitTime');
+                        const submitCount = parseInt(localStorage.getItem('submitCount') || '0');
+                        const countTimestamp = parseInt(localStorage.getItem('countTimestamp') || '0');
+                        const now = Date.now();
+                        
+                        // 检查冷却时间
+                        if (lastSubmit && (now - parseInt(lastSubmit)) < SUBMIT_COOLDOWN) {
+                            const remainingTime = Math.ceil((SUBMIT_COOLDOWN - (now - parseInt(lastSubmit))) / 1000);
+                            return {
+                                allowed: false,
+                                message: `请等待 ${remainingTime} 秒后再试`
+                            };
+                        }
+                        
+                        // 检查每小时提交次数
+                        if (countTimestamp && (now - countTimestamp) < 3600000 && submitCount >= MAX_SUBMITS_PER_HOUR) {
+                            const remainingTime = Math.ceil((3600000 - (now - countTimestamp)) / 60000);
+                            return {
+                                allowed: false,
+                                message: `您已达到每小时最大提交次数，请 ${remainingTime} 分钟后再试`
+                            };
+                        }
+                        
+                        return { allowed: true };
+                    }
+                    
+                    // 更新提交计数
+                    function updateSubmitCount() {
+                        const now = Date.now();
+                        const countTimestamp = parseInt(localStorage.getItem('countTimestamp') || '0');
+                        let submitCount = parseInt(localStorage.getItem('submitCount') || '0');
+                        
+                        // 如果超过1小时，重置计数
+                        if (!countTimestamp || (now - countTimestamp) >= 3600000) {
+                            localStorage.setItem('countTimestamp', now.toString());
+                            submitCount = 0;
+                        }
+                        
+                        localStorage.setItem('submitCount', (submitCount + 1).toString());
+                        localStorage.setItem('lastSubmitTime', now.toString());
+                    }
+                    
+                    // 表单提交处理
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        // 更新时间戳
+                        document.getElementById('timestamp').value = new Date().toISOString();
+                        
+                        // 检查提交频率
+                        const check = checkSubmitRate();
+                        if (!check.allowed) {
+                            statusMsg.textContent = check.message;
+                            statusMsg.style.color = '#dc3545';
+                            return;
+                        }
+                        
+                        // 禁用提交按钮
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = '发送中...';
+                        statusMsg.textContent = '正在发送留言...';
+                        statusMsg.style.color = '#666';
+                        
+                        // 提交表单
+                        fetch(form.action, {
+                            method: 'POST',
+                            body: new FormData(form),
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                statusMsg.textContent = '留言发送成功！我们会尽快回复您。';
+                                statusMsg.style.color = '#28a745';
+                                form.reset();
+                                updateSubmitCount();
+                            } else {
+                                statusMsg.textContent = '发送失败，请稍后重试。';
+                                statusMsg.style.color = '#dc3545';
+                            }
+                        })
+                        .catch(error => {
+                            statusMsg.textContent = '发送失败，请稍后重试。';
+                            statusMsg.style.color = '#dc3545';
+                        })
+                        .finally(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = '发送留言';
+                        });
+                    });
+                });
+            </script>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="diving-experience.html">潜水体验</a>
+            <a href="diving-courses.html">潜水课程</a>
+            <a href="diving-travel.html">潜水旅行</a>
+            <a href="diving-equipment.html">潜水装备</a>
+            <a href="#destinations">目的地</a>
+            <a href="#contact">联系我们</a>
+        </div>
+        <p>© 2026 奉旨潜水 - 官方网站</p>
+        <p>联系我们：imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

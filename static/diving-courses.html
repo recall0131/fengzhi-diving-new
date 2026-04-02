@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>潜水课程 - 奉旨潜水</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .course-card.featured {
+            border: 3px solid #006994;
+        }
+        
+        .course-header {
+            background: #006994;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .course-header h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .course-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .course-body {
+            padding: 30px;
+        }
+        
+        .course-price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #006994;
+            margin-bottom: 20px;
+        }
+        
+        .course-body ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .course-body li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+        
+        .course-body li:before {
+            content: "✓";
+            color: #006994;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #006994;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #005a7f;
+        }
+        
+        .course-card.featured .cta-button {
+            background: white;
+            color: #006994;
+        }
+        
+        .course-card.featured .cta-button:hover {
+            background: #f8f9fa;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 奉旨潜水</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">首页</a>
+                <a href="diving-experience.html">潜水体验</a>
+                <a href="diving-courses.html">潜水课程</a>
+                <a href="diving-travel.html">潜水旅行</a>
+                <a href="index.html#destinations">目的地</a>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>📚 潜水课程</h1>
+        <p>从入门到进阶，获得国际认证</p>
+    </section>
+    
+    <section class="container">
+        <h2 class="section-title">我们的课程</h2>
+        <div class="courses-grid">
+            <!-- OWD 课程 -->
+            <div class="course-card featured">
+                <div class="course-header">
+                    <h3>🤿 开放水域潜水员 (OWD)</h3>
+                    <span class="course-badge">最受欢迎</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">最受欢迎的入门课程，学习基础潜水技能，获得全球认可的PADI证书。</p>
+                    <div class="course-price">¥2,800</div>
+                    <ul>
+                        <li>5次理论学习</li>
+                        <li>5次泳池练习</li>
+                        <li>4次开放水域潜水</li>
+                        <li>全套潜水装备使用</li>
+                        <li>国际认证证书</li>
+                        <li>终身有效</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">立即报名</a>
+                </div>
+            </div>
+            
+            <!-- AOWD 课程 -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>🎯 进阶开放水域 (AOWD)</h3>
+                    <span class="course-badge">进阶</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">提升潜水技能，尝试夜潜、深潜、沉船潜等精彩项目。</p>
+                    <div class="course-price">¥2,200</div>
+                    <ul>
+                        <li>5次专长潜水</li>
+                        <li>深潜（最大30米）</li>
+                        <li>水下导航</li>
+                        <li>夜潜体验</li>
+                        <li>沉船潜探索</li>
+                        <li>进阶证书</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">立即报名</a>
+                </div>
+            </div>
+            
+            <!-- Rescue 课程 -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>🛡️ 救援潜水员</h3>
+                    <span class="course-badge">高级</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">学习紧急救援技能，提升安全意识和自救互救能力。</p>
+                    <div class="course-price">¥1,800</div>
+                    <ul>
+                        <li>自救技巧</li>
+                        <li>疲劳潜水员救援</li>
+                        <li>紧急情况处理</li>
+                        <li>急救与CPR</li>
+                        <li>救援装备使用</li>
+                        <li>救援证书</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">立即报名</a>
+                </div>
+            </div>
+            
+            <!-- DM 课程 -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>👨‍🏫 潜水长 (DM)</h3>
+                    <span class="course-badge">专业</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">迈向专业潜水员的第一步，学习组织和带领潜水活动。</p>
+                    <div class="course-price">¥4,800</div>
+                    <ul>
+                        <li>潜水长职责</li>
+                        <li>潜水活动组织</li>
+                        <li>学员辅导</li>
+                        <li>装备维护</li>
+                        <li>紧急应变</li>
+                        <li>专业证书</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">立即报名</a>
+                </div>
+            </div>
+            
+            <!-- 专长课程 -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>🌟 专长课程</h3>
+                    <span class="course-badge">技能提升</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">深化特定技能，成为某领域的专家潜水员。</p>
+                    <div class="course-price">¥800起</div>
+                    <ul>
+                        <li>深潜专长</li>
+                        <li>沉船专长</li>
+                        <li>夜潜专长</li>
+                        <li>水下摄影专长</li>
+                        <li>鱼类识别专长</li>
+                        <li>其他专长可选</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">查看详情</a>
+                </div>
+            </div>
+            
+            <!-- 教练课程 -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>🎓 开放水域教练 (OWSI)</h3>
+                    <span class="course-badge">职业</span>
+                </div>
+                <div class="course-body">
+                    <p style="margin-bottom: 20px; color: #666;">成为PADI教练，开启您的潜水教学职业生涯。</p>
+                    <div class="course-price">¥8,800</div>
+                    <ul>
+                        <li>教学方法</li>
+                        <li>课程设计</li>
+                        <li>学员评估</li>
+                        <li>商业潜水运营</li>
+                        <li>行业标准</li>
+                        <li>教练证书</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">咨询详情</a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 60px; text-align: center;">
+            <h2 style="color: #006994; margin-bottom: 20px;">为什么选择我们？</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+                <div style="padding: 20px;">
+                    <h3 style="color: #006994; margin-bottom: 10px;">👨‍🏫 国际认证教练</h3>
+                    <p style="color: #666;">PADI、SSI等多机构认证教练</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h3 style="color: #006994; margin-bottom: 10px;">📚 小班教学</h3>
+                    <p style="color: #666;">每班最多4人，个性化指导</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h3 style="color: #006994; margin-bottom: 10px;">🛡️ 安全第一</h3>
+                    <p style="color: #666;">严格的安全标准和装备</p>
+                </div>
+                <div style="padding: 20px;">
+                    <h3 style="color: #006994; margin-bottom: 10px;">🌍 全球认可</h3>
+                    <p style="color: #666;">证书全球通用，终身有效</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="diving-experience.html">潜水体验</a>
+            <a href="diving-courses.html">潜水课程</a>
+            <a href="diving-travel.html">潜水旅行</a>
+            <a href="index.html#destinations">目的地</a>
+        </div>
+        <p>© 2026 奉旨潜水 - 官方网站</p>
+        <p>联系我们：info@fengzhidiving.com</p>
+    </footer>
+</body>
+</html>

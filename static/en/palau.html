@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palau - Imperial Diving</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 60px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            color: #006994;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #006994;
+            margin-top: 15px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 Imperial Diving</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="diving-experience.html">Diving Experience</a>
+                <a href="diving-courses.html">Diving Courses</a>
+                <a href="diving-travel.html">Diving Trips</a>
+                <a href="index.html#destinations">Destinations</a>
+            <a href="/zh/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">Chinese</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🕳️ Palau</h1>
+        <p>PALAU - World's Top Diving Destination</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2 class="section-title">National Diving Resources</h2>
+            <p>Palau is located in the Western Pacific and consists of over 200 volcanic and coral islands. It's one of the world's top diving destinations, famous for spectacular blue holes, jellyfish lakes, and abundant marine life.</p>
+            
+            <h2>Diving Features</h2>
+            <ul>
+                <li><strong>Palau Blue Hole:</strong> World-famous blue hole dive site, spectacular geological wonder</li>
+                <li><strong>Jellyfish Lake:</strong> Millions of harmless jellyfish, can be approached closely</li>
+                <li><strong>Shark City:</strong> Swim with dozens of sharks</li>
+                <li><strong>WWII Shipwrecks:</strong> Abundant wreck dive sites</li>
+                <li><strong>Coral Reefs:</strong> Healthy coral ecosystems</li>
+                <li><strong>Year-Round Diving:</strong> Water temperature remains 27-30°C year-round</li>
+            </ul>
+            
+            <h2>Recommended Diving Packages</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🕳️ Blue Hole Adventure Tour</h3>
+                    <p>Explore the world-famous Palau Blue Hole</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>5 nights resort accommodation</li>
+                        <li>4 days of diving (2 dives per day)</li>
+                        <li>Blue Hole and Jellyfish Lake experience</li>
+                        <li>Full equipment included</li>
+                    </ul>
+                    <div class="price">From ¥15,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦈 Shark City Tour</h3>
+                    <p>Swim with dozens of sharks</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>6 nights resort accommodation</li>
+                        <li>5 days of diving</li>
+                        <li>Professional guide</li>
+                        <li>Free photography</li>
+                    </ul>
+                    <div class="price">From ¥18,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🚢 Wreck Exploration Tour</h3>
+                    <p>Explore WWII shipwrecks</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>5 nights resort accommodation</li>
+                        <li>4 days of diving</li>
+                        <li>Wreck focus</li>
+                        <li>Historical commentary</li>
+                    </ul>
+                    <div class="price">From ¥16,800</div>
+                </div>
+            </div>
+            
+            <h2>Recommended Diving Resorts</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🌊 Palau Royal Resort</h3>
+                    <p>Luxury resort, private dive sites</p>
+                    <p>Location: Koror Island</p>
+                    <p>Feature: Private diving instructor</p>
+                    <div class="price">★★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🏖️ Palau Pacific Resort</h3>
+                    <p>Beachfront resort, quality service</p>
+                    <p>Location: Koror Island</p>
+                    <p>Feature: Kid-friendly</p>
+                    <div class="price">★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌴 Cove Resort Palau</h3>
+                    <p>Eco-friendly resort</p>
+                    <p>Location: Rock Islands</p>
+                    <p>Feature: Eco-certified</p>
+                    <div class="price">★★★★</div>
+                </div>
+            </div>
+            
+            <h2>Recommended Dive Centers</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🤿 Sam's Tours</h3>
+                    <p>Palau's most famous dive center</p>
+                    <p>Certification: PADI, SSI</p>
+                    <p>Services: Courses, equipment, guides</p>
+                    <div class="price">Rating: ⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌊 Fish 'n Fins</h3>
+                    <p>Professional diving training center</p>
+                    <p>Certification: PADI, CMAS</p>
+                    <p>Services: From beginner to instructor</p>
+                    <div class="price">Rating: ⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦈 Neco Marine</h3>
+                    <p>Specialized in blue holes and wrecks</p>
+                    <p>Certification: PADI</p>
+                    <p>Services: Technical diving</p>
+                    <div class="price">Rating: ⭐⭐⭐⭐</div>
+                </div>
+            </div>
+            
+            <h2>Recommended Liveaboards</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🚢 Ocean Hunter III</h3>
+                    <p>Luxury liveaboard, explore remote reefs</p>
+                    <p>Capacity: 16 guests</p>
+                    <p>Feature: SPA, massage services</p>
+                    <div class="price">7 days 6 nights: From ¥28,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>⛵ Aggressor</h3>
+                    <p>Luxury yacht, top-tier service</p>
+                    <p>Capacity: 18 guests</p>
+                    <p>Feature: Private balcony, gourmet cuisine</p>
+                    <div class="price">7 days 6 nights: From ¥32,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🐋 Big Blue Explorer</h3>
+                    <p>Professional diving liveaboard</p>
+                    <p>Capacity: 20 guests</p>
+                    <p>Feature: Blue Hole experts</p>
+                    <div class="price">7 days 6 nights: From ¥26,800</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 10px;">
+                <h2 style="color: #006994; margin-bottom: 20px;">Ready to Explore Palau?</h2>
+                <p style="margin-bottom: 30px;">Book now and start your blue hole adventure!</p>
+                <a href="index.html#contact" style="display: inline-block; padding: 15px 40px; background: #006994; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Book Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="diving-experience.html">Diving Experience</a>
+            <a href="diving-courses.html">Diving Courses</a>
+            <a href="diving-travel.html">Diving Trips</a>
+            <a href="index.html#destinations">Destinations</a>
+        </div>
+        <p>© 2026 Imperial Diving - Official Website</p>
+        <p>Contact Us: imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

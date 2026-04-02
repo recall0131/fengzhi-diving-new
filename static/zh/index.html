@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>奉旨潜水 | Imperial Diving</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0b6fb0;
+      --primary-dark: #085589;
+      --text: #1a1a1a;
+      --text-light: #666666;
+      --text-muted: #999999;
+      --bg: #ffffff;
+      --bg-alt: #f7f7f7;
+      --border: #ebebeb;
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+      font-weight: 300;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; width: 100%; }
+    ul { list-style: none; }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header .container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 0.04em;
+    }
+
+    .logo svg {
+      width: 24px;
+      height: 24px;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+
+    /* ===== HERO ===== */
+    .hero {
+      height: 100vh;
+      min-height: 640px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1800&q=85');
+      background-size: cover;
+      background-position: center 30%;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(11,111,176,0.7) 0%, rgba(8,85,137,0.5) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      color: #fff;
+      max-width: 640px;
+    }
+
+    .hero-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      opacity: 0.8;
+      font-weight: 300;
+      margin-bottom: 48px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary);
+      padding: 14px 36px;
+      font-size: 0.88rem;
+      font-weight: 400;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-btn:hover {
+      background: #f5f5f5;
+      transform: translateY(-2px);
+    }
+
+    /* ===== STATS ===== */
+    .stats {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-item {
+      padding: 56px 40px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== SECTION ===== */
+    .section {
+      padding: 96px 0;
+    }
+
+    .section-tag {
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin-bottom: 64px;
+    }
+
+    /* ===== SERVICES (Pop Mart style: 3 col image cards) ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+    }
+
+    .service-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .service-body {
+      padding: 28px 28px 32px;
+    }
+
+    .service-card h3 {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .service-card p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ===== COURSES ===== */
+    .courses-section {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .course-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .course-card:hover {
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+    }
+
+    .course-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .course-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11,111,176,0.5) 0%, transparent 60%);
+    }
+
+    .course-badge {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      z-index: 2;
+      background: rgba(255,255,255,0.95);
+      color: var(--primary);
+      padding: 4px 12px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    .course-body {
+      padding: 24px 24px 28px;
+    }
+
+    .course-card h3 {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .course-card p {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .course-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .course-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .course-price {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--primary);
+    }
+
+    /* ===== DESTINATIONS ===== */
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .dest-card {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background: var(--bg);
+    }
+
+    .dest-card:hover {
+      box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    .dest-img {
+      height: 130px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .dest-body {
+      padding: 14px 16px 18px;
+    }
+
+    .dest-card h3 {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .dest-card p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* ===== SAFETY ===== */
+    .safety {
+      background: var(--text);
+      color: #fff;
+      text-align: center;
+      padding: 96px 0;
+    }
+
+    .safety-inner { max-width: 560px; margin: 0 auto; }
+
+    .safety-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    .safety-badge svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.6;
+    }
+
+    .safety h2 {
+      font-size: 1.9rem;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .safety p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      line-height: 2;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 96px 0;
+    }
+
+    .cta-section h2 {
+      font-size: 1.9rem;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      opacity: 0.8;
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin-bottom: 36px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary);
+      padding: 14px 40px;
+      font-size: 0.88rem;
+      font-weight: 400;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      letter-spacing: 0.04em;
+    }
+
+    .cta-btn:hover {
+      background: #f5f5f5;
+      transform: translateY(-2px);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 48px 0 36px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-brand svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary);
+    }
+
+    .footer-cols {
+      display: flex;
+      gap: 80px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.75rem;
+      color: var(--text);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+
+    .footer-col a {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--primary); }
+
+    .footer-copy {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .dest-grid { grid-template-columns: repeat(4, 1fr); }
+      .footer-cols { gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      .nav-links { display: none; }
+      .services-grid, .courses-grid { grid-template-columns: 1fr 1fr; }
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 24px; }
+      .stat-item:last-child { border-bottom: none; }
+      .dest-grid { grid-template-columns: repeat(2, 1fr); }
+      .section { padding: 64px 0; }
+      .footer-inner { flex-direction: column; gap: 32px; }
+      .footer-cols { flex-wrap: wrap; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="#" class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <ellipse cx="12" cy="7" rx="5" ry="3.5"/>
+          <path d="M7 7L5 4M17 7l2-3"/>
+          <path d="M12 10.5v6"/>
+          <path d="M8 22c0-2 1.5-3.5 4-3.5s4 1.5 4 3.5"/>
+        </svg>
+        奉旨潜水
+      </a>
+      <nav class="nav-links">
+        <a href="#services">服务</a>
+        <a href="#courses">课程</a>
+        <a href="#destinations">目的地</a>
+        <a href="#safety">安全</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-tag">PADI 认证潜水中心</p>
+        <h1 class="hero-title">探索深海<br>从奉旨开始</h1>
+        <p class="hero-sub">专业潜水培训 · 全球目的地 · 安全第一</p>
+        <a href="#courses" class="hero-btn">查看课程</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat-item fade-up">
+          <div class="stat-num">1000+</div>
+          <div class="stat-label">学员人数</div>
+        </div>
+        <div class="stat-item fade-up">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">认证教练</div>
+        </div>
+        <div class="stat-item fade-up">
+          <div class="stat-num">6年</div>
+          <div class="stat-label">教学经验</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <p class="section-tag fade-up">What we offer</p>
+      <h2 class="section-title fade-up">我们的服务</h2>
+      <p class="section-sub fade-up">从初体验到专业培训，一站式潜水服务</p>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1559825481-12a05cc00344?w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>潜水体验</h3>
+            <p>专业教练陪同，安全探索海底世界。无需证书，初次体验最佳选择。</p>
+          </div>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>潜水课程</h3>
+            <p>PADI、SSI、NAUI 多体系认证，从入门到专业一站式培训。</p>
+          </div>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80')"></div>
+          <div class="service-body">
+            <h3>潜水旅行</h3>
+            <p>精选全球顶级潜水目的地，一站式服务省心无忧。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="section courses-section" id="courses">
+    <div class="container">
+      <p class="section-tag fade-up">Our Programs</p>
+      <h2 class="section-title fade-up">热门课程</h2>
+      <p class="section-sub fade-up">国际认证，全球认可</p>
+      <div class="courses-grid">
+        <div class="course-card fade-up">
+          <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1559825481-12a05cc00344?w=600&q=80')">
+            <span class="course-badge">零基础</span>
+          </div>
+          <div class="course-body">
+            <h3>OW 开放水域潜水员</h3>
+            <p>入门课程，最大深度18米，获得PADI全球认证证书。</p>
+            <div class="course-foot">
+              <span class="course-meta">4天</span>
+              <span class="course-price">¥2,800</span>
+            </div>
+          </div>
+        </div>
+        <div class="course-card fade-up">
+          <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600&q=80')">
+            <span class="course-badge">进阶</span>
+          </div>
+          <div class="course-body">
+            <h3>AOW 进阶开放水域</h3>
+            <p>提升技能，深度30米，夜潜、深潜、沉船潜等精彩项目。</p>
+            <div class="course-foot">
+              <span class="course-meta">3天</span>
+              <span class="course-price">¥2,200</span>
+            </div>
+          </div>
+        </div>
+        <div class="course-card fade-up">
+          <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80')">
+            <span class="course-badge">高级</span>
+          </div>
+          <div class="course-body">
+            <h3>Rescue 救援潜水员</h3>
+            <p>学习紧急救援，提升安全意识，自救互救能力。</p>
+            <div class="course-foot">
+              <span class="course-meta">5天</span>
+              <span class="course-price">¥1,800</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section class="section" id="destinations">
+    <div class="container">
+      <p class="section-tag fade-up">Top Destinations</p>
+      <h2 class="section-title fade-up">热门目的地</h2>
+      <p class="section-sub fade-up">探索世界顶级潜水圣地</p>
+      <div class="dest-grid">
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1516934024742-b461fba47600?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>帕劳</h3>
+            <p>蓝洞 · 海洋生物</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>马尔代夫</h3>
+            <p>珊瑚礁 · 热带天堂</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>大堡礁</h3>
+            <p>珊瑚系统 · 世界最大</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>印度尼西亚</h3>
+            <p>珊瑚三角区 · 潜点最多</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1559008010-1f2e9b7d9b5a?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>菲律宾</h3>
+            <p>鲸鲨 · 微距天堂</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>马来西亚</h3>
+            <p>诗巴丹 · 沙巴</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>墨西哥</h3>
+            <p>坎昆 · 洞穴潜水</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>厄瓜多尔</h3>
+            <p>加拉帕戈斯 · 海洋巨兽</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1531761535209-180857e963b9?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>中国</h3>
+            <p>海南岛 · 西沙群岛</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1504681869696-d977211a5f4c?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>美国</h3>
+            <p>夏威夷 · 加州</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1539768942893-daf53e448371?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>埃及</h3>
+            <p>红海 · 沉船</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>斐济</h3>
+            <p>软珊瑚 · 鲨鱼潜</p>
+          </div>
+        </div>
+        <div class="dest-card fade-up">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1589979481223-deb893043163?w=400&q=80')"></div>
+          <div class="dest-body">
+            <h3>塞舌尔</h3>
+            <p>印度洋 · 顶级潜点</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY -->
+  <section class="safety" id="safety">
+    <div class="container">
+      <div class="safety-inner">
+        <div class="safety-badge fade-up">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          安全第一
+        </div>
+        <h2 class="fade-up">你的安全是我们的<br>首要责任</h2>
+        <p class="fade-up">小班教学 · 国际标准 · 严格认证</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="fade-up">准备好潜入深海了吗？</h2>
+      <p class="fade-up">立即咨询，开启你的潜水之旅</p>
+      <a href="#" class="cta-btn fade-up">立即报名</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <ellipse cx="12" cy="7" rx="5" ry="3.5"/>
+            <path d="M12 10.5v6"/>
+            <path d="M8 22c0-2 1.5-3.5 4-3.5s4 1.5 4 3.5"/>
+          </svg>
+          奉旨潜水
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>课程</h4>
+            <ul>
+              <li><a href="#">OW 开放水域</a></li>
+              <li><a href="#">AOW 进阶</a></li>
+              <li><a href="#">Rescue 救援</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>目的地</h4>
+            <ul>
+              <li><a href="#">帕劳</a></li>
+              <li><a href="#">马尔代夫</a></li>
+              <li><a href="#">大堡礁</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>联系</h4>
+            <ul>
+              <li><a href="#">电话咨询</a></li>
+              <li><a href="#">微信客服</a></li>
+              <li><a href="#">地址导航</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copy">
+        © 2024 奉旨潜水 Imperial Diving · PADI国际认证潜水中心
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

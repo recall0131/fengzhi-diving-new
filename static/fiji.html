@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>斐济 - 奉旨潜水</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 60px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            color: #006994;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #006994;
+            margin-top: 15px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 奉旨潜水</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">首页</a>
+                <a href="diving-experience.html">潜水体验</a>
+                <a href="diving-courses.html">潜水课程</a>
+                <a href="diving-travel.html">潜水旅行</a>
+                <a href="index.html#destinations">目的地</a>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🦈 斐济</h1>
+        <p>FIJI - 鲨鱼天堂</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2 class="section-title">国家潜水资源</h2>
+            <p>斐济位于南太平洋，由330多个岛屿组成。这里是世界著名的鲨鱼潜水胜地，以鲨鱼喂食体验而闻名，可以看到多达8种鲨鱼。</p>
+            
+            <h2>潜水特点</h2>
+            <ul>
+                <li><strong>鲨鱼喂食：</strong>可以看到多达8种鲨鱼</li>
+                <li><strong>软珊瑚：</strong>世界软珊瑚之都</li>
+                <li><strong>丰富的海洋生物：</strong>魔鬼鱼、海龟、热带鱼</li>
+                <li><strong>环礁潜点：</strong>每个环礁都有独特的潜点</li>
+                <li><strong>全年可潜：</strong>水温常年26-29℃</li>
+                <li><strong>适合各等级：</strong>从初学者到技术潜水员</li>
+            </ul>
+            
+            <h2>推荐潜水行程</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🦈 鲨鱼喂食之旅</h3>
+                    <p>与多达8种鲨鱼共游</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>6晚度假村住宿</li>
+                        <li>5天潜水（每天2潜）</li>
+                        <li>鲨鱼喂食体验</li>
+                        <li>全套装备</li>
+                    </ul>
+                    <div class="price">¥16,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌊 软珊瑚之旅</h3>
+                    <p>探索世界软珊瑚之都</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>7晚度假村住宿</li>
+                        <li>6天潜水</li>
+                        <li>专业向导</li>
+                        <li>免费拍照</li>
+                    </ul>
+                    <div class="price">¥18,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🚢 环礁探索之旅</h3>
+                    <p>探索斐济的环礁</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>5晚度假村住宿</li>
+                        <li>4天潜水</li>
+                        <li>环礁专攻</li>
+                        <li>文化体验</li>
+                    </ul>
+                    <div class="price">¥15,800起</div>
+                </div>
+            </div>
+            
+            <h2>推荐潜水度假村</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🌊 Beqa Lagoon Resort</h3>
+                    <p>鲨鱼喂食发源地</p>
+                    <p>位置：贝卡环礁</p>
+                    <p>特色：私人潜点</p>
+                    <div class="price">★★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🏖️ Matangi Island Resort</h3>
+                    <p>私人岛屿度假村</p>
+                    <p>位置：塔韦乌尼岛</p>
+                    <p>特色：情侣浪漫</p>
+                    <div class="price">★★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌴 Volivoli Beach Resort</h3>
+                    <p>海滨度假村，优质服务</p>
+                    <p>位置：维提岛</p>
+                    <p>特色：家庭友好</p>
+                    <div class="price">★★★★</div>
+                </div>
+            </div>
+            
+            <h2>推荐潜店</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🤿 Beqa Adventure Divers</h3>
+                    <p>鲨鱼喂食专家</p>
+                    <p>认证：PADI、SSI</p>
+                    <p>服务：鲨鱼喂食</p>
+                    <div class="price">推荐指数：⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌊 Reef Safari</h3>
+                    <p>专业潜水培训中心</p>
+                    <p>认证：PADI、CMAS</p>
+                    <p>服务：从初学到教练</p>
+                    <div class="price">推荐指数：⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦈 Subsurface Fiji</h3>
+                    <p>专注于大型海洋生物</p>
+                    <p>认证：PADI</p>
+                    <p>服务：鲨鱼、魔鬼鱼</p>
+                    <div class="price">推荐指数：⭐⭐⭐⭐</div>
+                </div>
+            </div>
+            
+            <h2>推荐船宿</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🚢 Nai'a</h3>
+                    <p>奢华船宿，探索偏远环礁</p>
+                    <p>容量：18位客人</p>
+                    <p>特色：SPA、按摩服务</p>
+                    <div class="price">7天6晚：¥30,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>⛵ Fiji Siren</h3>
+                    <p>豪华游艇，顶级服务</p>
+                    <p>容量：16位客人</p>
+                    <p>特色：私人阳台、美食</p>
+                    <div class="price">7天6晚：¥28,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🐋 Master Liveaboards</h3>
+                    <p>专业潜水船宿</p>
+                    <p>容量：20位客人</p>
+                    <p>特色：环礁专家</p>
+                    <div class="price">7天6晚：：¥26,800起</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 10px;">
+                <h2 style="color: #006994; margin-bottom: 20px;">准备好探索斐济了吗？</h2>
+                <p style="margin-bottom: 30px;">立即预订，开启您的鲨鱼天堂之旅！</p>
+                <a href="index.html#contact" style="display: inline-block; padding: 15px 40px; background: #006994; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">立即预订</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="diving-experience.html">潜水体验</a>
+            <a href="diving-courses.html">潜水课程</a>
+            <a href="diving-travel.html">潜水旅行</a>
+            <a href="index.html#destinations">目的地</a>
+        </div>
+        <p>© 2026 奉旨潜水 - 官方网站</p>
+        <p>联系我们：info@fengzhidiving.com</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diving Trips - Imperial Diving</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .trips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .trip-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .trip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .trip-card.featured {
+            border: 3px solid #006994;
+        }
+        
+        .trip-header {
+            background: #006994;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .trip-header h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .trip-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .trip-body {
+            padding: 30px;
+        }
+        
+        .trip-price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #006994;
+            margin-bottom: 20px;
+        }
+        
+        .trip-body ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .trip-body li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+        
+        .trip-body li:before {
+            content: "✓";
+            color: #006994;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #006994;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #005a7f;
+        }
+        
+        .trip-card.featured .cta-button {
+            background: white;
+            color: #006994;
+        }
+        
+        .trip-card.featured .cta-button:hover {
+            background: #f8f9fa;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .trips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 Imperial Diving</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="diving-experience.html">Diving Experience</a>
+                <a href="diving-courses.html">Diving Courses</a>
+                <a href="diving-travel.html">Diving Trips</a>
+                <a href="index.html#destinations">Destinations</a>
+            <a href="/zh/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">Chinese</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🌊 Diving Trips</h1>
+        <p>Explore the World's Top Diving Destinations</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2>Why Choose Our Diving Trips?</h2>
+            <p>We carefully select the world's top diving destinations and provide one-stop diving trip services. From flights, accommodation to diving equipment and professional guides, we arrange everything for you so you can just focus on enjoying the fun of diving.</p>
+            
+            <h2>Our Services</h2>
+            <ul>
+                <li><strong>Flight Booking:</strong> Help you book the most favorable flights</li>
+                <li><strong>Accommodation Arrangement:</strong> Carefully selected comfortable and convenient accommodation</li>
+                <li><strong>Transportation:</strong> Full transfer between airport, dock, and dive sites</li>
+                <li><strong>Diving Equipment:</strong> Provide full set of professional diving equipment</li>
+                <li><strong>Professional Guide:</strong> Accompanied by experienced diving guides</li>
+                <li><strong>Insurance Coverage:</strong> Full diving insurance</li>
+                <li><strong>Dining Arrangement:</strong> Local specialty cuisine</li>
+                <li><strong>Photography Service:</strong> Professional underwater photographer to record wonderful moments</li>
+            </ul>
+            
+            <h2>Popular Trip Packages</h2>
+        </div>
+        
+        <div class="trips-grid">
+            <!-- Maldives -->
+            <div class="trip-card featured">
+                <div class="trip-header">
+                    <h3>🏝️ Maldives 7 Days 6 Nights</h3>
+                    <span class="trip-badge">Popular Recommendation</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">Tropical paradise with crystal-clear waters and magnificent coral reefs, 5 days of diving, 2-3 dives per day.</p>
+                    <div class="trip-price">¥18,800</div>
+                    <ul>
+                        <li>6 nights water villa accommodation</li>
+                        <li>5 days of diving (2-3 dives per day)</li>
+                        <li>Full diving equipment</li>
+                        <li>Professional diving guide</li>
+                        <li>Airport transfer</li>
+                        <li>Three meals and drinks</li>
+                        <li>Free photography service</li>
+                        <li>Diving insurance</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Palau -->
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h3>🕳️ Palau 5 Days 4 Nights</h3>
+                    <span class="trip-badge">Blue Hole Adventure</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">World's top diving destination with spectacular blue holes and abundant marine life.</p>
+                    <div class="trip-price">¥15,800</div>
+                    <ul>
+                        <li>4 nights resort accommodation</li>
+                        <li>4 days of diving (2 dives per day)</li>
+                        <li>Full diving equipment</li>
+                        <li>Professional diving guide</li>
+                        <li>Airport transfer</li>
+                        <li>Three meals and drinks</li>
+                        <li>Blue Hole, Jellyfish Lake experience</li>
+                        <li>Diving insurance</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Fiji -->
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h3>🦈 Fiji 6 Days 5 Nights</h3>
+                    <span class="trip-badge">Shark Paradise</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">Shark feeding experience, where you can see up to 8 species of sharks.</p>
+                    <div class="trip-price">¥16,800</div>
+                    <ul>
+                        <li>5 nights resort accommodation</li>
+                        <li>5 days of diving (2 dives per day)</li>
+                        <li>Full diving equipment</li>
+                        <li>Professional diving guide</li>
+                        <li>Airport transfer</li>
+                        <li>Three meals and drinks</li>
+                        <li>Shark feeding experience</li>
+                        <li>Diving insurance</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Indonesia -->
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h3>🐠 Indonesia Komodo 7 Days 6 Nights</h3>
+                    <span class="trip-badge">Komodo Dragon Adventure</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">Komodo dragons, manta rays, sharks, and rich coral reefs.</p>
+                    <div class="trip-price">¥14,800</div>
+                    <ul>
+                        <li>6 nights resort accommodation</li>
+                        <li>6 days of diving (2 dives per day)</li>
+                        <li>Full diving equipment</li>
+                        <li>Professional diving guide</li>
+                        <li>Airport transfer</li>
+                        <li>Three meals and drinks</li>
+                        <li>Komodo dragon tour</li>
+                        <li>Diving insurance</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Egypt -->
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h3>🏛️ Egypt Red Sea 6 Days 5 Nights</h3>
+                    <span class="trip-badge">Wreck Adventure</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">Spectacular coral reefs, shipwreck ruins, and abundant marine life.</p>
+                    <div class="trip-price">¥12,800</div>
+                    <ul>
+                        <li>5 nights resort accommodation</li>
+                        <li>5 days of diving (2 dives per day)</li>
+                        <li>Full diving equipment</li>
+                        <li>Professional diving guide</li>
+                        <li>Airport transfer</li>
+                        <li>Three meals and drinks</li>
+                        <li>Wreck diving experience</li>
+                        <li>Diving insurance</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Xisha -->
+            <div class="trip-card">
+                <div class="trip-header">
+                    <h3>🌊 China Xisha 4 Days 3 Nights</h3>
+                    <span class="trip-badge">Domestic First Choice</span>
+                </div>
+                <div class="trip-body">
+                    <p style="margin-bottom: 20px; color: #666;">Diving paradise in the South China Sea, with crystal-clear waters and rich coral reefs.</p>
+                    <div class="trip-price">¥9,800</div>
+                    <ul>
+                        <li>3 nights cruise accommodation</li>
+                        <li>3 days of diving (2 dives per day)</li>
+                        <li>Full diving equipment</li>
+                        <li>Professional diving guide</li>
+                        <li>Dock transfer</li>
+                        <li>Three meals and drinks</li>
+                        <li>Xisha Islands tour</li>
+                        <li>Diving insurance</li>
+                    </ul>
+                    <a href="index.html#contact" class="cta-button">Book Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 60px; text-align: center;">
+            <h2 style="color: #006994; margin-bottom: 20px;">Customize Your Exclusive Diving Trip</h2>
+            <p style="color: #666; margin-bottom: 30px;">If you have specific destinations or special needs, we can tailor an exclusive diving trip package for you.</p>
+            <a href="index.html#contact" class="cta-button" style="display: inline-block; padding: 15px 40px;">Contact Us to Customize</a>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="diving-experience.html">Diving Experience</a>
+            <a href="diving-courses.html">Diving Courses</a>
+            <a href="diving-travel.html">Diving Trips</a>
+            <a href="index.html#destinations">Destinations</a>
+        </div>
+        <p>© 2026 Imperial Diving - Official Website</p>
+        <p>Contact Us: imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

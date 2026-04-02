@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mauritius - Imperial Diving</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 60px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            color: #006994;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #006994;
+            margin-top: 15px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 Imperial Diving</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="diving-experience.html">Diving Experience</a>
+                <a href="diving-courses.html">Diving Courses</a>
+                <a href="diving-travel.html">Diving Trips</a>
+                <a href="index.html#destinations">Destinations</a>
+            <a href="/zh/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">Chinese</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🐢 Mauritius</h1>
+        <p>MAURITIUS - Pearl of the Indian Ocean</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2 class="section-title">National Diving Resources</h2>
+            <p>Mauritius is a beautiful island nation in the Indian Ocean. It's a famous diving destination in the Indian Ocean with crystal-clear waters, rich coral reefs, and marine life like sea turtles and sharks.</p>
+            
+            <h2>Diving Features</h2>
+            <ul>
+                <li><strong>Coral Reefs:</strong> World-class coral reef ecosystems</li>
+                <li><strong>Sea Turtles:</strong> Sea turtles are frequently seen</li>
+                <li><strong>Sharks:</strong> Black-tip sharks, grey reef sharks, and more are common</li>
+                <li><strong>Abundant Tropical Fish:</strong> Colorful tropical fish schools</li>
+                <li><strong>Year-Round Diving:</strong> Water temperature remains 24-28°C year-round</li>
+                <li><strong>Suitable for All Levels:</strong> From beginners to technical divers</li>
+            </ul>
+            
+            <h2>Recommended Diving Packages</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🐢 Sea Turtle Tour</h3>
+                    <p>Follow the trail of sea turtles</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>6 nights resort accommodation</li>
+                        <li>5 days of diving (2 dives per day)</li>
+                        <li>Sea turtle site focus</li>
+                        <li>Full equipment included</li>
+                    </ul>
+                    <div class="price">From ¥13,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🐠 Coral Reef Tour</h3>
+                    <p>Explore Mauritius coral reefs</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>7 nights resort accommodation</li>
+                        <li>6 days of diving</li>
+                        <li>Professional guide</li>
+                        <li>Free photography</li>
+                    </ul>
+                    <div class="price">From ¥15,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦈 Shark Tour</h3>
+                    <p>Explore shark dive sites</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>5 nights resort accommodation</li>
+                        <li>4 days of diving</li>
+                        <li>Shark focus</li>
+                        <li>Cultural experience</li>
+                    </ul>
+                    <div class="price">From ¥12,800</div>
+                </div>
+            </div>
+            
+            <h2>Recommended Diving Resorts</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🌊 Mauritius Beach Resort</h3>
+                    <p>Mauritius resort</p>
+                    <p>Location: Mauritius</p>
+                    <p>Feature: Private dive sites</p>
+                    <div class="price">★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🏖️ Turtle Bay Resort</h3>
+                    <p>Turtle Bay resort</p>
+                    <p>Location: Turtle Bay</p>
+                    <p>Feature: Sea turtle dive sites</p>
+                    <div class="price">★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌴 Blue Bay Resort</h3>
+                    <p>Blue Bay resort</p>
+                    <p>Location: Blue Bay</p>
+                    <p>Feature: Family-friendly</p>
+                    <div class="price">★★★★</div>
+                </div>
+            </div>
+            
+            <h2>Recommended Dive Centers</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🤿 Mauritius Diving Center</h3>
+                    <p>Professional Mauritius dive center</p>
+                    <p>Certification: PADI, SSI</p>
+                    <p>Services: Courses, equipment, guides</p>
+                    <div class="price">Rating: ⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌊 Turtle Divers</h3>
+                    <p>Professional sea turtle dive center</p>
+                    <p>Certification: PADI, CMAS</p>
+                    <p>Services: From beginner to instructor</p>
+                    <div class="price">Rating: ⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦋 Blue Bay Divers</h3>
+                    <p>Large Blue Bay dive center</p>
+                    <p>Certification: PADI</p>
+                    <p>Services: Multiple diving programs</p>
+                    <div class="price">Rating: ⭐⭐⭐⭐</div>
+                </div>
+            </div>
+            
+            <h2>Recommended Liveaboards</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🚢 Mauritius Explorer</h3>
+                    <p>Luxury liveaboard, explore Mauritius waters</p>
+                    <p>Capacity: 16 guests</p>
+                    <p>Feature: SPA, massage services</p>
+                    <div class="price">7 days 6 nights: From ¥20,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>⛵ Indian Ocean Princess</h3>
+                    <p>Luxury yacht, top-tier service</p>
+                    <p>Capacity: 18 guests</p>
+                    <p>Feature: Private balcony, gourmet cuisine</p>
+                    <div class="price">7 days 6 nights: From ¥22,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🐋 Turtle Fleet</h3>
+                    <p>Professional diving liveaboard</p>
+                    <p>Capacity: 20 guests</p>
+                    <p>Feature: Sea turtle experts</p>
+                    <div class="price">7 days 6 nights: From ¥18,800</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 10px;">
+                <h2 style="color: #006994; margin-bottom: 20px;">Ready to Explore Mauritius?</h2>
+                <p style="margin-bottom: 30px;">Book now and start your Pearl of the Indian Ocean journey!</p>
+                <a href="index.html#contact" style="display: inline-block; padding: 15px 40px; background: #006994; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Book Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="diving-experience.html">Diving Experience</a>
+            <a href="diving-courses.html">Diving Courses</a>
+            <a href="diving-travel.html">Diving Trips</a>
+            <a href="index.html#destinations">Destinations</a>
+        </div>
+        <p>© 2026 Imperial Diving - Official Website</p>
+        <p>Contact Us: imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

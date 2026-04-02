@@ -1,0 +1,39 @@
+# Deployment Summary - 2026-03-12
+
+## Updated Files
+All 17 English pages have been updated to include all missing content from the Chinese version:
+
+1. index.html - Complete
+2. maldives.html - Complete
+3. indonesia.html - Fixed typo in navbar
+4. philippines.html - Complete
+5. malaysia.html - Complete
+6. egypt.html - Complete
+7. palau.html - Complete
+8. fiji.html - Complete
+9. mauritius.html - Complete
+10. mexico.html - Complete
+11. ecuador.html - Complete
+12. china.html - Complete
+13. usa.html - Complete
+14. diving-courses.html - Already complete
+15. diving-experience.html - Complete (added missing content)
+16. diving-equipment.html - Already complete
+17. diving-travel.html - Already complete
+
+## Changes Made
+- Added missing sections: Recommended Diving Resorts, Recommended Dive Centers, Recommended Liveaboards
+- Fixed typo in en_indonesia.html navbar
+- Updated en_diving-experience.html to include all content from Chinese version
+- All content professionally translated
+- All HTML structure preserved
+
+## Git Status
+- Changes committed: 8d8b48b
+- Pushed to GitHub: origin/main
+
+## Next Steps
+To deploy to dejavu server:
+1. SSH into dejavu server
+2. Pull latest changes from GitHub
+3. Copy static/en/ files to /home/fengzhi_diving_deploy/en/

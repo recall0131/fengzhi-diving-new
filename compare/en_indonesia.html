@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indonesia - Imperial Diving</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 60px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            color: #006994;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #006994;
+            margin-top: 15px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 Imperial Diving</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="diving-experience.html">Diving Experience</a>
+                <a href="diving-courses.html">Diving Courses</a>
+                <a href="diving-travel.html">Diving Trips</a>
+                <a href="index.html#destinations">Destinations</a>
+            <a href="/zh/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">Chinese</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🐠 Indonesia</h1>
+        <p>INDONESIA - Land of Thousands of Islands, Diving Paradise</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2 class="section-title">National Diving Resources</h2>
+            <p>Indonesia consists of over 17,000 islands and is the world's largest archipelago nation. Here you'll find world-class diving destinations, including famous dive sites like Komodo, Bali, and Raja Ampat.</p>
+            
+            <h2>Diving Features</h2>
+            <ul>
+                <li><strong>Komodo Dragons:</strong>The world's largest lizards</li>
+                <li><strong>Manta Ray Aggregation:</strong>World's largest manta ray gathering site</li>
+                <li><strong>Rich Coral Reefs:</strong>Healthy coral ecosystems</li>
+                <li><strong>Biodiversity:</strong>One of the highest marine biodiversity regions in the world</li>
+                <li><strong>Year-Round Diving:</strong>Water temperature remains 27-30°C year-round</li>
+                <li><strong>Suitable for All Levels:</strong>From beginners to technical divers</li>
+            </ul>
+            
+            <h2>Recommended Diving Packages</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🦎 Komodo Adventure Tour</h3>
+                    <p>Explore Komodo National Park</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>6 nights resort accommodation</li>
+                        <li>5 days diving (2 dives per day)</li>
+                        <li>Komodo dragon tour</li>
+                        <li>Full equipment included</li>
+                    </ul>
+                    <div class="price">From ¥14,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🐋 Manta Ray Storm Tour</h3>
+                    <p>Chase the manta ray storm</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>7 nights resort accommodation</li>
+                        <li>6 days diving</li>
+                        <li>Professional guide</li>
+                        <li>Free photography</li>
+                    </ul>
+                    <div class="price">From ¥16,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🏝️ Raja Ampat Tour</h3>
+                    <p>Explore the world's most biodiverse waters</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>5 nights resort accommodation</li>
+                        <li>4 days diving</li>
+                        <li>Raja Ampat focus</li>
+                        <li>Biodiversity exploration</li>
+                    </ul>
+                    <div class="price">From ¥15,800</div>
+                </div>
+            </div>
+            
+            <h2>Recommended Diving Resorts</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🌊 Komodo Resort</h3>
+                    <p>Inside Komodo National Park</p>
+                    <p>Location: Komodo Island</p>
+                    <p>Feature: Private dive sites</p>
+                    <div class="price">★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🏖️ Raja Ampat Dive Lodge</h3>
+                    <p>Raja Ampat eco-resort</p>
+                    <p>Location: Raja Ampat</p>
+                    <p>Feature: Eco-certified</p>
+                    <div class="price">★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌴 Bali Diving Resort</h3>
+                    <p>Premium Bali resort</p>
+                    <p>Location: Bali</p>
+                    <p>Feature: Family-friendly</p>
+                    <div class="price">★★★★</div>
+                </div>
+            </div>
+            
+            <h2>Recommended Dive Centers</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🤿 Komodo Diving Center</h3>
+                    <p>Professional Komodo dive center</p>
+                    <p>Certification: PADI, SSI</p>
+                    <p>Services: Courses, equipment, guides</p>
+                    <div class="price">Rating: ⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌊 Raja Ampat Divers</h3>
+                    <p>Professional Raja Ampat dive center</p>
+                    <p>Certification: PADI, CMAS</p>
+                    <p>Services: From beginner to instructor</p>
+                    <div class="price">Rating: ⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦋 Bali Ocean Divers</h3>
+                    <p>Large Bali dive center</p>
+                    <p>Certification: PADI</p>
+                    <p>Services: Multiple diving programs</p>
+                    <div class="price">Rating: ⭐⭐⭐⭐</div>
+                </div>
+            </div>
+            
+            <h2>Recommended Liveaboards</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🚢 Indo Aggressor</h3>
+                    <p>Luxury liveaboard, explore Indonesian archipelago</p>
+                    <p>Capacity: 16 guests</p>
+                    <p>Feature: SPA, massage services</p>
+                    <div class="price">7 days 6 nights: From ¥24,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>⛵ Pindito</h3>
+                    <p>Luxury yacht, top-tier service</p>
+                    <p>Capacity: 14 guests</p>
+                    <p>Feature: Private balcony, gourmet cuisine</p>
+                    <div class="price">7 days 6 nights: From ¥26,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🐋 Phinisi Cruises</h3>
+                    <p>Traditional Indonesian sailing ship</p>
+                    <p>Capacity: 12 guests</p>
+                    <p>Feature: Traditional wooden ship experience</p>
+                    <div class="price">7 days 6 nights: From ¥22,800</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 10px;">
+                <h2 style="color: #006994; margin-bottom: 20px;">Ready to Explore Indonesia?</h2>
+                <p style="margin-bottom: 30px;">Book now and start your journey through the land of thousands of islands!</p>
+                <a href="index.html#contact" style="display: inline-block; padding: 15px 40px; background: #006994; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Book Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="diving-experience.html">Diving Experience</a>
+            <a href="diving-courses.html">Diving Courses</a>
+            <a href="diving-travel.html">Diving Trips</a>
+            <a href="index.html#destinations">Destinations</a>
+        </div>
+        <p>© 2026 Imperial Diving - Official Website</p>
+        <p>Contact Us: imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马尔代夫 - 奉旨潜水</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 60px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            color: #006994;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #006994;
+            margin-top: 15px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #006994;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 奉旨潜水</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">首页</a>
+                <a href="diving-experience.html">潜水体验</a>
+                <a href="diving-courses.html">潜水课程</a>
+                <a href="diving-travel.html">潜水旅行</a>
+                <a href="index.html#destinations">目的地</a>
+            <a href="/en/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">EN</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🏝️ 马尔代夫</h1>
+        <p>MALDIVES - 热带天堂，潜水圣地</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2 class="section-title">国家潜水资源</h2>
+            <p>马尔代夫由26个环礁、约1200个珊瑚岛组成，是世界顶级的潜水胜地。这里拥有清澈见底的海水、绚丽的珊瑚礁和丰富的海洋生物。</p>
+            
+            <h2>潜水特点</h2>
+            <ul>
+                <li><strong>能见度极高：</strong>海水能见度常达30-50米</li>
+                <li><strong>丰富的珊瑚礁：</strong>健康的珊瑚生态系统，色彩斑斓</li>
+                <li><strong>大型海洋生物：</strong>鲸鲨、魔鬼鱼、鲨鱼、海龟常见</li>
+                <li><strong>环礁潜点：</strong>每个环礁都有独特的潜点</li>
+                <li><strong>全年可潜：</strong>水温常年26-30℃</li>
+                <li><strong>适合各等级：</strong>从初学者到技术潜水员</li>
+            </ul>
+            
+            <h2>推荐潜水行程</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🏝️ 水上屋体验之旅</h3>
+                    <p>住在水上屋，出门即潜</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>6晚水上屋住宿</li>
+                        <li>5天潜水（每天2-3潜）</li>
+                        <li>夜潜体验</li>
+                        <li>全套装备</li>
+                    </ul>
+                    <div class="price">¥18,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦈 鲨鱼风暴之旅</h3>
+                    <p>追寻鲨鱼风暴的震撼体验</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>7晚度假村住宿</li>
+                        <li>6天潜水</li>
+                        <li>专业向导</li>
+                        <li>免费拍照</li>
+                    </ul>
+                    <div class="price">¥22,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🐋 鲸鲨邂逅之旅</h3>
+                    <p>与世界上最大的鱼类共游</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>5晚度假村住宿</li>
+                        <li>4天潜水</li>
+                        <li>鲸鲨潜点专攻</li>
+                        <li>专业摄影师</li>
+                    </ul>
+                    <div class="price">¥15,800起</div>
+                </div>
+            </div>
+            
+            <h2>推荐潜水度假村</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🌊 康莱德酒店</h3>
+                    <p>奢华水上屋，私人潜点</p>
+                    <p>位置：北马累环礁</p>
+                    <p>特色：私人潜水教练</p>
+                    <div class="price">★★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🏖️ 索尼娃富士岛</h3>
+                    <p>环保奢华，顶级潜点</p>
+                    <p>位置：北马累环礁</p>
+                    <p>特色：生态友好型度假村</p>
+                    <div class="price">★★★★★</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌴 四季酒店</h3>
+                    <p>四季品质，家庭友好</p>
+                    <p>位置：芭环礁</p>
+                    <p>特色：儿童潜水课程</p>
+                    <div class="price">★★★★★</div>
+                </div>
+            </div>
+            
+            <h2>推荐潜店</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🤿 ProDivers Maldives</h3>
+                    <p>马尔代夫最大的潜店之一</p>
+                    <p>认证：PADI、SSI</p>
+                    <p>服务：课程、装备、向导</p>
+                    <div class="price">推荐指数：⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🌊 Ocean Divers</h3>
+                    <p>专业潜水培训中心</p>
+                    <p>认证：PADI、CMAS</p>
+                    <p>服务：从初学到教练</p>
+                    <div class="price">推荐指数：⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦈 Big Blue Divers</h3>
+                    <p>专注于大型海洋生物</p>
+                    <p>认证：PADI</p>
+                    <p>服务：鲨鱼、鲸鲨专项</p>
+                    <div class="price">推荐指数：⭐⭐⭐⭐</div>
+                </div>
+            </div>
+            
+            <h2>推荐船宿</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🚢 Emperor Atoll</h3>
+                    <p>奢华船宿，探索偏远环礁</p>
+                    <p>容量：20位客人</p>
+                    <p>特色：SPA、按摩服务</p>
+                    <div class="price">7天6晚：¥25,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>⛵ MV Orion</h3>
+                    <p>豪华游艇，顶级服务</p>
+                    <p>容量：22位客人</p>
+                    <p>特色：私人阳台、美食</p>
+                    <div class="price">7天6晚：¥28,800起</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🐋 Blue Shark One</h3>
+                    <p>专业潜水船宿</p>
+                    <p>容量：16位客人</p>
+                    <p>特色：鲸鲨追踪专家</p>
+                    <div class="price">7天6晚：¥22,800起</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 10px;">
+                <h2 style="color: #006994; margin-bottom: 20px;">准备好探索马尔代夫了吗？</h2>
+                <p style="margin-bottom: 30px;">立即预订，开启您的热带天堂潜水之旅！</p>
+                <a href="index.html#contact" style="display: inline-block; padding: 15px 40px; background: #006994; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">立即预订</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="diving-experience.html">潜水体验</a>
+            <a href="diving-courses.html">潜水课程</a>
+            <a href="diving-travel.html">潜水旅行</a>
+            <a href="index.html#destinations">目的地</a>
+        </div>
+        <p>© 2026 奉旨潜水 - 官方网站</p>
+        <p>联系我们：imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

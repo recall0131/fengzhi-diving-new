@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diving Equipment - Imperial Diving</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 60px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            font-size: 20px;
+            color: #006994;
+            margin-bottom: 15px;
+        }
+        
+        .card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #006994;
+            margin-top: 15px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 Imperial Diving</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="diving-experience.html">Diving Experience</a>
+                <a href="diving-courses.html">Diving Courses</a>
+                <a href="diving-travel.html">Diving Trips</a>
+                <a href="diving-equipment.html">Diving Equipment</a>
+                <a href="index.html#destinations">Destinations</a>
+            <a href="/zh/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">Chinese</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🤿 Diving Equipment</h1>
+        <p>Professional Diving Equipment, Safety First</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2 class="section-title">Why Choose Professional Diving Equipment?</h2>
+            <p>Professional diving equipment is the foundation of diving safety and comfort. The right equipment not only enhances the diving experience but also ensures the safety of divers.</p>
+            
+            <h2>Essential Diving Equipment</h2>
+            <ul>
+                <li><strong>Wetsuit:</strong> Protects the body from cold and marine life</li>
+                <li><strong>Regulator:</strong> Core equipment for underwater breathing</li>
+                <li><strong>Buoyancy Control Device (BCD):</strong> Controls buoyancy and posture</li>
+                <li><strong>Diving Mask:</strong> Provides clear underwater vision</li>
+                <li><strong>Diving Fins:</strong> Improves underwater movement efficiency</li>
+                <li><strong>Dive Computer:</strong> Monitors depth, time, and decompression</li>
+                <li><strong>Dive Knife:</strong> Cuts equipment in emergency situations</li>
+            </ul>
+            
+            <h2>Recommended Diving Equipment</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🤿 Wetsuit</h3>
+                    <p>5mm wetsuit, suitable for temperate waters</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>High elasticity neoprene</li>
+                        <li>Double-layer seal design</li>
+                        <li>Excellent thermal insulation</li>
+                    </ul>
+                    <div class="price">From ¥1,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>😤 Regulator</h3>
+                    <p>First stage + second stage regulator set</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Balanced design</li>
+                        <li>Low breathing resistance</li>
+                        <li>High reliability</li>
+                    </ul>
+                    <div class="price">From ¥3,500</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🎈 Buoyancy Control Device</h3>
+                    <p>Back-inflation BCD, multifunctional design</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Large capacity air cell</li>
+                        <li>Integrated weight system</li>
+                        <li>Comfortable backplate design</li>
+                    </ul>
+                    <div class="price">From ¥2,800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>👁️ Diving Mask</h3>
+                    <p>Wide-angle mask, ultra-large field of view</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Anti-fog lens</li>
+                        <li>Silicone skirt</li>
+                        <li>Adjustable strap</li>
+                    </ul>
+                    <div class="price">From ¥500</div>
+                </div>
+                
+                <div class="card">
+                    <h3>🦶 Diving Fins</h3>
+                    <p>Open-heel fins, efficient propulsion</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Long blade design</li>
+                        <li>Lightweight material</li>
+                        <li>Comfortable foot pocket</li>
+                    </ul>
+                    <div class="price">From ¥800</div>
+                </div>
+                
+                <div class="card">
+                    <h3>⌚ Dive Computer</h3>
+                    <p>Wrist-style dive computer, multifunctional display</p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Depth/time display</li>
+                        <li>Decompression calculation</li>
+                        <li>Water temperature display</li>
+                    </ul>
+                    <div class="price">From ¥2,000</div>
+                </div>
+            </div>
+            
+            <h2>Equipment Buying Advice</h2>
+            <ul>
+                <li><strong>Choose according to diving environment:</strong> Thin wetsuit for tropical waters, thick wetsuit for temperate waters</li>
+                <li><strong>Consider body size:</strong> Proper fit is key to comfort and safety</li>
+                <li><strong>Prioritize well-known brands:</strong> Quality assurance and comprehensive after-sales service</li>
+                <li><strong>Regular maintenance:</strong> Extend equipment life and ensure safety</li>
+                <li><strong>Consult professionals:</strong> Seek advice from instructors or dive shop staff</li>
+            </ul>
+            
+            <h2>Equipment Maintenance</h2>
+            <ul>
+                <li><strong>After each dive:</strong> Rinse equipment with fresh water to remove salt and sand</li>
+                <li><strong>Regular inspection:</strong> Check seals and connections for damage</li>
+                <li><strong>Professional maintenance:</strong> Professional regulator maintenance once a year</li>
+                <li><strong>Proper storage:</strong> Avoid direct sunlight, keep dry and ventilated</li>
+                <li><strong>Spare equipment:</strong> Prepare spare important equipment just in case</li>
+            </ul>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 10px;">
+                <h2 style="color: #006994; margin-bottom: 20px;">Need to Buy Diving Equipment?</h2>
+                <p style="margin-bottom: 30px;">Contact us for professional advice and discounted prices!</p>
+                <a href="index.html#contact" style="display: inline-block; padding: 15px 40px; background: #006994; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Contact Us</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="diving-experience.html">Diving Experience</a>
+            <a href="diving-courses.html">Diving Courses</a>
+            <a href="diving-travel.html">Diving Trips</a>
+            <a href="diving-equipment.html">Diving Equipment</a>
+            <a href="index.html#destinations">Destinations</a>
+        </div>
+        <p>© 2026 Imperial Diving - Official Website</p>
+        <p>Contact Us: imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

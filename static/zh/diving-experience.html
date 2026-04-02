@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>潜水体验 - 奉旨潜水</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            color: #006994;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #006994;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #005a7f;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 奉旨潜水</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">首页</a>
+                <a href="diving-experience.html">潜水体验</a>
+                <a href="diving-courses.html">潜水课程</a>
+                <a href="diving-travel.html">潜水旅行</a>
+                <a href="index.html#destinations">目的地</a>
+            <a href="/en/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">EN</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🤿 潜水体验</h1>
+        <p>开启您的海底探索之旅</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2>什么是潜水体验？</h2>
+            <p>潜水体验，也称为体验式潜水或试潜，是专为初学者设计的入门级潜水活动。无需任何潜水经验或证书，您就可以在专业潜水教练的全程陪同下，安全地探索神奇的海底世界。</p>
+            
+            <h2>适合人群</h2>
+            <ul>
+                <li>从未潜过水，想要尝试的初学者</li>
+                <li>对海洋世界充满好奇的探险爱好者</li>
+                <li>计划学习潜水，想要先体验的人</li>
+                <li>家庭出游，想要体验亲子潜水的家长和孩子</li>
+                <li>旅行途中，想要增加特别体验的游客</li>
+            </ul>
+            
+            <h2>体验流程</h2>
+            <ul>
+                <li><strong>安全简报：</strong>教练会向您介绍基本潜水知识和安全注意事项</li>
+                <li><strong>装备讲解：</strong>学习如何正确使用潜水装备</li>
+                <li><strong>浅水练习：</strong>在浅水区练习基本技巧（呼吸、耳压平衡等）</li>
+                <div><strong>海底探索：</strong>在教练陪同下，潜入水中，探索美丽的海底世界</div>
+                <li><strong>分享体验：</strong>潜水结束后，与教练和其他体验者分享心得</li>
+            </ul>
+            
+            <h2>您将看到</h2>
+            <p>根据不同的潜水地点，您可能看到：</p>
+            <ul>
+                <li>🐠 色彩斑斓的热带鱼群</li>
+                <li>🪸 壮观的珊瑚礁生态系统</li>
+                <li>🐢 悠闲游动的海龟</li>
+                <li>🦈 小型鲨鱼（根据地点）</li>
+                <li>🪼 各种海洋生物和植物</li>
+            </ul>
+            
+            <h2>我们的优势</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>👨‍🏫 专业教练</h3>
+                    <p>国际认证潜水教练，经验丰富，耐心指导</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🛡️ 安全第一</h3>
+                    <p>严格的安全标准，全程一对一陪同</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 小班教学</h3>
+                    <p>每组最多4人，确保个性化指导</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📸 免费拍照</h3>
+                    <p>教练为您记录珍贵的潜水瞬间</p>
+                </div>
+            </div>
+            
+            <h2>体验套餐</h2>
+            <div class="feature-grid">
+                <div class="feature-card" style="background: white; border: 2px solid #006994;">
+                    <h3>基础体验</h3>
+                    <p style="font-size: 24px; font-weight: bold; color: #006994; margin: 15px 0;">¥580</p>
+                    <p>单次潜水体验</p>
+                    <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+                        <li>1次潜水（约45分钟）</li>
+                        <li>全套潜水装备</li>
+                        <li>专业教练陪同</li>
+                        <li>安全保险</li>
+                    </ul>
+                </div>
+                <div class="feature-card" style="background: #006994; color: white;">
+                    <h3>深度体验</h3>
+                    <p style="font-size: 24px; font-weight: bold; margin: 15px 0;">¥980</p>
+                    <p>两次潜水体验</p>
+                    <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+                        <li>2次潜水（每次约45分钟）</li>
+                        <li>全套潜水装备</li>
+                        <li>专业教练陪同</li>
+                        <li>免费拍照服务</li>
+                        <li>午餐和饮料</li>
+                        <li>安全保险</li>
+                    </ul>
+                </div>
+                <div class="feature-card" style="background: white; border: 2px solid #006994;">
+                    <h3>家庭体验</h3>
+                    <p style="font-size: 24px; font-weight: bold; color: #006994; margin: 15px 0;">¥1,580</p>
+                    <p>亲子潜水体验</p>
+                    <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+                        <li>2大1小或1大2小</li>
+                        <li>全套潜水装备</li>
+                        <li>专业教练陪同</li>
+                        <li>免费拍照服务</li>
+                        <li>午餐和饮料</li>
+                        <li>安全保险</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <h2>准备好开始您的潜水之旅了吗？</h2>
+                <p>立即预订，开启神奇的海底探索！</p>
+                <a href="index.html#contact" class="cta-button">立即预订</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="diving-experience.html">潜水体验</a>
+            <a href="diving-courses.html">潜水课程</a>
+            <a href="diving-travel.html">潜水旅行</a>
+            <a href="index.html#destinations">目的地</a>
+        </div>
+        <p>© 2026 奉旨潜水 - 官方网站</p>
+        <p>联系我们：imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

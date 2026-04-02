@@ -1,0 +1,9 @@
+node_modules/
+.next/
+dist/
+._*
+*.bak
+*.backup*
+*_backup*
+*_backup/
+._*

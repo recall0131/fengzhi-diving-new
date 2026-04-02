@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>奉旨潜水 | 专业的潜水培训品牌</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0a3d4f;
+      --accent: #FF6B00;
+      --accent-light: #FF8C33;
+      --coral: #FF5E5E;
+      --dark: #051823;
+      --light: #F8FAFB;
+      --text-light: #E8F4F8;
+      --text-muted: #8BA5B0;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--light);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(5, 24, 35, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: white;
+      font-weight: 900;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+
+    .nav-logo svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: white !important;
+      padding: 0.6rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255,107,0,0.4);
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, #0D5B6E 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 20% 80%, rgba(255,107,0,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(13,91,110,0.3) 0%, transparent 50%);
+    }
+
+    /* 水波纹动画 */
+    .bubbles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      animation: rise linear infinite;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-110vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 10;
+      padding: 2rem;
+      max-width: 900px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .hero-badge svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--coral) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.6s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--coral) 100%);
+      color: white;
+      box-shadow: 0 10px 40px rgba(255,107,0,0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(255,107,0,0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.2);
+      border-color: rgba(255,255,255,0.5);
+      transform: translateY(-4px);
+    }
+
+    /* ===== STATS ===== */
+    .stats {
+      background: white;
+      padding: 4rem 2rem;
+      margin-top: -3rem;
+      position: relative;
+      z-index: 20;
+    }
+
+    .stats-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .stat-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+
+    .stat-icon svg {
+      width: 30px;
+      height: 30px;
+      color: white;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    /* ===== SAFETY BANNER ===== */
+    .safety-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .safety-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .safety-content {
+      position: relative;
+      z-index: 10;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .safety-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(255,107,0,0.2);
+      border: 2px solid var(--accent);
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .safety-badge svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .safety-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .safety-text {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* ===== COURSES ===== */
+    .courses {
+      padding: 6rem 2rem;
+      background: var(--light);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--coral) 100%);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .courses-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .course-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.15);
+    }
+
+    .course-image {
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+    }
+
+    .course-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      z-index: 5;
+    }
+
+    .course-icon {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 5;
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .course-icon svg {
+      width: 26px;
+      height: 26px;
+      color: white;
+    }
+
+    .course-body {
+      padding: 2rem;
+    }
+
+    .course-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .course-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .course-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .course-meta {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .course-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .course-meta svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .course-price {
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--accent);
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--coral) 100%);
+      padding: 6rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .cta-title {
+      font-size: 3rem;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta-text {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .btn-white:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--dark);
+      padding: 4rem 2rem 2rem;
+      color: var(--text-muted);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand {
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-brand svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .footer-desc {
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .footer-title {
+      color: white;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .stats {
+        margin-top: 0;
+        border-radius: 0;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="7" r="4"/>
+        <path d="M5 21v-2a7 7 0 0 1 14 0v2"/>
+        <path d="M12 11v4"/>
+      </svg>
+      奉旨潜水
+    </a>
+    <ul class="nav-links">
+      <li><a href="#courses">课程</a></li>
+      <li><a href="#about">关于我们</a></li>
+      <li><a href="#safety">安全保障</a></li>
+      <li><a href="#contact" class="nav-cta">立即报名</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="bubbles" id="bubbles"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+        6年专业教学经验
+      </div>
+      <h1 class="hero-title">探索深海<br><span>从奉旨开始</span></h1>
+      <p class="hero-subtitle">专业潜水培训 | PADI认证教练 | 安全第一</p>
+      <div class="hero-cta-group">
+        <a href="#courses" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+          查看课程
+        </a>
+        <a href="#about" class="btn btn-secondary">了解更多</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-card animate-on-scroll">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="stat-number">1000+</div>
+        <div class="stat-label">毕业学员</div>
+      </div>
+      <div class="stat-card animate-on-scroll">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="7" r="4"/>
+            <path d="M5 21v-2a7 7 0 0 1 14 0v2"/>
+          </svg>
+        </div>
+        <div class="stat-number">50+</div>
+        <div class="stat-label">认证教练</div>
+      </div>
+      <div class="stat-card animate-on-scroll">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div class="stat-number">6年</div>
+        <div class="stat-label">教学经验</div>
+      </div>
+      <div class="stat-card animate-on-scroll">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="stat-number">0</div>
+        <div class="stat-label">安全事故</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY BANNER -->
+  <section class="safety-banner" id="safety">
+    <div class="safety-content">
+      <div class="safety-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        安全第一
+      </div>
+      <h2 class="safety-title">你的安全是我们的首要责任</h2>
+      <p class="safety-text">每一位教练都经过严格认证，每一项课程都遵循国际标准。我们坚持小班教学，确保每位学员都能得到充分的指导和练习时间。</p>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses" id="courses">
+    <div class="section-header">
+      <span class="section-tag">热门课程</span>
+      <h2 class="section-title">开启你的潜水之旅</h2>
+      <p class="section-desc">从零基础到专业潜水员，我们提供完整的课程体系</p>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card animate-on-scroll">
+        <div class="course-image">
+          <span class="course-badge">零基础</span>
+          <div class="course-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 12h6l3-9 3 18 3-9h5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="course-body">
+          <h3 class="course-title">OW开放水域潜水员</h3>
+          <p class="course-desc">国际认证潜水员第一步，最大深度18米，适合初学者</p>
+          <div class="course-footer">
+            <div class="course-meta">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                4天
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                泳池+开放水域
+              </span>
+            </div>
+            <span class="course-price">¥3,800</span>
+          </div>
+        </div>
+      </div>
+      <div class="course-card animate-on-scroll">
+        <div class="course-image">
+          <span class="course-badge">进阶</span>
+          <div class="course-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="course-body">
+          <h3 class="course-title">AOW进阶开放水域</h3>
+          <p class="course-desc">提升潜水技能，最大深度30米，探索更深的海底世界</p>
+          <div class="course-footer">
+            <div class="course-meta">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                3天
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                5次开放水域
+              </span>
+            </div>
+            <span class="course-price">¥4,200</span>
+          </div>
+        </div>
+      </div>
+      <div class="course-card animate-on-scroll">
+        <div class="course-image">
+          <span class="course-badge">专业</span>
+          <div class="course-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="7" r="4"/>
+              <path d="M5 21v-2a7 7 0 0 1 14 0v2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="course-body">
+          <h3 class="course-title">RESCUE救援潜水员</h3>
+          <p class="course-desc">学习危机管理，成为更安全的潜水员，为进阶之路铺平</p>
+          <div class="course-footer">
+            <div class="course-meta">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+                5天
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                理论+实践
+              </span>
+            </div>
+            <span class="course-price">¥5,800</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2 class="cta-title">准备好潜入深海了吗？</h2>
+      <p class="cta-text">立即咨询，开启你的潜水之旅</p>
+      <a href="#contact" class="btn btn-white">
+        立即报名
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <div class="footer-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="7" r="4"/>
+            <path d="M5 21v-2a7 7 0 0 1 14 0v2"/>
+            <path d="M12 11v4"/>
+          </svg>
+          奉旨潜水
+        </div>
+        <p class="footer-desc">专业潜水培训品牌，PADI认证潜水中心。6年来已帮助1000+学员实现深海梦想。</p>
+      </div>
+      <div>
+        <h4 class="footer-title">课程</h4>
+        <ul class="footer-links">
+          <li><a href="#">OW开放水域</a></li>
+          <li><a href="#">AOW进阶潜水</a></li>
+          <li><a href="#">Rescue救援</li>
+          <li><a href="#">潜水长</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">关于</h4>
+        <ul class="footer-links">
+          <li><a href="#">关于我们</a></li>
+          <li><a href="#">教练团队</a></li>
+          <li><a href="#">潜水装备</a></li>
+          <li><a href="#">学员故事</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">联系</h4>
+        <ul class="footer-links">
+          <li><a href="#">电话咨询</a></li>
+          <li><a href="#">微信客服</a></li>
+          <li><a href="#">地址导航</a></li>
+          <li><a href="#">常见问题</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 奉旨潜水. 保留所有权利.</span>
+      <span>PADI国际认证潜水中心</span>
+    </div>
+  </footer>
+
+  <script>
+    // 气泡动画
+    function createBubbles() {
+      const container = document.getElementById('bubbles');
+      for (let i = 0; i < 20; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        const size = Math.random() * 60 + 10;
+        bubble.style.width = size + 'px';
+        bubble.style.height = size + 'px';
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.animationDuration = (Math.random() * 10 + 8) + 's';
+        bubble.style.animationDelay = (Math.random() * 5) + 's';
+        container.appendChild(bubble);
+      }
+    }
+    createBubbles();
+
+    // 滚动动画
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+
+    // 导航栏滚动效果
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diving Experience - Imperial Diving</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content h2 {
+            font-size: 28px;
+            color: #006994;
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+        
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            color: #006994;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #006994;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: background 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #005a7f;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 Imperial Diving</h1></a>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="diving-experience.html">Diving Experience</a>
+                <a href="diving-courses.html">Diving Courses</a>
+                <a href="diving-travel.html">Diving Trips</a>
+                <a href="index.html#destinations">Destinations</a>
+            <a href="/zh/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">Chinese</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🤿 Diving Experience</h1>
+        <p>Start your underwater exploration journey</p>
+    </section>
+    
+    <section class="container">
+        <div class="content">
+            <h2>What is Diving Experience?</h2>
+            <p>Diving experience, also known as trial diving or discover diving, is an entry-level diving activity designed specifically for beginners. Without any diving experience or certification, you can safely explore the magical underwater world under the full accompaniment of a professional diving instructor.</p>
+            
+            <h2>Who is it suitable for?</h2>
+            <ul>
+                <li>Complete beginners who have never dived before and want to try it</li>
+                <li>Adventure lovers who are curious about the ocean world</li>
+                <li>People planning to learn diving and want to experience it first</li>
+                <li>Parents and children who want to experience family diving</li>
+                <li>Travelers who want to add a special experience to their trip</li>
+            </ul>
+            
+            <h2>Experience Process</h2>
+            <ul>
+                <li><strong>Safety Briefing:</strong> The instructor will introduce you to basic diving knowledge and safety precautions</li>
+                <li><strong>Equipment Explanation:</strong> Learn how to correctly use diving equipment</li>
+                <li><strong>Shallow Water Practice:</strong> Practice basic skills in shallow water (breathing, ear equalization, etc.)</li>
+                <li><strong>Underwater Exploration:</strong> Dive into the water with the instructor to explore the beautiful underwater world</li>
+                <li><strong>Share Experience:</strong> After diving, share your experience with the instructor and other participants</li>
+            </ul>
+            
+            <h2>What You Will See</h2>
+            <p>Depending on the diving location, you may see:</p>
+            <ul>
+                <li>🐠 Colorful tropical fish schools</li>
+                <li>🪸 Spectacular coral reef ecosystems</li>
+                <li>🐢 Leisurely swimming sea turtles</li>
+                <li>🦈 Small sharks (depending on location)</li>
+                <li>🪼 Various marine life and plants</li>
+            </ul>
+            
+            <h2>Our Advantages</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>👨‍🏫 Professional Instructors</h3>
+                    <p>Internationally certified diving instructors, experienced and patient guidance</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🛡️ Safety First</h3>
+                    <p>Strict safety standards, one-on-one accompaniment throughout</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 Small Group Teaching</h3>
+                    <p>Maximum 4 people per group, ensuring personalized guidance</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📸 Free Photography</h3>
+                    <p>Instructors record your precious diving moments</p>
+                </div>
+            </div>
+            
+            <h2>Experience Packages</h2>
+            <div class="feature-grid">
+                <div class="feature-card" style="background: white; border: 2px solid #006994;">
+                    <h3>Basic Experience</h3>
+                    <p style="font-size: 24px; font-weight: bold; color: #006994; margin: 15px 0;">¥580</p>
+                    <p>Single diving experience</p>
+                    <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+                        <li>1 dive (approx. 45 minutes)</li>
+                        <li>Full diving equipment</li>
+                        <li>Professional instructor accompaniment</li>
+                        <li>Safety insurance</li>
+                    </ul>
+                </div>
+                <div class="feature-card" style="background: #006994; color: white;">
+                    <h3>Deep Experience</h3>
+                    <p style="font-size: 24px; font-weight: bold; margin: 15px 0;">¥980</p>
+                    <p>Two diving experiences</p>
+                    <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+                        <li>2 dives (approx. 45 minutes each)</li>
+                        <li>Full diving equipment</li>
+                        <li>Professional instructor accompaniment</li>
+                        <li>Free photography service</li>
+                        <li>Lunch and drinks</li>
+                        <li>Safety insurance</li>
+                    </ul>
+                </div>
+                <div class="feature-card" style="background: white; border: 2px solid #006994;">
+                    <h3>Family Experience</h3>
+                    <p style="font-size: 24px; font-weight: bold; color: #006994; margin: 15px 0;">¥1,580</p>
+                    <p>Parent-child diving experience</p>
+                    <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+                        <li>2 adults + 1 child or 1 adult + 2 children</li>
+                        <li>Full diving equipment</li>
+                        <li>Professional instructor accompaniment</li>
+                        <li>Free photography service</li>
+                        <li>Lunch and drinks</li>
+                        <li>Safety insurance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <h2>Ready to Start Your Diving Journey?</h2>
+                <p>Book now and start your magical underwater exploration!</p>
+                <a href="index.html#contact" class="cta-button">Book Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="diving-experience.html">Diving Experience</a>
+            <a href="diving-courses.html">Diving Courses</a>
+            <a href="diving-travel.html">Diving Trips</a>
+            <a href="index.html#destinations">Destinations</a>
+        </div>
+        <p>© 2026 Imperial Diving - Official Website</p>
+        <p>Contact Us: imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>

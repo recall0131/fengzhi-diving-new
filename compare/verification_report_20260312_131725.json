@@ -1,0 +1,453 @@
+{
+  "timestamp": "2026-03-12T13:17:24.930189",
+  "pages": {
+    "index.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 3,
+        "h3_count": 16,
+        "paragraph_count": 21,
+        "card_count": 12,
+        "liveaboards_count": 0,
+        "resorts_count": 0,
+        "dive_centers_count": 0,
+        "packages_count": 0
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 3,
+        "h3_count": 16,
+        "paragraph_count": 21,
+        "card_count": 12,
+        "liveaboards_count": 0,
+        "resorts_count": 0,
+        "dive_centers_count": 0,
+        "packages_count": 0
+      }
+    },
+    "maldives.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 4,
+        "dive_centers_count": 2,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 4,
+        "dive_centers_count": 2,
+        "packages_count": 1
+      }
+    },
+    "indonesia.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 2,
+        "resorts_count": 8,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 2,
+        "resorts_count": 8,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      }
+    },
+    "philippines.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 5,
+        "resorts_count": 7,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 5,
+        "resorts_count": 7,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      }
+    },
+    "malaysia.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 10,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 10,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      }
+    },
+    "egypt.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 9,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 9,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      }
+    },
+    "palau.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 10,
+        "dive_centers_count": 2,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 10,
+        "dive_centers_count": 2,
+        "packages_count": 1
+      }
+    },
+    "fiji.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 4,
+        "resorts_count": 9,
+        "dive_centers_count": 1,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 4,
+        "resorts_count": 9,
+        "dive_centers_count": 1,
+        "packages_count": 1
+      }
+    },
+    "mauritius.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 10,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 10,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      }
+    },
+    "mexico.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 9,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 9,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      }
+    },
+    "ecuador.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 6,
+        "resorts_count": 6,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 6,
+        "resorts_count": 6,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      }
+    },
+    "china.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 7,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 7,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      }
+    },
+    "usa.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 9,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 12,
+        "paragraph_count": 35,
+        "card_count": 12,
+        "liveaboards_count": 3,
+        "resorts_count": 9,
+        "dive_centers_count": 4,
+        "packages_count": 1
+      }
+    },
+    "diving-courses.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 2,
+        "h3_count": 10,
+        "paragraph_count": 13,
+        "card_count": 0,
+        "liveaboards_count": 0,
+        "resorts_count": 0,
+        "dive_centers_count": 0,
+        "packages_count": 0
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 2,
+        "h3_count": 10,
+        "paragraph_count": 13,
+        "card_count": 0,
+        "liveaboards_count": 0,
+        "resorts_count": 0,
+        "dive_centers_count": 0,
+        "packages_count": 0
+      }
+    },
+    "diving-experience.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 7,
+        "paragraph_count": 16,
+        "card_count": 0,
+        "liveaboards_count": 0,
+        "resorts_count": 0,
+        "dive_centers_count": 0,
+        "packages_count": 1
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 7,
+        "h3_count": 7,
+        "paragraph_count": 16,
+        "card_count": 0,
+        "liveaboards_count": 0,
+        "resorts_count": 0,
+        "dive_centers_count": 0,
+        "packages_count": 1
+      }
+    },
+    "diving-equipment.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 6,
+        "h3_count": 6,
+        "paragraph_count": 11,
+        "card_count": 6,
+        "liveaboards_count": 0,
+        "resorts_count": 0,
+        "dive_centers_count": 1,
+        "packages_count": 0
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 6,
+        "h3_count": 6,
+        "paragraph_count": 11,
+        "card_count": 6,
+        "liveaboards_count": 0,
+        "resorts_count": 0,
+        "dive_centers_count": 1,
+        "packages_count": 0
+      }
+    },
+    "diving-travel.html": {
+      "status": "passed",
+      "issues": [],
+      "zh_content": {
+        "h1_count": 2,
+        "h2_count": 4,
+        "h3_count": 6,
+        "paragraph_count": 11,
+        "card_count": 0,
+        "liveaboards_count": 0,
+        "resorts_count": 4,
+        "dive_centers_count": 0,
+        "packages_count": 2
+      },
+      "en_content": {
+        "h1_count": 2,
+        "h2_count": 4,
+        "h3_count": 6,
+        "paragraph_count": 11,
+        "card_count": 0,
+        "liveaboards_count": 0,
+        "resorts_count": 4,
+        "dive_centers_count": 0,
+        "packages_count": 2
+      }
+    }
+  },
+  "summary": {
+    "total_pages": 17,
+    "passed": 17,
+    "failed": 0,
+    "issues_found": []
+  }
+}

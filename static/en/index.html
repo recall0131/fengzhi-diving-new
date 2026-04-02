@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imperial Diving - Imperial Diving</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            color: #006994;
+            font-size: 24px;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .navbar-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .navbar-links a:hover {
+            color: #006994;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #006994 0%, #004d6b 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 80px;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .hero button {
+            padding: 15px 40px;
+            font-size: 18px;
+            background: white;
+            color: #006994;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        
+        .hero button:hover {
+            transform: scale(1.05);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #006994;
+            margin-bottom: 50px;
+        }
+        
+        .services {
+            background: #f8f9fa;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #006994;
+        }
+        
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .destination-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .destination-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #006994;
+        }
+        
+        .destination-card p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .country-badge {
+            display: inline-block;
+            background: #006994;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .services-grid,
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" style="text-decoration: none; color: inherit;"><h1>🤿 Imperial Diving</h1></a>
+            <div class="navbar-links">
+                <a href="diving-experience.html">Diving Experience</a>
+                <a href="diving-courses.html">Diving Courses</a>
+                <a href="diving-travel.html">Diving Trips</a>
+                <a href="diving-equipment.html">Diving Equipment</a>
+                <a href="#destinations">Destinations</a>
+                <a href="#contact">Contact Us</a>
+            <a href="/zh/index.html" style="color: #006994; font-weight: bold; margin-left: 20px;">Chinese</a></div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>🤿 Imperial Diving</h1>
+        <p>Imperial Diving - Explore the World's Top Diving Destinations</p>
+        <p style="font-size: 18px; margin-bottom: 30px;">Professional Diving Training · World's Top Destinations · Safety First</p>
+        <button onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'})">
+            Start Your Diving Journey
+        </button>
+    </section>
+    
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <a href="diving-experience.html" class="service-card">
+                    <h3>🤿 Diving Experience</h3>
+                    <p>Experience diving for beginners, safely explore the underwater world accompanied by professional instructors.</p>
+                </a>
+                <a href="diving-courses.html" class="service-card">
+                    <h3>📚 Diving Courses</h3>
+                    <p>Professional diving training from beginner to advanced, earning internationally certified diving qualifications.</p>
+                </a>
+                <a href="diving-travel.html" class="service-card">
+                    <h3>🌊 Diving Trips</h3>
+                    <p>Carefully selected world's top diving destinations, providing one-stop diving trip services.</p>
+                </a>
+                <a href="diving-equipment.html" class="service-card">
+                    <h3>🤿 Diving Equipment</h3>
+                    <p>Professional diving equipment sales and rental, providing safe and reliable diving gear.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container" id="destinations">
+        <h2 class="section-title">Popular Destinations</h2>
+        <div class="destinations-grid">
+            <!-- Maldives -->
+            <a href="maldives.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🏝️ Maldives</h3>
+                    <p>Tropical paradise with crystal-clear waters and magnificent coral reefs. Excellent visibility, rich marine life including sharks, manta rays, sea turtles, and more.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Male Atoll<br>
+                        • Ari Atoll<br>
+                        • South Male Atoll<br>
+                        • Baa Atoll<br>
+                        • Vaavu Atoll
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Indonesia -->
+            <a href="indonesia.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🐠 Indonesia</h3>
+                    <p>World-famous diving destination where you can see Komodo dragons, manta rays, sharks, and rich coral reef ecosystems.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Komodo National Park<br>
+                        • Bali<br>
+                        • Raja Ampat<br>
+                        • Sulawesi<br>
+                        • Lombok
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Philippines -->
+            <a href="philippines.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🐙 Philippines</h3>
+                    <p>UNESCO World Heritage Site with world-class coral reefs and rich marine biodiversity.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Tubbataha Reef<br>
+                        • Anilao<br>
+                        • Cebu<br>
+                        • Bohol<br>
+                        • Palawan
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Malaysia -->
+            <a href="malaysia.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🦈 Malaysia</h3>
+                    <p>World's top diving destination, famous for jackfish storms, sharks, and abundant marine life.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Sipadan Island<br>
+                        • Sipadan<br>
+                        • Mabul Island<br>
+                        • Semporna<br>
+                        • Tawau
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Egypt -->
+            <a href="egypt.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🏛️ Egypt</h3>
+                    <p>World-renowned diving destination with spectacular coral reefs, shipwrecks, and abundant marine life.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Red Sea<br>
+                        • Hurghada<br>
+                        • Sharm El Sheikh<br>
+                        • Marsa Alam<br>
+                        • Dahab
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Palau -->
+            <a href="palau.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🕳️ Palau</h3>
+                    <p>World's top diving destination with spectacular blue holes and abundant marine life, including sharks, manta rays, and sea turtles.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Palau Blue Hole<br>
+                        • Jellyfish Lake<br>
+                        • German Channel<br>
+                        • Coral Reef<br>
+                        • Shark City
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Fiji -->
+            <a href="fiji.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🦈 Fiji</h3>
+                    <p>Famous for shark feeding experiences, where you can see up to 8 species of sharks - a paradise for shark enthusiasts.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Beqa Lagoon<br>
+                        • Pacific Harbour<br>
+                        • Taveuni Island<br>
+                        • Vanua Levu<br>
+                        • Somosomo Strait
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Mauritius -->
+            <a href="mauritius.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🐢 Mauritius</h3>
+                    <p>Crystal-clear waters and rich coral reefs, where you can see sea turtles, sharks, and colorful tropical fish schools.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Mauritius Waters<br>
+                        • Ile aux Cerfs<br>
+                        • Mahe Island<br>
+                        • Cat Island<br>
+                        • Rodrigues Island
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Mexico -->
+            <a href="mexico.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🦭 Mexico</h3>
+                    <p>World-renowned diving destination with spectacular coral reefs, cave diving opportunities, and abundant marine life.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Cozumel<br>
+                        • Cancun<br>
+                        • Playa del Carmen<br>
+                        • Yucatan Peninsula<br>
+                        • Isla Mujeres
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Ecuador -->
+            <a href="ecuador.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🦎 Ecuador</h3>
+                    <p>World Natural Heritage Site with unique marine ecosystems, where you can see rare species like penguins, marine iguanas, and hammerhead sharks.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Galapagos Islands<br>
+                        • Santa Cruz Island<br>
+                        • Isabela Island<br>
+                        • Fernandina Island<br>
+                        • Santiago Island
+                    </div>
+                </div>
+            </a>
+            
+            <!-- China -->
+            <a href="china.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🌊 China</h3>
+                    <p>Diving paradise in the South China Sea, with crystal-clear waters, rich coral reefs, and tropical fish schools - China's top diving destination.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Xisha Islands<br>
+                        • Nansha Islands<br>
+                        • Hainan Island<br>
+                        • Sanya<br>
+                        • Weizhou Island
+                    </div>
+                </div>
+            </a>
+            
+            <!-- USA -->
+            <a href="usa.html" class="destination-card">
+                <div style="padding: 30px;">
+                    <h3>🌺 USA</h3>
+                    <p>World-renowned diving destination with lava tube diving, rich coral reefs, and marine life including sea turtles and manta rays.</p>
+                    <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                        <strong>Popular Dive Sites:</strong><br>
+                        • Hawaii<br>
+                        • Oahu<br>
+                        • Maui<br>
+                        • Big Island<br>
+                        • Kauai
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <section class="container" id="contact" style="background: #f8f9fa; border-radius: 10px;">
+        <h2 class="section-title">Contact Us</h2>
+        <div style="max-width: 600px; margin: 0 auto;">
+            <form id="contactForm" action="https://formspree.io/f/xwvnzkol" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+                <input type="text" name="name" id="name" placeholder="Your Name" required style="padding: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+                <input type="email" name="email" id="email" placeholder="Your Email" required style="padding: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+                <textarea name="message" id="message" placeholder="Your Message" rows="5" required style="padding: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; resize: vertical;"></textarea>
+                <input type="hidden" name="ip_address" id="ip_address">
+                <input type="hidden" name="user_agent" id="user_agent">
+                <input type="hidden" name="timestamp" id="timestamp">
+                <button type="submit" id="submitBtn" style="padding: 15px 40px; background: #006994; color: white; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer;">
+                    Send Message
+                </button>
+            </form>
+            <p id="statusMsg" style="text-align: center; margin-top: 15px; font-size: 14px; color: #666;">
+                Messages will be sent directly to imperialdiving2015@gmail.com
+            </p>
+            <script>
+                // Anti-flood Protection
+                const FORMSPREE_FORM_ID = 'xwvnzkol';
+                const SUBMIT_COOLDOWN = 60000; // 60 seconds cooldown
+                const MAX_SUBMITS_PER_HOUR = 5; // Maximum 5 submissions per hour
+                
+                document.addEventListener('DOMContentLoaded', function() {
+                    const form = document.getElementById('contactForm');
+                    const submitBtn = document.getElementById('submitBtn');
+                    const statusMsg = document.getElementById('statusMsg');
+                    
+                    // Get client information
+                    fetch('https://api.ipify.org?format=json')
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('ip_address').value = data.ip;
+                        })
+                        .catch(() => {
+                            document.getElementById('ip_address').value = 'Unknown';
+                        });
+                    
+                    document.getElementById('user_agent').value = navigator.userAgent;
+                    document.getElementById('timestamp').value = new Date().toISOString();
+                    
+                    // Check submission rate
+                    function checkSubmitRate() {
+                        const lastSubmit = localStorage.getItem('lastSubmitTime');
+                        const submitCount = parseInt(localStorage.getItem('submitCount') || '0');
+                        const countTimestamp = parseInt(localStorage.getItem('countTimestamp') || '0');
+                        const now = Date.now();
+                        
+                        // Check cooldown period
+                        if (lastSubmit && (now - parseInt(lastSubmit)) < SUBMIT_COOLDOWN) {
+                            const remainingTime = Math.ceil((SUBMIT_COOLDOWN - (now - parseInt(lastSubmit))) / 1000);
+                            return {
+                                allowed: false,
+                                message: `Please wait ${remainingTime} seconds before trying again`
+                            };
+                        }
+                        
+                        // Check hourly submission count
+                        if (countTimestamp && (now - countTimestamp) < 3600000 && submitCount >= MAX_SUBMITS_PER_HOUR) {
+                            const remainingTime = Math.ceil((3600000 - (now - countTimestamp)) / 60000);
+                            return {
+                                allowed: false,
+                                message: `You have reached the maximum submissions per hour, please try again in ${remainingTime} minutes`
+                            };
+                        }
+                        
+                        return { allowed: true };
+                    }
+                    
+                    // Update submission count
+                    function updateSubmitCount() {
+                        const now = Date.now();
+                        const countTimestamp = parseInt(localStorage.getItem('countTimestamp') || '0');
+                        let submitCount = parseInt(localStorage.getItem('submitCount') || '0');
+                        
+                        // Reset count if more than 1 hour has passed
+                        if (!countTimestamp || (now - countTimestamp) >= 3600000) {
+                            localStorage.setItem('countTimestamp', now.toString());
+                            submitCount = 0;
+                        }
+                        
+                        localStorage.setItem('submitCount', (submitCount + 1).toString());
+                        localStorage.setItem('lastSubmitTime', now.toString());
+                    }
+                    
+                    // Form submission handler
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        // Update timestamp
+                        document.getElementById('timestamp').value = new Date().toISOString();
+                        
+                        // Check submission rate
+                        const check = checkSubmitRate();
+                        if (!check.allowed) {
+                            statusMsg.textContent = check.message;
+                            statusMsg.style.color = '#dc3545';
+                            return;
+                        }
+                        
+                        // Disable submit button
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Sending...';
+                        statusMsg.textContent = 'Sending message...';
+                        statusMsg.style.color = '#666';
+                        
+                        // Submit form
+                        fetch(form.action, {
+                            method: 'POST',
+                            body: new FormData(form),
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                statusMsg.textContent = 'Success! We will reply to you as soon as possible.';
+                                statusMsg.style.color = '#28a745';
+                                form.reset();
+                                updateSubmitCount();
+                            } else {
+                                statusMsg.textContent = 'Send Failed, Please try again later.';
+                                statusMsg.style.color = '#dc3545';
+                            }
+                        })
+                        .catch(error => {
+                            statusMsg.textContent = 'Send Failed, Please try again later.';
+                            statusMsg.style.color = '#dc3545';
+                        })
+                        .finally(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Send Message';
+                        });
+                    });
+                });
+            </script>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="diving-experience.html">Diving Experience</a>
+            <a href="diving-courses.html">Diving Courses</a>
+            <a href="diving-travel.html">Diving Trips</a>
+            <a href="diving-equipment.html">Diving Equipment</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        <p>© 2026 Imperial Diving - Official Website</p>
+        <p>Contact Us: imperialdiving2015@gmail.com</p>
+    </footer>
+</body>
+</html>
