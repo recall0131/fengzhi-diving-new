@@ -100,7 +100,7 @@ export default function AboutPage() {
 
             <div className="text-center">
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">💙</span>
+                <svg className="w-10 h-10 text-white" viewBox="0 0 48 48" fill="none"><path d="M24 42 C12 30 4 22 4 14 C4 8 8 4 14 4 C18 4 22 6 24 10 C26 6 30 4 34 4 C40 4 44 8 44 14 C44 22 36 30 24 42Z" fill="white" opacity="0.8"/></svg>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">用心服务</h3>
               <p className="text-gray-600">

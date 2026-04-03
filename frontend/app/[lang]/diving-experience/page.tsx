@@ -37,7 +37,7 @@ export default function DivingExperiencePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">👨‍🏫</span>
+                <svg className="w-10 h-10 text-white" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="white" strokeWidth="2"/><path d="M12 42 Q12 32 24 32 Q36 32 36 42" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">一对一教练</h3>
               <p className="text-gray-600">
@@ -47,7 +47,7 @@ export default function DivingExperiencePage() {
 
             <div className="text-center">
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">⏱️</span>
+                <svg className="w-10 h-10 text-white" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="26" r="16" stroke="white" strokeWidth="2"/><path d="M24 18 L24 26 L30 30" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M20 6 L28 6 L28 14 L20 14 Z" stroke="white" strokeWidth="2"/></svg>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">30分钟体验</h3>
               <p className="text-gray-600">
@@ -57,7 +57,7 @@ export default function DivingExperiencePage() {
 
             <div className="text-center">
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">📸</span>
+                <svg className="w-10 h-10 text-white" viewBox="0 0 48 48" fill="none"><rect x="6" y="14" width="36" height="26" rx="3" stroke="white" strokeWidth="2"/><circle cx="24" cy="27" r="7" stroke="white" strokeWidth="2"/><circle cx="24" cy="27" r="3" fill="white"/><path d="M17 14 L21 10 L27 10 L31 14" stroke="white" strokeWidth="2"/></svg>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">免费拍照</h3>
               <p className="text-gray-600">
@@ -67,7 +67,7 @@ export default function DivingExperiencePage() {
 
             <div className="text-center">
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">🎁</span>
+                <svg className="w-10 h-10 text-white" viewBox="0 0 48 48" fill="none"><rect x="8" y="20" width="32" height="22" rx="2" stroke="white" strokeWidth="2"/><path d="M8 26 L24 34 L40 26" stroke="white" strokeWidth="2"/><path d="M24 34 L24 46" stroke="white" strokeWidth="2"/><path d="M24 20 L24 34 M18 20 Q18 12 24 12 Q30 12 30 20" stroke="white" strokeWidth="2"/></svg>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">全套装备</h3>
               <p className="text-gray-600">

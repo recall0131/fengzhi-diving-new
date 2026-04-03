@@ -2,6 +2,73 @@
 
 import Link from 'next/link';
 
+function BlueHoleIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 80 80" fill="none">
+      <circle cx="40" cy="40" r="35" stroke="white" strokeWidth="2" opacity="0.3"/>
+      <circle cx="40" cy="40" r="25" stroke="white" strokeWidth="2" opacity="0.5"/>
+      <circle cx="40" cy="40" r="15" stroke="white" strokeWidth="2" opacity="0.8"/>
+      <circle cx="40" cy="40" r="5" fill="white" opacity="0.9"/>
+    </svg>
+  );
+}
+
+function IslandIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 80 80" fill="none">
+      <path d="M15 55 Q40 45 65 55 Q65 65 40 65 Q15 65 15 55Z" fill="white" opacity="0.8"/>
+      <path d="M40 55 L40 25 M35 30 Q40 25 45 30" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <ellipse cx="40" cy="23" rx="12" ry="8" fill="white" opacity="0.5"/>
+      <path d="M10 65 Q40 60 70 65" stroke="white" strokeWidth="1.5" opacity="0.3"/>
+    </svg>
+  );
+}
+
+function CoralIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 80 80" fill="none">
+      <path d="M40 70 L40 40" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.6"/>
+      <path d="M40 50 Q30 45 25 35 Q22 28 28 25" stroke="white" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.7"/>
+      <path d="M40 45 Q50 40 55 30 Q58 23 52 20" stroke="white" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.7"/>
+      <ellipse cx="28" cy="25" rx="6" ry="4" fill="white" opacity="0.4"/>
+      <ellipse cx="52" cy="20" rx="6" ry="4" fill="white" opacity="0.4"/>
+    </svg>
+  );
+}
+
+function TargetIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="24" r="20" stroke="white" strokeWidth="2" opacity="0.4"/>
+      <circle cx="24" cy="24" r="13" stroke="white" strokeWidth="2" opacity="0.6"/>
+      <circle cx="24" cy="24" r="6" stroke="white" strokeWidth="2" opacity="0.8"/>
+      <circle cx="24" cy="24" r="2" fill="white"/>
+    </svg>
+  );
+}
+
+function HotelIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 48 48" fill="none">
+      <rect x="8" y="18" width="32" height="22" rx="2" stroke="white" strokeWidth="2"/>
+      <path d="M8 22 L24 12 L40 22" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <rect x="14" y="26" width="5" height="5" rx="0.5" fill="white" opacity="0.7"/>
+      <rect x="21.5" y="26" width="5" height="5" rx="0.5" fill="white" opacity="0.7"/>
+      <rect x="29" y="26" width="5" height="5" rx="0.5" fill="white" opacity="0.7"/>
+      <rect x="19" y="33" width="10" height="7" rx="1" stroke="white" strokeWidth="1.5"/>
+    </svg>
+  );
+}
+
+function PriceIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="24" r="18" stroke="white" strokeWidth="2" opacity="0.4"/>
+      <path d="M24 14 L24 34 M20 18 Q20 14 24 14 Q28 14 28 18 Q28 22 24 24 Q28 26 28 30 Q28 34 24 34 Q20 34 20 30" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
 export default function DivingTravelPage() {
   return (
     <div className="pt-20">
@@ -38,7 +105,7 @@ export default function DivingTravelPage() {
             <Link href="/zh/destinations/palau" className="group">
               <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="h-72 bg-gradient-to-br from-[#006994] to-[#004d6b] flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-8xl">🕳️</span>
+                  <BlueHoleIcon className="w-32 h-32" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -51,7 +118,7 @@ export default function DivingTravelPage() {
             <Link href="/zh/destinations/maldives" className="group">
               <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="h-72 bg-gradient-to-br from-[#006994] to-[#005a7f] flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-8xl">🏝️</span>
+                  <IslandIcon className="w-32 h-32" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -64,7 +131,7 @@ export default function DivingTravelPage() {
             <Link href="/zh/destinations/great-barrier-reef" className="group">
               <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="h-72 bg-gradient-to-br from-[#006994] to-[#003d52] flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <span className="text-8xl">🐠</span>
+                  <CoralIcon className="w-32 h-32" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -89,7 +156,7 @@ export default function DivingTravelPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="text-center">
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">🎯</span>
+                <TargetIcon className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">专业向导</h3>
               <p className="text-gray-600">
@@ -99,7 +166,7 @@ export default function DivingTravelPage() {
 
             <div className="text-center">
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">🏨️</span>
+                <HotelIcon className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">一站式服务</h3>
               <p className="text-gray-600">
@@ -109,7 +176,7 @@ export default function DivingTravelPage() {
 
             <div className="text-center">
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-4xl">💰</span>
+                <PriceIcon className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">超值价格</h3>
               <p className="text-gray-600">

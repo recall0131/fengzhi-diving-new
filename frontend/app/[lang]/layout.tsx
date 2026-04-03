@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://dejavu.lizheng.info:4443'),
+  metadataBase: new URL('https://imperialdiving.lizheng.info'),
   title: {
     default: '奉旨潜水 - 专业潜水服务官方网站',
     template: '%s | 奉旨潜水',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'zh_CN',
     alternateLocale: 'en_US',
-    url: 'https://dejavu.lizheng.info:4443',
+    url: 'https://imperialdiving.lizheng.info',
     siteName: '奉旨潜水',
     title: '奉旨潜水 - 专业潜水服务官方网站',
     description: '专业潜水服务提供商，提供潜水课程、潜水旅游、潜水体验服务。',
@@ -48,10 +48,7 @@ export const metadata: Metadata = {
     description: '专业潜水服务提供商，提供潜水课程、潜水旅游、潜水体验服务。',
     images: ['/og-image.jpg'],
   },
-  verification: {
-    google: 'google-site-verification-code',
-    yandex: 'yandex-verification-code',
-  },
+
 };
 
 export default function LocaleLayout({
