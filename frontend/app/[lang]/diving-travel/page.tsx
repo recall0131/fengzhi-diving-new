@@ -69,7 +69,10 @@ function PriceIcon({ className }: { className?: string }) {
   );
 }
 
-export default function DivingTravelPage() {
+export default function DivingTravelPage({ params }: { params: { lang: string } }) {
+  const lang = (params.lang as string) || 'zh';
+  const isZh = lang === 'zh';
+  const t = (zh: string, en: string) => (isZh ? zh : en);
   return (
     <div className="pt-20">
       {/* Hero Section */}
@@ -109,8 +112,8 @@ export default function DivingTravelPage() {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">帕劳蓝洞</h3>
-                  <p className="text-white/80 text-sm">世界顶级潜水圣地，壮观的蓝洞和丰富的海洋生物</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">{t('帕劳蓝洞', 'Palau Blue Hole')}</h3>
+                  <p className="text-white/80 text-sm">{t('世界顶级潜水圣地，壮观的蓝洞和丰富的海洋生物', 'World-class site: spectacular blue hole and abundant marine life')}</p>
                 </div>
               </div>
             </Link>
@@ -122,8 +125,8 @@ export default function DivingTravelPage() {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">马尔代夫</h3>
-                  <p className="text-white/80 text-sm">热带天堂，清澈的海水和绚丽的珊瑚礁</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">{t('马尔代夫', 'Maldives')}</h3>
+                  <p className="text-white/80 text-sm">{t('热带天堂，清澈的海水和绚丽的珊瑚礁', 'Tropical paradise with crystal-clear waters and vibrant coral reefs')}</p>
                 </div>
               </div>
             </Link>
@@ -135,8 +138,8 @@ export default function DivingTravelPage() {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">大堡礁</h3>
-                  <p className="text-white/80 text-sm">世界最大的珊瑚礁系统，独特的海洋生态系统</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">{t('大堡礁', 'Great Barrier Reef')}</h3>
+                  <p className="text-white/80 text-sm">{t('世界最大的珊瑚礁系统，独特的海洋生态系统', 'World\'s largest coral reef system with a unique marine ecosystem')}</p>
                 </div>
               </div>
             </Link>
@@ -158,7 +161,7 @@ export default function DivingTravelPage() {
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
                 <TargetIcon className="w-10 h-10" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-800">专业向导</h3>
+              <h3 className="text-xl font-bold mb-3 text-gray-800">{t('专业向导', 'Expert Guides')}</h3>
               <p className="text-gray-600">
                 经验丰富的潜水向导，熟悉每个潜点的最佳路线和海洋生物
               </p>
@@ -168,7 +171,7 @@ export default function DivingTravelPage() {
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
                 <HotelIcon className="w-10 h-10" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-800">一站式服务</h3>
+              <h3 className="text-xl font-bold mb-3 text-gray-800">{t('一站式服务', 'All-Inclusive Service')}</h3>
               <p className="text-gray-600">
                 机票、住宿、潜水安排全包，您只需享受潜水乐趣
               </p>
@@ -178,7 +181,7 @@ export default function DivingTravelPage() {
               <div className="w-20 h-20 bg-[#006994] rounded-full flex items-center justify-center mx-auto mb-4">
                 <PriceIcon className="w-10 h-10" />
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-800">超值价格</h3>
+              <h3 className="text-xl font-bold mb-3 text-gray-800">{t('超值价格', 'Best Value')}</h3>
               <p className="text-gray-600">
                 与当地潜店直接合作，为您提供最具竞争力的价格
               </p>
