@@ -9,15 +9,15 @@ export default function Page({ params }: { params: { lang: string } }) {
   const t = (zh: string, en: string) => lang === 'zh' ? zh : en;
 
   const services = [
-    { title: t('潜水体验', 'Dive Experience'), desc: t('专业教练陪同，安全探索海底世界。无需证书，初次体验最佳选择。', 'Professional instructors, safe ocean exploration. No certification needed.'), img: 'https://images.unsplash.com/photo-1559825481-12a05cc00344?w=800&q=80' },
+    { title: t('潜水体验', 'Dive Experience'), desc: t('专业教练陪同，安全探索海底世界。无需证书，初次体验最佳选择。', 'Professional instructors, safe ocean exploration. No certification needed.'), img: 'https://images.unsplash.com/photo-1544551763-77ef4b39c08a?w=800&q=80' },
     { title: t('潜水课程', 'Dive Courses'), desc: t('PADI、SSI、NAUI 多体系认证，从入门到专业一站式培训。', 'Multi-system certification: PADI, SSI, NAUI. Beginner to professional.'), img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80' },
     { title: t('潜水旅行', 'Dive Travel'), desc: t('精选全球顶级潜水目的地，一站式服务省心无忧。', 'Curated world-class destinations. Full-service packages.'), img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80' },
   ];
 
   const courses = [
     { name: t('PADI 开放水域潜水员', 'PADI Open Water Diver'), tag: t('零基础', 'Beginner'), desc: t('入门课程，最大深度18米，获得PADI全球认证证书。', 'Entry-level course, max depth 18m, PADI certified worldwide.'), price: '¥2,800', days: t('4天', '4 days'), img: 'https://images.unsplash.com/photo-1559825481-12a05cc00344?w=600&q=80' },
-    { name: t('PADI 进阶开放水域', 'PADI Advanced Open Water'), tag: t('进阶', 'Intermediate'), desc: t('提升技能，深度30米，夜潜、深潜、沉船潜等。', 'Depth to 30m. Night, deep & wreck diving.',), price: '¥2,200', days: t('3天', '3 days'), img: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600&q=80' },
-    { name: t('PADI 救援潜水员', 'PADI Rescue Diver'), tag: t('进阶', 'Advanced'), desc: t('学习紧急救援，提升安全意识，自救互救能力。', 'Emergency rescue skills, safety awareness.'), price: '¥1,800', days: t('5天', '5 days'), img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80' },
+    { name: t('PADI 进阶开放水域', 'PADI Advanced Open Water'), tag: t('进阶', 'Intermediate'), desc: t('提升技能，深度30米，夜潜、深潜、沉船潜等。', 'Depth to 30m. Night, deep & wreck diving.',), price: '¥2,200', days: t('3天', '3 days'), img: 'https://images.unsplash.com/photo-1548366086-7d8c7b18e773?w=600&q=80' },
+    { name: t('PADI 救援潜水员', 'PADI Rescue Diver'), tag: t('进阶', 'Advanced'), desc: t('学习紧急救援，提升安全意识，自救互救能力。', 'Emergency rescue skills, safety awareness.'), price: '¥1,800', days: t('5天', '5 days'), img: 'https://images.unsplash.com/photo-1687227693864-7e0d11c2bd5c?w=600&q=80' },
   ];
 
   const destinations = [
@@ -37,7 +37,7 @@ export default function Page({ params }: { params: { lang: string } }) {
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&q=85"
+            src="https://images.unsplash.com/photo-1544551763-77ef4b39c08a?w=1920&q=85"
             alt="Diver"
             className="w-full h-full object-cover object-center"
           />
