@@ -48,7 +48,14 @@ export default function Navbar({ lang }: { lang: string }) {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
+            {/* Language Toggle */}
+            <Link
+              href={`/${lang === 'zh' ? 'en' : 'zh'}`}
+              className="text-sm font-medium px-3 py-1.5 rounded-md border border-gray-300 text-gray-600 hover:text-[#006994] hover:border-[#006994] transition-colors"
+            >
+              {lang === 'zh' ? 'EN' : '中文'}
+            </Link>
             {links.map((link) => (
               <Link key={link.href} href={link.href} className="text-gray-700 hover:text-[#006994] font-semibold transition-colors">
                 {link.label}
@@ -94,6 +101,13 @@ export default function Navbar({ lang }: { lang: string }) {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {isZh ? '联系我们' : 'Contact Us'}
+              </Link>
+              <Link
+                href={`/${lang === 'zh' ? 'en' : 'zh'}`}
+                className="text-center text-sm font-medium px-3 py-2 rounded-md border border-gray-300 text-gray-600 hover:text-[#006994] hover:border-[#006994] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {isZh ? 'Switch to English' : '切换到中文'}
               </Link>
             </div>
           </div>
