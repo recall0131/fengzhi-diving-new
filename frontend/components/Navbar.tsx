@@ -12,7 +12,12 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/zh" className="flex items-center space-x-3 group">
-            <span className="text-5xl">🤿</span>
+            <svg className="w-10 h-10 text-[#008ECC]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+              <ellipse cx="12" cy="7" rx="5" ry="3.5"/>
+              <path d="M7 7L5 4M17 7l2-3"/>
+              <path d="M12 10.5v6"/>
+              <path d="M8 22c0-2 1.5-3.5 4-3.5s4 1.5 4 3.5"/>
+            </svg>
             <div className="flex flex-col">
               <h1 className="text-2xl font-bold text-[#006994] tracking-tight">
                 奉旨潜水
