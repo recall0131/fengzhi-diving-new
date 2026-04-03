@@ -91,7 +91,7 @@ export default function DivingCoursesPage({ params }: { params: { lang: string }
       {/* Hero */}
       <section className="relative py-20 md:py-32 min-h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1559825481-12a05cc00344?w=1920&q=85" alt="Diving Courses" className="w-full h-full object-cover object-center"/>
+          <img src="/images/hero-instructor.jpg" alt="Diving Courses" className="w-full h-full object-cover object-center"/>
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
         </div>
         <div className="relative z-10 container mx-auto px-4">

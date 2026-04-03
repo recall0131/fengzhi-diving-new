@@ -78,7 +78,7 @@ export default function DivingTravelPage({ params }: { params: { lang: string } 
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 min-h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=85" alt="Dive Travel" className="w-full h-full object-cover object-center"/>
+          <img src="/images/hero-tropical.jpg" alt="Dive Travel" className="w-full h-full object-cover object-center"/>
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
         </div>
         <div className="relative z-10 container mx-auto px-4">

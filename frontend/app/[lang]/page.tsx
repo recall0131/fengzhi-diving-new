@@ -9,24 +9,24 @@ export default function Page({ params }: { params: { lang: string } }) {
   const t = (zh: string, en: string) => lang === 'zh' ? zh : en;
 
   const services = [
-    { title: t('潜水体验', 'Dive Experience'), desc: t('专业教练陪同，安全探索海底世界。无需证书，初次体验最佳选择。', 'Professional instructors, safe ocean exploration. No certification needed.'), img: 'https://images.unsplash.com/photo-1544551763-77ef4b39c08a?w=800&q=80' },
-    { title: t('潜水课程', 'Dive Courses'), desc: t('PADI、SSI、NAUI 多体系认证，从入门到专业一站式培训。', 'Multi-system certification: PADI, SSI, NAUI. Beginner to professional.'), img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80' },
-    { title: t('潜水旅行', 'Dive Travel'), desc: t('精选全球顶级潜水目的地，一站式服务省心无忧。', 'Curated world-class destinations. Full-service packages.'), img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80' },
+    { title: t('潜水体验', 'Dive Experience'), desc: t('专业教练陪同，安全探索海底世界。无需证书，初次体验最佳选择。', 'Professional instructors, safe ocean exploration. No certification needed.'), img: '/images/hero-diver.jpg' },
+    { title: t('潜水课程', 'Dive Courses'), desc: t('PADI、SSI、NAUI 多体系认证，从入门到专业一站式培训。', 'Multi-system certification: PADI, SSI, NAUI. Beginner to professional.'), img: '/images/hero-okinawa.jpg' },
+    { title: t('潜水旅行', 'Dive Travel'), desc: t('精选全球顶级潜水目的地，一站式服务省心无忧。', 'Curated world-class destinations. Full-service packages.'), img: '/images/hero-tropical.jpg' },
   ];
 
   const courses = [
-    { name: t('PADI 开放水域潜水员', 'PADI Open Water Diver'), tag: t('零基础', 'Beginner'), desc: t('入门课程，最大深度18米，获得PADI全球认证证书。', 'Entry-level course, max depth 18m, PADI certified worldwide.'), price: '¥2,800', days: t('4天', '4 days'), img: 'https://images.unsplash.com/photo-1559825481-12a05cc00344?w=600&q=80' },
-    { name: t('PADI 进阶开放水域', 'PADI Advanced Open Water'), tag: t('进阶', 'Intermediate'), desc: t('提升技能，深度30米，夜潜、深潜、沉船潜等。', 'Depth to 30m. Night, deep & wreck diving.',), price: '¥2,200', days: t('3天', '3 days'), img: 'https://images.unsplash.com/photo-1548366086-7d8c7b18e773?w=600&q=80' },
-    { name: t('PADI 救援潜水员', 'PADI Rescue Diver'), tag: t('进阶', 'Advanced'), desc: t('学习紧急救援，提升安全意识，自救互救能力。', 'Emergency rescue skills, safety awareness.'), price: '¥1,800', days: t('5天', '5 days'), img: 'https://images.unsplash.com/photo-1687227693864-7e0d11c2bd5c?w=600&q=80' },
+    { name: t('PADI 开放水域潜水员', 'PADI Open Water Diver'), tag: t('零基础', 'Beginner'), desc: t('入门课程，最大深度18米，获得PADI全球认证证书。', 'Entry-level course, max depth 18m, PADI certified worldwide.'), price: '¥2,800', days: t('4天', '4 days'), img: '/images/hero-instructor.jpg' },
+    { name: t('PADI 进阶开放水域', 'PADI Advanced Open Water'), tag: t('进阶', 'Intermediate'), desc: t('提升技能，深度30米，夜潜、深潜、沉船潜等。', 'Depth to 30m. Night, deep & wreck diving.',), price: '¥2,200', days: t('3天', '3 days'), img: '/images/course-aow.jpg' },
+    { name: t('PADI 救援潜水员', 'PADI Rescue Diver'), tag: t('进阶', 'Advanced'), desc: t('学习紧急救援，提升安全意识，自救互救能力。', 'Emergency rescue skills, safety awareness.'), price: '¥1,800', days: t('5天', '5 days'), img: '/images/hero-rescue.jpg' },
   ];
 
   const destinations = [
-    { name: t('马尔代夫', 'Maldives'), tag: t('珊瑚礁 · 热带天堂', 'Coral Reef · Paradise'), img: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80' },
-    { name: t('帕劳', 'Palau'), tag: t('蓝洞 · 海洋生物', 'Blue Hole · Marine Life'), img: 'https://images.unsplash.com/photo-1516934024742-b461fba47600?w=600&q=80' },
-    { name: t('大堡礁', 'Great Barrier Reef'), tag: t('珊瑚系统', 'World Largest Coral'), img: 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=600&q=80' },
-    { name: t('印度尼西亚', 'Indonesia'), tag: t('珊瑚三角区', 'Coral Triangle'), img: 'https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=600&q=80' },
-    { name: t('菲律宾', 'Philippines'), tag: t('鲸鲨 · 微距', 'Whale Shark · Macro'), img: 'https://images.unsplash.com/photo-1559008010-1f2e9b7d9b5a?w=600&q=80' },
-    { name: t('马来西亚', 'Malaysia'), tag: t('诗巴丹', 'Sipadan'), img: 'https://images.unsplash.com/photo-1590736969955-71cc94901144?w=600&q=80' },
+    { name: t('马尔代夫', 'Maldives'), tag: t('珊瑚礁 · 热带天堂', 'Coral Reef · Paradise'), img: '/images/hero-maldives.jpg' },
+    { name: t('帕劳', 'Palau'), tag: t('蓝洞 · 海洋生物', 'Blue Hole · Marine Life'), img: '/images/dest-palau.jpg' },
+    { name: t('大堡礁', 'Great Barrier Reef'), tag: t('珊瑚系统', 'World Largest Coral'), img: '/images/dest-gbr.jpg' },
+    { name: t('印度尼西亚', 'Indonesia'), tag: t('珊瑚三角区', 'Coral Triangle'), img: '/images/hero-coron.jpg' },
+    { name: t('菲律宾', 'Philippines'), tag: t('鲸鲨 · 微距', 'Whale Shark · Macro'), img: '/images/dest-philippines.jpg' },
+    { name: t('马来西亚', 'Malaysia'), tag: t('诗巴丹', 'Sipadan'), img: '/images/dest-malaysia.jpg' },
   ];
 
   return (
@@ -37,7 +37,7 @@ export default function Page({ params }: { params: { lang: string } }) {
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1544551763-77ef4b39c08a?w=1920&q=85"
+            src="/images/hero-diver.jpg"
             alt="Diver"
             className="w-full h-full object-cover object-center"
           />
@@ -177,7 +177,7 @@ export default function Page({ params }: { params: { lang: string } }) {
       {/* ── SAFETY BANNER ── dark full-bleed */}
       <section className="relative py-28 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a2d46 0%, #0d4f6e 100%)' }}>
         <div className="absolute inset-0 opacity-10">
-          <img src="https://images.unsplash.com/photo-1559825481-12a05cc00344?w=1920&q=60" alt="" className="w-full h-full object-cover" />
+          <img src="/images/hero-instructor.jpg" alt="" className="w-full h-full object-cover" />
         </div>
         <div className="relative z-10 max-w-3xl mx-auto px-8 text-center">
           <div className="flex items-center justify-center gap-2 text-white/40 text-xs uppercase tracking-[0.2em] mb-6">
