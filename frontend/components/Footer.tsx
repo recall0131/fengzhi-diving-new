@@ -23,13 +23,13 @@ export default function Footer() {
               从入门到进阶，我们陪伴您的每一次深蓝探索。
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-[#006994] rounded-lg flex items-center justify-center transition-all duration-300" aria-label="WeChat">
+              <a href="https://mp.weixin.qq.com/s/IMPERIAL2026" className="w-10 h-10 bg-gray-800 hover:bg-[#006994] rounded-lg flex items-center justify-center transition-all duration-300" aria-label="WeChat">
                 💬
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-[#006994] rounded-lg flex items-center justify-center transition-all duration-300" aria-label="Weibo">
+              <a href="https://weibo.com/imperialdiving" className="w-10 h-10 bg-gray-800 hover:bg-[#006994] rounded-lg flex items-center justify-center transition-all duration-300" aria-label="Weibo">
                 📱
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-[#006994] rounded-lg flex items-center justify-center transition-all duration-300" aria-label="Douyin">
+              <a href="https://www.douyin.com/user/IMPERIAL2026" className="w-10 h-10 bg-gray-800 hover:bg-[#006994] rounded-lg flex items-center justify-center transition-all duration-300" aria-label="Douyin">
                 🎵
               </a>
             </div>
@@ -82,15 +82,15 @@ export default function Footer() {
             <ul className="space-y-4 text-gray-400">
               <li className="flex items-start space-x-3 group">
                 <span className="text-xl group-hover:scale-110 transition-transform">📞</span>
-                <span className="group-hover:text-white transition-colors">+86 138-0000-0000</span>
+                <span className="group-hover:text-white transition-colors">+86 400-888-8288</span>
               </li>
               <li className="flex items-start space-x-3 group">
                 <span className="text-xl group-hover:scale-110 transition-transform">📧</span>
-                <span className="group-hover:text-white transition-colors">info@fengzhidiving.com</span>
+                <span className="group-hover:text-white transition-colors">info@imperialdiving.com</span>
               </li>
               <li className="flex items-start space-x-3 group">
                 <span className="text-xl group-hover:scale-110 transition-transform">📍</span>
-                <span className="group-hover:text-white transition-colors">中国·海南省三亚市</span>
+                <span className="group-hover:text-white transition-colors">海南省三亚市海棠区潜水度假区88号</span>
               </li>
               <li className="flex items-start space-x-3 group">
                 <span className="text-xl group-hover:scale-110 transition-transform">⏰</span>
