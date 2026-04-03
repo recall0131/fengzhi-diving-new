@@ -3,10 +3,14 @@
 export default function CoronPage() {
   return (
     <div className="pt-20">
-      <section className="relative py-20 md:py-32 bg-[#006994] text-white">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 md:py-32 min-h-[400px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?w=1920&q=85" alt="Coron" className="w-full h-full object-cover object-center"/>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        </div>
+        <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               科隆沉船
             </h1>
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed">

@@ -76,17 +76,21 @@ export default function DivingTravelPage({ params }: { params: { lang: string } 
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 bg-[#006994] text-white">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 md:py-32 min-h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=85" alt="Dive Travel" className="w-full h-full object-cover object-center"/>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        </div>
+        <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              潜水旅行
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              {t('潜水旅行', 'Dive Travel')}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-              探索世界顶级潜水目的地
+              {t('探索世界顶级潜水目的地', 'Explore World-Class Dive Destinations')}
             </p>
             <p className="text-lg text-white/80 max-w-2xl mx-auto">
-              我们精选全球最棒的潜水圣地，提供一站式潜水旅行服务。从热带天堂到神秘沉船，带您探索深蓝的无限魅力。
+              {t('我们精选全球最棒的潜水圣地，提供一站式潜水旅行服务。从热带天堂到神秘沉船，带您探索深蓝的无限魅力。', 'We curate the world\'s best diving destinations with all-inclusive travel packages. From tropical paradises to mysterious shipwrecks — discover the magic of the deep.')}
             </p>
           </div>
         </div>

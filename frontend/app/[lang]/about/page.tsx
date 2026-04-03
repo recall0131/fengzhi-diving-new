@@ -35,10 +35,14 @@ export default function AboutPage({ params }: { params: { lang: string } }) {
 
   return (
     <div className="pt-20">
-      <section className="relative py-20 md:py-32 bg-[#006994] text-white">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 md:py-32 min-h-[400px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="https://images.unsplash.com/photo-1687227693864-7e0d11c2bd5c?w=1920&q=85" alt="About Imperial Diving" className="w-full h-full object-cover object-center"/>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        </div>
+        <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
               {t('关于奉旨潜水', 'About Imperial Diving')}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
