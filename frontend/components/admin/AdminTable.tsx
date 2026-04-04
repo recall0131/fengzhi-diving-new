@@ -2,20 +2,27 @@
 
 import { useEffect, useState, useCallback } from 'react';
 
+const PADI = {
+  blue: '#0098B3',
+  blueDark: '#007591',
+  blueLight: '#E6F4F7',
+  yellow: '#FFB600',
+  orange: '#FF6B00',
+  dark: '#1A1A2E',
+  gray: '#6B7280',
+};
+
 type Field = {
   key: string;
   label: string;
   type: string;
-  label_zh?: string;
   options?: { value: string; label: string }[];
   optionsUrl?: string;
-  optionsLabel?: string;
   required?: boolean;
   placeholder?: string;
 };
 
 type Entity = { id: number; [key: string]: any };
-
 type Column = { key: string; label: string; render?: (v: any, row: Entity) => React.ReactNode };
 
 type Props = { title: string; apiPath: string; fields: Field[]; columns: Column[] };
@@ -37,29 +44,23 @@ export default function AdminTable({ title, apiPath, fields, columns }: Props) {
       const res = await fetch(apiPath);
       const data = await res.json();
       setItems(Array.isArray(data) ? data : []);
-    } finally {
-      setLoading(false);
-    }
+    } finally { setLoading(false); }
   }, [apiPath]);
 
   useEffect(() => { loadItems(); }, [loadItems]);
 
   useEffect(() => {
-    const urls: string[] = [];
-    fields.forEach(f => { if (f.optionsUrl && !dynamicOptions[f.key]) urls.push(f.optionsUrl); });
-    if (urls.length === 0) return;
-    urls.forEach(url => {
-      fetch(url).then(r => r.json()).then(data => {
-        const key = fields.find(f => f.optionsUrl === url)?.key;
-        if (key) setDynamicOptions(prev => ({ ...prev, [key]: Array.isArray(data) ? data : [] }));
-      }).catch(() => {});
+    fields.forEach(f => {
+      if (f.optionsUrl && !dynamicOptions[f.key]) {
+        fetch(f.optionsUrl)
+          .then(r => r.json())
+          .then(data => { if (data) setDynamicOptions(prev => ({ ...prev, [f.key]: Array.isArray(data) ? data : [] })); })
+          .catch(() => {});
+      }
     });
   }, [fields]);
 
-  function showToast(msg: string) {
-    setToast(msg);
-    setTimeout(() => setToast(''), 3000);
-  }
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(''), 2500); }
 
   function openAdd() {
     setEditItem(null);
@@ -88,38 +89,24 @@ export default function AdminTable({ title, apiPath, fields, columns }: Props) {
       const method = editItem ? 'PUT' : 'POST';
       const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
       const data = await res.json();
-      if (res.ok) {
-        setShowModal(false);
-        loadItems();
-        showToast(editItem ? '✅ 更新成功' : '✅ 新增成功');
-      } else {
-        setError(data.error || '保存失败');
-      }
-    } catch {
-      setError('网络错误');
-    } finally {
-      setSaving(false);
-    }
+      if (res.ok) { setShowModal(false); loadItems(); showToast(editItem ? '✅ 更新成功' : '✅ 新增成功'); }
+      else setError(data.error || '保存失败');
+    } catch { setError('网络错误'); } finally { setSaving(false); }
   }
 
   async function handleDelete(item: Entity) {
     if (!confirm(`确定删除「${item.name_zh || item.name_en || item.id}」？`)) return;
     const res = await fetch(`${apiPath}?id=${item.id}`, { method: 'DELETE' });
-    if (res.ok) {
-      loadItems();
-      showToast('✅ 删除成功');
-    }
+    if (res.ok) { loadItems(); showToast('✅ 删除成功'); }
   }
 
-  function setField(key: string, value: any) {
-    setForm(prev => ({ ...prev, [key]: value }));
-  }
+  function setField(key: string, value: any) { setForm(prev => ({ ...prev, [key]: value })); }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {/* Toast */}
       {toast && (
-        <div className="fixed top-20 right-6 z-50 bg-slate-800 text-white px-5 py-3 rounded-xl shadow-xl text-sm font-medium flex items-center gap-2">
+        <div className="fixed top-4 right-4 z-50 px-5 py-3 rounded-xl text-sm font-medium text-white shadow-xl flex items-center gap-2" style={{background: PADI.dark}}>
           <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
@@ -130,68 +117,61 @@ export default function AdminTable({ title, apiPath, fields, columns }: Props) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">{title}</h1>
-          <p className="text-sm text-slate-400 mt-0.5">共 {items.length} 条记录</p>
+          <h1 className="text-2xl font-bold" style={{color: PADI.dark}}>{title}</h1>
+          <p className="text-sm mt-0.5" style={{color: PADI.gray}}>共 {items.length} 条记录</p>
         </div>
         <button
           onClick={openAdd}
-          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-blue-600/20 transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white shadow-md transition-all hover:shadow-lg active:scale-95"
+          style={{background: PADI.blue}}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
-          新增
+          新增记录
         </button>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      {/* Table card */}
+      <div className="bg-white rounded-2xl shadow-sm border overflow-hidden" style={{borderColor: '#F0F0F0'}}>
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin" />
+            <div className="w-10 h-10 border-4 border-t-transparent rounded-full animate-spin" style={{borderColor: `${PADI.blue} transparent transparent transparent`}} />
           </div>
         ) : items.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 text-slate-400">
-            <svg className="w-12 h-12 mb-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+            <svg className="w-12 h-12 mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
             </svg>
-            <p className="text-sm">暂无数据，点击右上角新增</p>
+            <p className="text-sm">暂无数据</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200">
+                <tr style={{background: '#F8F9FA'}}>
                   {columns.map(col => (
-                    <th key={col.key} className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wide px-5 py-3.5">{col.label}</th>
+                    <th key={col.key} className="text-left text-xs font-semibold uppercase tracking-wider px-5 py-3.5" style={{color: '#9CA3AF'}}>{col.label}</th>
                   ))}
-                  <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wide px-5 py-3.5">操作</th>
+                  <th className="text-right text-xs font-semibold uppercase tracking-wider px-5 py-3.5" style={{color: '#9CA3AF'}}>操作</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
-                {items.map((item, idx) => (
-                  <tr key={item.id} className="hover:bg-slate-50 transition-colors group" style={{ animationDelay: `${idx * 30}ms` }}>
+              <tbody>
+                {items.map(item => (
+                  <tr key={item.id} className="border-t hover:bg-gray-50/60 transition-colors" style={{borderColor: '#F0F0F0'}}>
                     {columns.map(col => (
-                      <td key={col.key} className="px-5 py-3.5 text-slate-700">
+                      <td key={col.key} className="px-5 py-3.5 text-gray-700">
                         {col.render ? col.render(item[col.key], item) : item[col.key] ?? '-'}
                       </td>
                     ))}
                     <td className="px-5 py-3.5 text-right">
-                      <div className="flex items-center justify-end gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
-                        <button
-                          onClick={() => openEdit(item)}
-                          className="p-1.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
-                          title="编辑"
-                        >
+                      <div className="flex items-center justify-end gap-1">
+                        <button onClick={() => openEdit(item)} className="p-2 rounded-lg text-sm font-medium transition-all hover:bg-blue-50" style={{color: PADI.blue}} title="编辑">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                           </svg>
                         </button>
-                        <button
-                          onClick={() => handleDelete(item)}
-                          className="p-1.5 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
-                          title="删除"
-                        >
+                        <button onClick={() => handleDelete(item)} className="p-2 rounded-lg text-sm font-medium transition-all hover:bg-red-50" style={{color: '#EF4444'}} title="删除">
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                           </svg>
@@ -208,15 +188,20 @@ export default function AdminTable({ title, apiPath, fields, columns }: Props) {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={(e) => e.target === e.currentTarget && setShowModal(false)}>
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl max-h-[90vh] overflow-hidden flex flex-col">
-            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between flex-shrink-0">
-              <div>
-                <h2 className="text-lg font-bold text-slate-800">{editItem ? '编辑记录' : '新增记录'}</h2>
-                <p className="text-xs text-slate-400 mt-0.5">填写以下信息后保存</p>
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={e => e.target === e.currentTarget && setShowModal(false)}>
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col">
+            <div className="px-6 py-4 border-b flex items-center justify-between" style={{borderColor: '#F0F0F0'}}>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-sm" style={{background: PADI.blue}}>
+                  {editItem ? '✎' : '+'}
+                </div>
+                <div>
+                  <h2 className="text-base font-bold" style={{color: PADI.dark}}>{editItem ? '编辑记录' : '新增记录'}</h2>
+                  <p className="text-xs" style={{color: PADI.gray}}>填写信息后保存</p>
+                </div>
               </div>
-              <button onClick={() => setShowModal(false)} className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-all">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button onClick={() => setShowModal(false)} className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -230,22 +215,18 @@ export default function AdminTable({ title, apiPath, fields, columns }: Props) {
                   {error}
                 </div>
               )}
-
               <div className="grid grid-cols-1 gap-4">
                 {fields.map(field => {
                   if (field.type === 'text') {
                     return (
                       <div key={field.key}>
-                        <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                        <label className="block text-sm font-medium mb-1.5" style={{color: '#374151'}}>
                           {field.label}{field.required && <span className="text-red-500 ml-0.5">*</span>}
                         </label>
-                        <input
-                          type="text"
-                          value={form[field.key] || ''}
-                          onChange={e => setField(field.key, e.target.value)}
-                          required={field.required}
+                        <input type="text" value={form[field.key] || ''} onChange={e => setField(field.key, e.target.value)} required={field.required}
                           placeholder={field.placeholder}
-                          className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm transition-all"
+                          className="w-full px-3.5 py-2.5 border rounded-xl text-sm outline-none transition-all focus:ring-2 focus:ring-offset-1"
+                          style={{borderColor: '#E5E7EB', '--tw-ring-color': PADI.blue} as any}
                         />
                       </div>
                     );
@@ -253,12 +234,10 @@ export default function AdminTable({ title, apiPath, fields, columns }: Props) {
                   if (field.type === 'number') {
                     return (
                       <div key={field.key}>
-                        <label className="block text-sm font-medium text-slate-700 mb-1.5">{field.label}</label>
-                        <input
-                          type="number"
-                          value={form[field.key] || ''}
-                          onChange={e => setField(field.key, Number(e.target.value))}
-                          className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm transition-all"
+                        <label className="block text-sm font-medium mb-1.5" style={{color: '#374151'}}>{field.label}</label>
+                        <input type="number" value={form[field.key] || ''} onChange={e => setField(field.key, Number(e.target.value))}
+                          className="w-full px-3.5 py-2.5 border rounded-xl text-sm outline-none transition-all focus:ring-2 focus:ring-offset-1"
+                          style={{borderColor: '#E5E7EB'} as any}
                         />
                       </div>
                     );
@@ -266,12 +245,10 @@ export default function AdminTable({ title, apiPath, fields, columns }: Props) {
                   if (field.type === 'textarea') {
                     return (
                       <div key={field.key}>
-                        <label className="block text-sm font-medium text-slate-700 mb-1.5">{field.label}</label>
-                        <textarea
-                          value={form[field.key] || ''}
-                          onChange={e => setField(field.key, e.target.value)}
-                          rows={3}
-                          className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm resize-none transition-all"
+                        <label className="block text-sm font-medium mb-1.5" style={{color: '#374151'}}>{field.label}</label>
+                        <textarea value={form[field.key] || ''} onChange={e => setField(field.key, e.target.value)} rows={3}
+                          className="w-full px-3.5 py-2.5 border rounded-xl text-sm resize-none outline-none transition-all focus:ring-2 focus:ring-offset-1"
+                          style={{borderColor: '#E5E7EB'} as any}
                         />
                       </div>
                     );
@@ -279,14 +256,11 @@ export default function AdminTable({ title, apiPath, fields, columns }: Props) {
                   if (field.type === 'checkbox') {
                     return (
                       <div key={field.key} className="flex items-center gap-3 py-1">
-                        <input
-                          type="checkbox"
-                          id={field.key}
-                          checked={!!form[field.key]}
-                          onChange={e => setField(field.key, e.target.checked)}
-                          className="w-4.5 h-4.5 w-[18px] h-[18px] text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer"
+                        <input type="checkbox" id={field.key} checked={!!form[field.key]} onChange={e => setField(field.key, e.target.checked)}
+                          className="w-4 h-4 rounded border-gray-300 cursor-pointer"
+                          style={{accentColor: PADI.blue}}
                         />
-                        <label htmlFor={field.key} className="text-sm text-slate-700 cursor-pointer">{field.label}</label>
+                        <label htmlFor={field.key} className="text-sm cursor-pointer" style={{color: '#374151'}}>{field.label}</label>
                       </div>
                     );
                   }
@@ -294,11 +268,10 @@ export default function AdminTable({ title, apiPath, fields, columns }: Props) {
                     const opts = dynamicOptions[field.key] || field.options || [];
                     return (
                       <div key={field.key}>
-                        <label className="block text-sm font-medium text-slate-700 mb-1.5">{field.label}</label>
-                        <select
-                          value={form[field.key] || ''}
-                          onChange={e => setField(field.key, e.target.value)}
-                          className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm transition-all bg-white"
+                        <label className="block text-sm font-medium mb-1.5" style={{color: '#374151'}}>{field.label}</label>
+                        <select value={form[field.key] || ''} onChange={e => setField(field.key, e.target.value)}
+                          className="w-full px-3.5 py-2.5 border rounded-xl text-sm bg-white outline-none transition-all focus:ring-2 focus:ring-offset-1"
+                          style={{borderColor: '#E5E7EB'} as any}
                         >
                           <option value="">请选择</option>
                           {opts.map((opt: any) => (
@@ -313,12 +286,15 @@ export default function AdminTable({ title, apiPath, fields, columns }: Props) {
                   return null;
                 })}
               </div>
-
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100 mt-2">
-                <button type="button" onClick={() => setShowModal(false)} className="px-5 py-2.5 text-slate-600 hover:bg-slate-100 rounded-xl text-sm font-medium transition-all">
-                  取消
-                </button>
-                <button type="submit" disabled={saving} className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold shadow-lg shadow-blue-600/20 disabled:opacity-50 transition-all flex items-center gap-2">
+              <div className="flex items-center justify-end gap-3 pt-3 border-t" style={{borderColor: '#F0F0F0'}}>
+                <button type="button" onClick={() => setShowModal(false)}
+                  className="px-5 py-2.5 text-sm font-medium rounded-xl border transition-all hover:bg-gray-50"
+                  style={{borderColor: '#E5E7EB', color: '#6B7280'}}
+                >取消</button>
+                <button type="submit" disabled={saving}
+                  className="px-6 py-2.5 text-sm font-semibold text-white rounded-xl shadow transition-all disabled:opacity-50 flex items-center gap-2"
+                  style={{background: saving ? PADI.blueDark : PADI.blue}}
+                >
                   {saving ? (
                     <>
                       <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
