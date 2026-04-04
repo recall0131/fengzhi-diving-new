@@ -1,5 +1,6 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 
 function InstructorIcon({ className }: { className?: string }) {
@@ -126,7 +127,9 @@ const faqs = [
   },
 ];
 
-export default function DivingExperiencePage({ params }: { params: { lang: string } }) {
+export default function DivingExperiencePage() {
+  const params = useParams();
+
   const lang = (params.lang as string) || 'zh';
   const isZh = lang === 'zh';
   const t = (zh: string, en: string) => (isZh ? zh : en);

@@ -1,6 +1,21 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
+
+type Destination = {
+  id: number;
+  name_zh: string;
+  name_en: string;
+  description_zh: string;
+  description_en: string;
+  location: string;
+  location_en: string;
+  hero_image: string;
+  featured: number;
+  sort_order: number;
+};
 
 function BlueHoleIcon({ className }: { className?: string }) {
   return (
@@ -12,7 +27,6 @@ function BlueHoleIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 function IslandIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 80 80" fill="none">
@@ -23,7 +37,6 @@ function IslandIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 function CoralIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 80 80" fill="none">
@@ -35,7 +48,6 @@ function CoralIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 function ShipwreckIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 80 80" fill="none">
@@ -45,7 +57,6 @@ function ShipwreckIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 function WhaleIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 80 80" fill="none">
@@ -54,7 +65,6 @@ function WhaleIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
 function PalmIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 80 80" fill="none">
@@ -68,55 +78,23 @@ function PalmIcon({ className }: { className?: string }) {
   );
 }
 
-const destinations = [
-  {
-    name: { zh: '帕劳蓝洞', en: 'Palau Blue Hole' },
-    href: '/zh/destinations/palau',
-    desc: { zh: '世界顶级潜水圣地，壮观的蓝洞和丰富的海洋生物', en: 'World-class dive site: spectacular blue hole & rich marine life' },
-    gradient: 'from-[#006994] to-[#004d6b]',
-    Icon: BlueHoleIcon,
-  },
-  {
-    name: { zh: '马尔代夫', en: 'Maldives' },
-    href: '/zh/destinations/maldives',
-    desc: { zh: '热带天堂，清澈的海水和绚丽的珊瑚礁', en: 'Tropical paradise with crystal-clear waters & coral reefs' },
-    gradient: 'from-[#008B8B] to-[#005f5f]',
-    Icon: IslandIcon,
-  },
-  {
-    name: { zh: '大堡礁', en: 'Great Barrier Reef' },
-    href: '/zh/destinations/great-barrier-reef',
-    desc: { zh: '世界最大的珊瑚礁系统，独特的海洋生态系统', en: 'World\'s largest coral reef system with unique marine ecosystem' },
-    gradient: 'from-[#006994] to-[#003d52]',
-    Icon: CoralIcon,
-  },
-  {
-    name: { zh: '科隆沉船', en: 'Coron Shipwrecks' },
-    href: '/zh/destinations/coron',
-    desc: { zh: '菲律宾巴拉望，二战沉船潜水的终极目的地', en: 'Palawan, Philippines: the ultimate WWII shipwreck diving destination' },
-    gradient: 'from-[#4A5568] to-[#2D3748]',
-    Icon: ShipwreckIcon,
-  },
-  {
-    name: { zh: '冲绳', en: 'Okinawa' },
-    href: '/zh/destinations/okinawa',
-    desc: { zh: '日本 Okinawa，青洞蓝光与座头鲸同游', en: 'Japan: Blue Hole magic & humpback whale encounters' },
-    gradient: 'from-[#3182CE] to-[#2B6CB0]',
-    Icon: WhaleIcon,
-  },
-  {
-    name: { zh: '三亚', en: 'Sanya' },
-    href: '/zh/destinations/sanya',
-    desc: { zh: '中国海南，离家最近的潜水天堂', en: 'Hainan, China: the closest dive paradise to home' },
-    gradient: 'from-[#38A169] to-[#276749]',
-    Icon: PalmIcon,
-  },
-];
+const iconComponents = [BlueHoleIcon, IslandIcon, CoralIcon, ShipwreckIcon, WhaleIcon, PalmIcon];
+const gradients = ['from-[#006994] to-[#004d6b]', 'from-[#008B8B] to-[#005f5f]', 'from-[#006994] to-[#003d52]', 'from-[#4A5568] to-[#2D3748]', 'from-[#3182CE] to-[#2B6CB0]', 'from-[#38A169] to-[#276749]'];
 
-export default function DestinationsPage({ params }: { params: { lang: string } }) {
+export default function DestinationsPage() {
+  const params = useParams();
   const lang = (params.lang as string) || 'zh';
   const isZh = lang === 'zh';
   const t = (zh: string, en: string) => (isZh ? zh : en);
+  const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/destinations')
+      .then(r => r.json())
+      .then(data => { setDestinations(Array.isArray(data) ? data : []); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
 
   return (
     <div className="pt-20">
@@ -127,7 +105,7 @@ export default function DestinationsPage({ params }: { params: { lang: string } 
               {t('潜水目的地', 'Diving Destinations')}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-              {t('探索世界顶级潜水圣地', 'Explore the World\'s Top Dive Destinations')}
+              {t('探索世界顶级潜水圣地', "Explore the World's Top Dive Destinations")}
             </p>
           </div>
         </div>
@@ -135,22 +113,40 @@ export default function DestinationsPage({ params }: { params: { lang: string } 
 
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {destinations.map(({ name, href, desc, gradient, Icon }) => (
-              <Link key={name.zh} href={`/${lang}/destinations/${href.split('/').pop()}`} className="group">
-                <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-72">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${gradient} flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
-                    <Icon className="w-24 h-24" />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">{t(name.zh, name.en)}</h3>
-                    <p className="text-white/80 text-sm">{t(desc.zh, desc.en)}</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1,2,3,4,5,6].map(i => (
+                <div key={i} className="h-72 bg-gray-200 rounded-lg animate-pulse" />
+              ))}
+            </div>
+          ) : destinations.length === 0 ? (
+            <p className="text-center text-gray-400 py-12">{t('暂无目的地数据', 'No destinations available')}</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {destinations.map((dest, idx) => {
+                const Icon = iconComponents[idx % iconComponents.length];
+                const gradient = gradients[idx % gradients.length];
+                return (
+                  <Link key={dest.id} href={`/${lang}/destinations/${dest.name_en.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`} className="group">
+                    <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-72">
+                      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
+                        <Icon className="w-24 h-24" />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 className="text-2xl font-bold text-white mb-2">
+                          {isZh ? dest.name_zh : dest.name_en}
+                        </h3>
+                        <p className="text-white/80 text-sm">
+                          {isZh ? (dest.description_zh || dest.location) : (dest.description_en || dest.location_en)}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
     </div>

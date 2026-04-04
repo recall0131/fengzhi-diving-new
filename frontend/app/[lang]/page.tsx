@@ -1,11 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 const API_BASE = 'https://imperialdiving.lizheng.info/api';
 
-export default function Page({ params }: { params: { lang: string } }) {
-  const lang = params.lang || 'zh';
+export default function Page() {
+  const params = useParams();
+  const lang = (params.lang as string) || 'zh';
   const t = (zh: string, en: string) => lang === 'zh' ? zh : en;
 
   const services = [

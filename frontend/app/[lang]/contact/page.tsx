@@ -1,6 +1,10 @@
 'use client';
 
-export default function ContactPage({ params }: { params: { lang: string } }) {
+import { useParams } from 'next/navigation';
+
+export default function ContactPage() {
+  const params = useParams();
+
   const lang = (params.lang as string) || 'zh';
   const isZh = lang === 'zh';
   const t = (zh: string, en: string) => (isZh ? zh : en);

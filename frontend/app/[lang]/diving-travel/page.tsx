@@ -1,5 +1,6 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 
 function BlueHoleIcon({ className }: { className?: string }) {
@@ -69,7 +70,9 @@ function PriceIcon({ className }: { className?: string }) {
   );
 }
 
-export default function DivingTravelPage({ params }: { params: { lang: string } }) {
+export default function DivingTravelPage() {
+  const params = useParams();
+
   const lang = (params.lang as string) || 'zh';
   const isZh = lang === 'zh';
   const t = (zh: string, en: string) => (isZh ? zh : en);

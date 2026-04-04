@@ -6,10 +6,10 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     const db = getDb();
-    const items = db.prepare('SELECT * FROM destinations ORDER BY sort_order ASC').all();
+    const items = db.prepare('SELECT * FROM courses ORDER BY sort_order ASC, id ASC').all();
     return NextResponse.json(items);
   } catch (err) {
-    console.error('[api/destinations]', err);
-    return NextResponse.json({ error: String(err) }, { status: 500 });
+    console.error('[api/courses]', err);
+    return NextResponse.json([], { status: 200 });
   }
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 
 function HeartIcon({ className }: { className?: string }) {
@@ -28,7 +29,9 @@ function InstructorIcon({ className }: { className?: string }) {
   );
 }
 
-export default function AboutPage({ params }: { params: { lang: string } }) {
+export default function AboutPage() {
+  const params = useParams();
+
   const lang = (params.lang as string) || 'zh';
   const isZh = lang === 'zh';
   const t = (zh: string, en: string) => (isZh ? zh : en);

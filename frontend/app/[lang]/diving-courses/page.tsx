@@ -1,90 +1,51 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
-const courses = [
-  {
-    name: { zh: 'PADI 开放水域潜水员 (OWD)', en: 'PADI Open Water Diver (OWD)' },
-    duration: { zh: '4天', en: '4 Days' },
-    price: '¥2,800',
-    level: { zh: '入门', en: 'Beginner' },
-    color: 'from-[#006994] to-[#004d6b]',
-    description: {
-      zh: '开启您的潜水之旅，全球认可。完成此课程后，您将能够在开放水域独立潜水，最大深度18米。',
-      en: 'Start your diving journey with worldwide recognition. After completing this course, you can dive independently in open water up to 18 meters.',
-    },
-    includes: {
-      zh: ['理论知识 + 泳池训练', '4次开放水域实习', 'PADI国际认证卡', '全套装备租用', '教练一对一指导'],
-      en: ['Theory + pool training', '4 open water dives', 'PADI certification card', 'Full equipment rental', '1-on-1 instructor guidance'],
-    },
-    bestFor: {
-      zh: '零基础学员，第一次接触潜水',
-      en: 'No prior experience needed. Perfect for first-time divers.',
-    },
-  },
-  {
-    name: { zh: 'PADI 进阶开放水域潜水员 (AOWD)', en: 'PADI Advanced Open Water (AOWD)' },
-    duration: { zh: '3天', en: '3 Days' },
-    price: '¥2,200',
-    level: { zh: '进阶', en: 'Intermediate' },
-    color: 'from-[#008B8B] to-[#005f5f]',
-    description: {
-      zh: '提升您的潜水技能，探索更深的水域和更有挑战性的潜点。完成课程后，最大深度可达30米。',
-      en: 'Elevate your diving skills and explore deeper, more challenging sites. Max depth increases to 30 meters upon completion.',
-    },
-    includes: {
-      zh: ['深潜与导航专长', '3次开放水域实习', 'PADI国际认证卡', '沉船/放流/夜潜可选', '经验丰富的教练团队'],
-      en: ['Deep diving & navigation specialties', '3 open water dives', 'PADI certification card', 'Wreck, drift & night dive options', 'Experienced instructor team'],
-    },
-    bestFor: {
-      zh: '已获OWD认证，想要提升技能',
-      en: 'For certified OWD divers looking to advance their skills.',
-    },
-  },
-  {
-    name: { zh: 'PADI 救援潜水员 (Rescue)', en: 'PADI Rescue Diver (Rescue)' },
-    duration: { zh: '5天', en: '5 Days' },
-    price: '¥1,800',
-    level: { zh: '专业', en: 'Professional' },
-    color: 'from-[#CD5C5C] to-[#8B3A3A]',
-    description: {
-      zh: '学习如何识别和处理潜水紧急情况，成为更安全的潜水员。此课程是成为PADI专业潜水员的第一步。',
-      en: 'Learn to identify and handle diving emergencies, becoming a safer diver. This is the first step toward becoming a PADI professional.',
-    },
-    includes: {
-      zh: ['紧急情况应对训练', '模拟救援场景实习', 'PADI国际认证卡', '急救/心肺复苏基础', '教练全程指导'],
-      en: ['Emergency response training', 'Simulated rescue scenario practice', 'PADI certification card', 'First aid & CPR basics', 'Full instructor supervision'],
-    },
-    bestFor: {
-      zh: 'OWD/AOWD持证者，想成为专业潜水员',
-      en: 'For OWD/AOWD certified divers pursuing professional credentials.',
-    },
-  },
-];
+type Course = {
+  id: number;
+  name_zh: string;
+  name_en: string;
+  short_desc_zh: string;
+  short_desc_en: string;
+  description_zh: string;
+  description_en: string;
+  price: number;
+  duration: string;
+  duration_en: string;
+  level: string;
+  level_zh: string;
+  hero_image: string;
+  featured: number;
+  sort_order: number;
+};
 
-const additionalCourses = [
-  {
-    name: { zh: 'PADI 紧急第一反应 (EFR)', en: 'PADI Emergency First Response (EFR)' },
-    price: '¥980',
-    description: {
-      zh: '学习心肺复苏和急救技能，适用于所有潜水员和非潜水员。',
-      en: 'Learn CPR and first aid skills. Open to both divers and non-divers.',
-    },
-  },
-  {
-    name: { zh: 'PADI 潜水长 (Divemaster)', en: 'PADI Divemaster' },
-    price: '¥8,800',
-    description: {
-      zh: '成为PADI专业潜水员的起点，可独立带领潜水员进行潜水活动。',
-      en: 'The first step to becoming a PADI professional. Can lead certified divers on diving activities independently.',
-    },
-  },
-];
+const levelColors: Record<string, string> = {
+  beginner: 'from-[#006994] to-[#004d6b]',
+  intermediate: 'from-[#008B8B] to-[#005f5f]',
+  advanced: 'from-[#CD5C5C] to-[#8B3A3A]',
+  professional: 'from-[#6B46C1] to-[#4C1D95]',
+};
 
-export default function DivingCoursesPage({ params }: { params: { lang: string } }) {
+export default function DivingCoursesPage() {
+  const params = useParams();
   const lang = (params.lang as string) || 'zh';
   const isZh = lang === 'zh';
   const t = (zh: string, en: string) => (isZh ? zh : en);
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/courses')
+      .then(r => r.json())
+      .then(data => { setCourses(Array.isArray(data) ? data : []); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const mainCourses = courses.filter(c => c.price > 0 && c.price < 5000);
+  const extraCourses = courses.filter(c => c.price >= 5000 || !c.price);
 
   return (
     <div className="pt-20">
@@ -122,37 +83,40 @@ export default function DivingCoursesPage({ params }: { params: { lang: string }
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {courses.map((course) => (
-              <div key={course.name.zh} className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-xl transition-shadow duration-300">
-                <div className={`h-2 bg-gradient-to-r ${course.color}`} />
+            {loading ? (
+              [1,2,3].map(i => (
+                <div key={i} className="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
+                  <div className="h-2 bg-gray-200" />
+                  <div className="p-8 space-y-4">
+                    <div className="h-4 bg-gray-200 rounded w-3/4" />
+                    <div className="h-4 bg-gray-200 rounded w-1/2" />
+                    <div className="h-20 bg-gray-100 rounded" />
+                  </div>
+                </div>
+              ))
+            ) : mainCourses.length === 0 ? (
+              <p className="col-span-3 text-center text-gray-400 py-12">{t('暂无课程数据', 'No courses available')}</p>
+            ) : mainCourses.map(course => (
+              <div key={course.id} className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-xl transition-shadow duration-300">
+                <div className={`h-2 bg-gradient-to-r ${levelColors[course.level] || levelColors.beginner}`} />
                 <div className="p-8 flex-1 flex flex-col">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs font-bold uppercase tracking-wider text-white bg-[#006994] px-3 py-1 rounded-full">
-                      {t(course.level.zh, course.level.en)}
+                      {course.level_zh || course.level}
                     </span>
-                    <span className="text-sm text-gray-500">{t(course.duration.zh, course.duration.en)}</span>
+                    <span className="text-sm text-gray-500">{isZh ? course.duration : course.duration_en}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{t(course.name.zh, course.name.en)}</h3>
-                  <p className="text-gray-600 text-sm mb-4 flex-1">{t(course.description.zh, course.description.en)}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {isZh ? course.name_zh : course.name_en}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4 flex-1">
+                    {isZh ? (course.description_zh || course.short_desc_zh) : (course.description_en || course.short_desc_en)}
+                  </p>
                   <div className="text-center py-4 border-t border-gray-100 mb-4">
-                    <span className="text-4xl font-bold text-[#006994]">{course.price}</span>
+                    <span className="text-4xl font-bold text-[#006994]">
+                      {course.price ? `¥${course.price.toLocaleString()}` : t('咨询', 'Inquire')}
+                    </span>
                     <span className="text-gray-500 text-sm ml-1">/ {t('人', 'person')}</span>
-                  </div>
-                  <ul className="space-y-2 mb-4">
-                    {(isZh ? course.includes.zh : course.includes.en).map((item: string) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
-                        <svg className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                        </svg>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="bg-gray-50 rounded-lg p-3 mb-4">
-                    <p className="text-xs text-gray-500">
-                      <span className="font-semibold text-gray-700">{t('适合对象：', 'Best for: ')}</span>
-                      {t(course.bestFor.zh, course.bestFor.en)}
-                    </p>
                   </div>
                   <Link href={`/${lang}/contact`} className="block text-center px-6 py-3 bg-[#006994] text-white font-bold rounded-lg hover:bg-[#005577] transition-colors">
                     {t('立即报名', 'Enroll Now')}
@@ -186,18 +150,30 @@ export default function DivingCoursesPage({ params }: { params: { lang: string }
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {additionalCourses.map((course) => (
-              <div key={course.name.zh} className="bg-white rounded-xl shadow-md p-8 flex items-center gap-6">
+            {!loading && extraCourses.map(course => (
+              <div key={course.id} className="bg-white rounded-xl shadow-md p-8 flex items-center gap-6">
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{t(course.name.zh, course.name.en)}</h3>
-                  <p className="text-gray-600 text-sm">{t(course.description.zh, course.description.en)}</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    {isZh ? course.name_zh : course.name_en}
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    {isZh ? (course.description_zh || course.short_desc_zh) : (course.description_en || course.short_desc_en)}
+                  </p>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <div className="text-2xl font-bold text-[#006994]">{course.price}</div>
+                  <div className="text-2xl font-bold text-[#006994]">
+                    {course.price ? `¥${course.price.toLocaleString()}` : t('咨询', 'Inquire')}
+                  </div>
                   <Link href={`/${lang}/contact`} className="inline-block mt-2 text-sm text-[#006994] hover:text-[#005577] font-semibold">
                     {t('咨询 →', 'Inquire →')}
                   </Link>
                 </div>
+              </div>
+            ))}
+            {loading && [1,2].map(i => (
+              <div key={i} className="bg-white rounded-xl shadow-md p-8 animate-pulse">
+                <div className="h-4 bg-gray-200 rounded w-3/4 mb-3" />
+                <div className="h-4 bg-gray-100 rounded w-1/2" />
               </div>
             ))}
           </div>
