@@ -23,67 +23,35 @@ export function generateMetadata({ params }: { params: { lang: string } }): Meta
   const m = meta[lang as keyof typeof meta] || meta.zh;
   return {
     metadataBase: new URL('https://imperialdiving.lizheng.info'),
-    title: {
-      default: m.title,
-      template: `%s | ${m.siteName}`,
-    },
+    title: `${m.title} | ${m.siteName}`,
     description: m.description,
     keywords: m.keywords,
     authors: [{ name: m.siteName }],
     creator: m.siteName,
     publisher: m.siteName,
     robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
+      index: true, follow: true,
+      googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 },
     },
     openGraph: {
       type: 'website',
       locale: lang === 'en' ? 'en_US' : 'zh_CN',
       alternateLocale: lang === 'en' ? 'zh_CN' : 'en_US',
       url: `https://imperialdiving.lizheng.info/${lang}`,
-      siteName: m.siteName,
-      title: m.title,
-      description: m.description,
-      images: [
-        {
-          url: '/og-image.jpg',
-          width: 1200,
-          height: 630,
-          alt: m.siteName,
-        },
-      ],
+      siteName: m.siteName, title: m.title, description: m.description,
+      images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: m.siteName }],
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: m.title,
-      description: m.description,
-      images: ['/og-image.jpg'],
-    },
+    twitter: { card: 'summary_large_image', title: m.title, description: m.description, images: ['/og-image.jpg'] },
   };
 }
 
-export default function LocaleLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { lang: string };
-}) {
+export default function LocaleLayout({ children, params }: { children: React.ReactNode; params: { lang: string } }) {
   const lang = params.lang || 'zh';
   return (
-    <html lang={lang}>
-      <body>
-        <Navbar lang={lang} />
-        <main>{children}</main>
-        <Footer lang={lang} />
-      </body>
-    </html>
+    <>
+      <Navbar lang={lang} />
+      <main>{children}</main>
+      <Footer lang={lang} />
+    </>
   );
 }
