@@ -1,3 +1,61 @@
+const multer = {
+  async parse(req) {
+    return new Promise((resolve, reject) => {
+      const chunks = [];
+      req.on('data', chunk => chunks.push(chunk));
+      req.on('end', () => {
+        const buffer = Buffer.concat(chunks);
+        const boundary = req.headers['content-type'].split('boundary=')[1];
+        if (!boundary) return reject(new Error('No boundary'));
+        
+        const parts = buffer.toString('binary').split('--' + boundary);
+        const result = { fields: {}, files: {} };
+        
+        for (const part of parts) {
+          if (!part.includes('filename') || part.includes('--')) continue;
+          
+          const headerEnd = part.indexOf('\r\n\r\n');
+          const headers = part.substring(0, headerEnd);
+          const body = part.substring(headerEnd + 4, part.length - 2);
+          
+          const nameMatch = headers.match(/name="([^"]+)"/);
+          const filenameMatch = headers.match(/filename="([^"]+)"/);
+          
+          if (nameMatch && filenameMatch) {
+            const name = nameMatch[1];
+            const filename = filenameMatch[1];
+            const ext = filename.split('.').pop().toLowerCase();
+            const allowedExts = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+            
+            if (!allowedExts.includes(ext)) {
+              return reject(new Error('Invalid file type: ' + ext));
+            }
+            
+            const uniqueName = Date.now() + '-' + Math.random().toString(36).substr(2, 9) + '.' + ext;
+            const uploadDir = '/app/uploads';
+            
+            if (!fs.existsSync(uploadDir)) {
+              fs.mkdirSync(uploadDir, { recursive: true });
+            }
+            
+            const filePath = uploadDir + '/' + uniqueName;
+            const fileData = body.substring(0, body.lastIndexOf('\r\n'));
+            fs.writeFileSync(filePath, Buffer.from(fileData, 'binary'));
+            
+            result.files[name] = { path: '/uploads/' + uniqueName, original: filename };
+          } else if (nameMatch) {
+            const name = nameMatch[1];
+            result.fields[name] = body.substring(0, body.lastIndexOf('\r\n'));
+          }
+        }
+        
+        resolve(result);
+      });
+      req.on('error', reject);
+    });
+  }
+};
+
 const http = require('http');
 const url = require('url');
 const fs = require('fs');
@@ -169,7 +227,9 @@ th{background:#f8f9fa;color:#666;font-weight:500}
       <input type="hidden" id="dst_edit_id">
       <div class="grid">
         <div><label>标签</label><input id="dst_edit_tag" placeholder="如：蓝洞潜水圣地"></div>
-        <div><label>图片路径</label><input id="dst_edit_image" placeholder="/images/dest-xxx.jpg"></div>
+        <div><label>图片上传</label><input type="file" id="dst_image_file" accept="image/*" onchange="previewDstImage(this)" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:8px"></div>
+        <div style="margin-top:8px"><label>图片路径</label><input id="dst_edit_image" placeholder="/uploads/xxx.jpg" readonly style="background:#f5f5f5"></div>
+        <div id="dst_image_preview" style="margin-top:8px"></div>
         <div><label>图片Alt</label><input id="dst_edit_image_alt" placeholder="如：帕劳潜水"></div>
       </div>
       <div style="margin-top:10px"><label>描述</label><textarea id="dst_edit_desc" rows="2" style="width:100%" placeholder="简短描述，用于列表页显示"></textarea></div>
@@ -218,6 +278,8 @@ async function delDst(id){if(!confirm('确认删除?'))return;await fetch('/api/
 async function editDst(id){const r=await fetch('/api/admin/destinations/'+id,{headers:{'Authorization':'Bearer '+getToken()}}).then(r=>r.json());document.getElementById('dst_edit_id').value=id;document.getElementById('dst_edit_name').textContent=r.dest_name;document.getElementById('dst_edit_tag').value=r.dest_tag||'';document.getElementById('dst_edit_image').value=r.dest_image||'';document.getElementById('dst_edit_image_alt').value=r.dest_image_alt||'';document.getElementById('dst_edit_desc').value=r.dest_description||'';document.getElementById('dst_edit_content').value=r.dest_content||'';document.getElementById('dst_edit_panel').style.display='block';}
 async function saveDst(){const id=document.getElementById('dst_edit_id').value;const d={dest_tag:document.getElementById('dst_edit_tag').value,dest_image:document.getElementById('dst_edit_image').value,dest_image_alt:document.getElementById('dst_edit_image_alt').value,dest_description:document.getElementById('dst_edit_desc').value,dest_content:document.getElementById('dst_edit_content').value};const r=await fetch('/api/admin/destinations/'+id,{method:'PUT',headers:{'Content-Type':'application/json','Authorization':'Bearer '+getToken()},body:JSON.stringify(d)});const m=document.getElementById('dst_save_msg');if(r.ok){m.textContent='✅ 已保存';m.className='msg ok';setTimeout(()=>{cancelDstEdit();loadDsts();},1000);}else{m.textContent='❌ 保存失败';m.className='msg err';}}
 function cancelDstEdit(){document.getElementById('dst_edit_panel').style.display='none';document.getElementById('dst_edit_id').value='';}
+async function uploadDstImage(file){const form=new FormData();form.append('image',file);const r=await fetch('/api/admin/upload',{method:'POST',headers:{'Authorization':'Bearer '+getToken()},body:form});const d=await r.json();if(d.url){document.getElementById('dst_edit_image').value=d.url;return d.url;}throw new Error(d.error||'Upload failed');}
+async function previewDstImage(input){if(!input.files[0])return;try{const url=await uploadDstImage(input.files[0]);document.getElementById('dst_image_preview').innerHTML='<img src="'+url+'" style="max-width:200px;max-height:150px;border-radius:8px;margin-top:8px">';}catch(e){alert('上传失败: '+e.message);}}
 async function loadNav(){const r=await fetch('/api/admin/navigation',{headers:{'Authorization':'Bearer '+getToken()}}).then(r=>r.json());document.getElementById('nav_list').innerHTML=(r||[]).map(n=>'<div class="item"><div class="item-info"><h4>'+n.nav_name+'</h4><p>'+n.nav_url+'</p></div><button class="btn btn-red" onclick="delNav('+n.id+')"">删除</button></div>').join('')||'<p style="color:#888;font-size:13px">暂无数据</p>';}
 async function addNav(){const d={nav_name:document.getElementById('nav_name').value,nav_url:document.getElementById('nav_url').value,nav_lang:'zh'};const r=await fetch('/api/admin/navigation',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+getToken()},body:JSON.stringify(d)});const m=document.getElementById('navmsg');if(r.ok){m.textContent='✅ 已添加';m.className='msg ok';document.getElementById('nav_name').value='';document.getElementById('nav_url').value='';loadNav();}else{m.textContent='❌ 添加失败';m.className='msg err';}}
 async function delNav(id){if(!confirm('确认删除?'))return;await fetch('/api/admin/navigation/'+id,{method:'DELETE',headers:{'Authorization':'Bearer '+getToken()}});loadNav();}
@@ -264,7 +326,18 @@ const server = http.createServer(async (req, res) => {
   };
 
   // Public
-  if (path === '/api/health') return sendJSON(res, 200, { status: 'ok' });
+  
+  if (path.startsWith('/uploads/')) {
+    const filePath = '/app' + path;
+    if (fs.existsSync(filePath)) {
+      const ext = path.split('.').pop().toLowerCase();
+      const mimeTypes = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', gif: 'image/gif', webp: 'image/webp' };
+      res.writeHead(200, { 'Content-Type': mimeTypes[ext] || 'application/octet-stream' });
+      res.end(fs.readFileSync(filePath));
+      return;
+    }
+  }
+if (path === '/api/health') return sendJSON(res, 200, { status: 'ok' });
   if (path === '/api/heroes' && method === 'GET') return sendJSON(res, 200, data.heroes[query.lang || 'zh'] || data.heroes.zh);
   if (path === '/api/columns' && method === 'GET') {
     const items = data.columns.filter(c => c.lang === (query.lang || 'zh'));
@@ -330,7 +403,17 @@ const server = http.createServer(async (req, res) => {
   const navDel = path.match(/^\/api\/admin\/navigation\/(\w+)$/);
   if (navDel && method === 'DELETE') { if (!adminAuth()) return; try { await q('DELETE FROM page_navigation WHERE id = ?', [navDel[1]]); return sendJSON(res, 200, { ok: true }); } catch(e) { return sendJSON(res, 500, { error: e.message }); } }
 
-  if (path === '/api/admin/password' && method === 'POST') { if (!adminAuth()) return; const b = await parseBody(req); if (!b.password || b.password.length < 6) return sendJSON(res, 400, { error: 'Min 6 chars' }); data.users[0].password = crypto.createHash('sha256').update(b.password).digest('hex'); fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2)); return sendJSON(res, 200, { ok: true }); }
+  if (path === '/api/admin/password' && method === 'POST') { if (!adminAuth()) return;
+  if (path === '/api/admin/upload' && method === 'POST') { 
+    if (!adminAuth()) return; 
+    try {
+      const formData = await multer.parse(req);
+      const file = formData.files.image;
+      if (!file) return sendJSON(res, 400, { error: 'No file uploaded' });
+      return sendJSON(res, 200, { url: file.path });
+    } catch(e) { return sendJSON(res, 400, { error: e.message }); }
+  }
+ const b = await parseBody(req); if (!b.password || b.password.length < 6) return sendJSON(res, 400, { error: 'Min 6 chars' }); data.users[0].password = crypto.createHash('sha256').update(b.password).digest('hex'); fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2)); return sendJSON(res, 200, { ok: true }); }
 
   if (path === '/admin/login' || path === '/admin/login/') return sendHTML(res, 200, LOGIN_HTML);
   if (path === '/admin/logout' || path === '/admin/logout/') {
