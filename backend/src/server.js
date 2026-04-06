@@ -406,7 +406,7 @@ if (path === '/api/health') return sendJSON(res, 200, { status: 'ok' });
   const navDel = path.match(/^\/api\/admin\/navigation\/(\w+)$/);
   if (navDel && method === 'DELETE') { if (!adminAuth()) return; try { await q('DELETE FROM page_navigation WHERE id = ?', [navDel[1]]); return sendJSON(res, 200, { ok: true }); } catch(e) { return sendJSON(res, 500, { error: e.message }); } }
 
-  if (path === '/api/admin/password' && method === 'POST') { if (!adminAuth()) return;
+  if (path === '/api/admin/password' && method === 'POST') { if (!adminAuth()) return; const b = await parseBody(req); if (!b.password || b.password.length < 6) return sendJSON(res, 400, { error: 'Min 6 chars' }); data.users[0].password = crypto.createHash('sha256').update(b.password).digest('hex'); fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2)); return sendJSON(res, 200, { ok: true }); }
   if (path === '/api/admin/upload' && method === 'POST') {
     if (!adminAuth()) return;
     try {
@@ -422,7 +422,6 @@ if (path === '/api/health') return sendJSON(res, 200, { status: 'ok' });
       return sendJSON(res, 200, { url: '/uploads/' + uniqueName });
     } catch(e) { return sendJSON(res, 400, { error: e.message }); }
   }
- const b = await parseBody(req); if (!b.password || b.password.length < 6) return sendJSON(res, 400, { error: 'Min 6 chars' }); data.users[0].password = crypto.createHash('sha256').update(b.password).digest('hex'); fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2)); return sendJSON(res, 200, { ok: true }); }
 
   if (path === '/admin/login' || path === '/admin/login/') return sendHTML(res, 200, LOGIN_HTML);
   if (path === '/admin/logout' || path === '/admin/logout/') {
