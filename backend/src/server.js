@@ -88,6 +88,8 @@ function clean(obj) {
 }
 function id8() { return Math.random().toString(36).substr(2, 8) + Date.now().toString(36); }
 
+const LOGIN_HTML = `<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>管理后台登录</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Noto Sans SC',sans-serif;background:linear-gradient(135deg,#006994 0%,#004466 100%);min-height:100vh;display:flex;align-items:center;justify-content:center}.login-box{background:#fff;border-radius:16px;padding:40px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.3)}.login-box h1{color:#006994;font-size:24px;text-align:center;margin-bottom:8px}.login-box p{color:#888;font-size:14px;text-align:center;margin-bottom:30px}.login-box label{color:#333;font-size:13px;font-weight:500;display:block;margin-bottom:6px}.login-box input{width:100%;padding:12px 16px;border:2px solid #e0e0e0;border-radius:10px;font-size:15px;margin-bottom:16px;transition:border-color .3s}.login-box input:focus{border-color:#006994;outline:none}.login-box button{width:100%;padding:14px;background:#006994;color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer}.login-box button:hover{background:#005a7f}.login-box .error{background:#fee;color:#c33;padding:12px;border-radius:8px;margin-bottom:16px;font-size:13px;display:none}.login-box .copyright{text-align:center;margin-top:24px;font-size:12px;color:#aaa}</style></head><body><div class="login-box"><h1>潜水管理后台</h1><p>请登录以继续</p><div class="error" id="error"></div><form id="loginForm"><label>邮箱</label><input type="email" id="email" placeholder="admin@imperialdiving.com" required><label>密码</label><input type="password" id="password" placeholder="请输入密码" required><button type="submit">登录</button></form><div class="copyright">© 2026 Imperial Diving</div></div><script>document.getElementById('loginForm').addEventListener('submit',async(e)=>{e.preventDefault();const email=document.getElementById('email').value;const password=document.getElementById('password').value;const error=document.getElementById('error');error.style.display='none';try{const r=await fetch('/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});const d=await r.json();if(d.token){localStorage.setItem('admin_token',d.token);localStorage.setItem('admin_user',JSON.stringify(d.user));window.location.href='/admin/';}else{error.textContent=d.error||'登录失败';error.style.display='block';}}catch(err){error.textContent='网络错误，请重试';error.style.display='block';}});</script></body></html>`;
+
 const ADMIN_HTML = `<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>潜水管理后台</title><style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Noto Sans SC',sans-serif;background:#f4f6f8;padding:20px;color:#333}
@@ -320,7 +322,14 @@ const server = http.createServer(async (req, res) => {
 
   if (path === '/api/admin/password' && method === 'POST') { if (!adminAuth()) return; const b = await parseBody(req); if (!b.password || b.password.length < 6) return sendJSON(res, 400, { error: 'Min 6 chars' }); data.users[0].password = crypto.createHash('sha256').update(b.password).digest('hex'); fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2)); return sendJSON(res, 200, { ok: true }); }
 
-  if (path === '/admin' || path === '/admin/') return sendHTML(res, 200, ADMIN_HTML);
+  if (path === '/admin/login' || path === '/admin/login/') return sendHTML(res, 200, LOGIN_HTML);
+  if (path === '/admin/logout' || path === '/admin/logout/') {
+    return sendJSON(res, 200, { ok: true });
+  }
+  if (path === '/admin' || path === '/admin/' || path === '/admin/index.html') {
+    // Serve login page - client-side check for token
+    return sendHTML(res, 200, LOGIN_HTML);
+  }
 
   sendJSON(res, 404, { error: 'Not found' });
 });
