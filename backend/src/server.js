@@ -157,14 +157,31 @@ th{background:#f8f9fa;color:#666;font-weight:500}
     <button class="btn btn-green" onclick="addCrs()">添加课程</button> <span class="msg" id="crsmsg"></span></div>
 </div>
 <div class="tab-content" id="tab-destinations">
-  <div class="panel"><h2>目的地列表</h2><table><thead><tr><th>名称</th><th>标签</th><th>CODE</th><th>操作</th></tr></thead><tbody id="dst_list"></tbody></table>
+  <div class="panel"><h2>目的地管理</h2>
+    <div id="dst_edit_panel" style="display:none;background:#f5f5f5;padding:15px;margin:10px 0;border-radius:8px">
+      <h4>编辑目的地: <span id="dst_edit_name"></span></h4>
+      <input type="hidden" id="dst_edit_id">
+      <div class="grid">
+        <div><label>标签</label><input id="dst_edit_tag" placeholder="如：蓝洞潜水圣地"></div>
+        <div><label>图片路径</label><input id="dst_edit_image" placeholder="/images/dest-xxx.jpg"></div>
+        <div><label>图片Alt</label><input id="dst_edit_image_alt" placeholder="如：帕劳潜水"></div>
+      </div>
+      <div style="margin-top:10px"><label>描述</label><textarea id="dst_edit_desc" rows="2" style="width:100%" placeholder="简短描述，用于列表页显示"></textarea></div>
+      <div style="margin-top:10px"><label>详细内容</label><textarea id="dst_edit_content" rows="4" style="width:100%" placeholder="详细内容，用于详情页"></textarea></div>
+      <div style="margin-top:10px">
+        <button class="btn btn-green" onclick="saveDst()">保存</button>
+        <button class="btn" onclick="cancelDstEdit()">取消</button>
+        <span class="msg" id="dst_save_msg"></span>
+      </div>
+    </div>
+    <h3>目的地列表</h3>
+    <table><thead><tr><th>名称</th><th>标签</th><th>CODE</th><th>操作</th></tr></thead><tbody id="dst_list"></tbody></table>
     <h3>新增目的地</h3><div class="grid">
     <div><label>名称</label><input id="dst_name" placeholder="如：帕劳"></div>
     <div><label>标签</label><input id="dst_tag" placeholder="如：蓝洞 · 海洋生物"></div>
     <div><label>CODE</label><input id="dst_code" placeholder="如：palau"></div>
   </div><button class="btn btn-green" onclick="addDst()">添加</button> <span class="msg" id="dstmsg"></span></div>
-</div>
-<div class="tab-content" id="tab-nav">
+</div><div class="tab-content" id="tab-nav">
   <div class="panel"><h2>导航菜单</h2><div id="nav_list"></div>
     <h3>新增菜单项</h3><div class="grid">
     <div><label>名称</label><input id="nav_name" placeholder="如：课程"></div>
