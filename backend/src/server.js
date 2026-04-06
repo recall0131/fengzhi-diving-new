@@ -278,7 +278,7 @@ async function delDst(id){if(!confirm('确认删除?'))return;await fetch('/api/
 async function editDst(id){const r=await fetch('/api/admin/destinations/'+id,{headers:{'Authorization':'Bearer '+getToken()}}).then(r=>r.json());document.getElementById('dst_edit_id').value=id;document.getElementById('dst_edit_name').textContent=r.dest_name;document.getElementById('dst_edit_tag').value=r.dest_tag||'';document.getElementById('dst_edit_image').value=r.dest_image||'';document.getElementById('dst_edit_image_alt').value=r.dest_image_alt||'';document.getElementById('dst_edit_desc').value=r.dest_description||'';document.getElementById('dst_edit_content').value=r.dest_content||'';document.getElementById('dst_edit_panel').style.display='block';}
 async function saveDst(){const id=document.getElementById('dst_edit_id').value;const d={dest_tag:document.getElementById('dst_edit_tag').value,dest_image:document.getElementById('dst_edit_image').value,dest_image_alt:document.getElementById('dst_edit_image_alt').value,dest_description:document.getElementById('dst_edit_desc').value,dest_content:document.getElementById('dst_edit_content').value};const r=await fetch('/api/admin/destinations/'+id,{method:'PUT',headers:{'Content-Type':'application/json','Authorization':'Bearer '+getToken()},body:JSON.stringify(d)});const m=document.getElementById('dst_save_msg');if(r.ok){m.textContent='✅ 已保存';m.className='msg ok';setTimeout(()=>{cancelDstEdit();loadDsts();},1000);}else{m.textContent='❌ 保存失败';m.className='msg err';}}
 function cancelDstEdit(){document.getElementById('dst_edit_panel').style.display='none';document.getElementById('dst_edit_id').value='';}
-async function uploadDstImage(file){const form=new FormData();form.append('image',file);const r=await fetch('/api/admin/upload',{method:'POST',headers:{'Authorization':'Bearer '+getToken()},body:form});const d=await r.json();if(d.url){document.getElementById('dst_edit_image').value=d.url;return d.url;}throw new Error(d.error||'Upload failed');}
+async function uploadDstImage(file){const reader=new FileReader();const base64=await new Promise((resolve,reject)=>{reader.onload=()=>resolve(reader.result.split(',')[1]);reader.onerror=reject;reader.readAsDataURL(file);});const r=await fetch('/api/admin/upload',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+getToken()},body:JSON.stringify({data:base64,type:file.type})});const d=await r.json();if(d.url){document.getElementById('dst_edit_image').value=d.url;return d.url;}throw new Error(d.error||'Upload failed');}
 async function previewDstImage(input){if(!input.files[0])return;try{const url=await uploadDstImage(input.files[0]);document.getElementById('dst_image_preview').innerHTML='<img src="'+url+'" style="max-width:200px;max-height:150px;border-radius:8px;margin-top:8px">';}catch(e){alert('上传失败: '+e.message);}}
 async function loadNav(){const r=await fetch('/api/admin/navigation',{headers:{'Authorization':'Bearer '+getToken()}}).then(r=>r.json());document.getElementById('nav_list').innerHTML=(r||[]).map(n=>'<div class="item"><div class="item-info"><h4>'+n.nav_name+'</h4><p>'+n.nav_url+'</p></div><button class="btn btn-red" onclick="delNav('+n.id+')"">删除</button></div>').join('')||'<p style="color:#888;font-size:13px">暂无数据</p>';}
 async function addNav(){const d={nav_name:document.getElementById('nav_name').value,nav_url:document.getElementById('nav_url').value,nav_lang:'zh'};const r=await fetch('/api/admin/navigation',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+getToken()},body:JSON.stringify(d)});const m=document.getElementById('navmsg');if(r.ok){m.textContent='✅ 已添加';m.className='msg ok';document.getElementById('nav_name').value='';document.getElementById('nav_url').value='';loadNav();}else{m.textContent='❌ 添加失败';m.className='msg err';}}
@@ -407,13 +407,19 @@ if (path === '/api/health') return sendJSON(res, 200, { status: 'ok' });
   if (navDel && method === 'DELETE') { if (!adminAuth()) return; try { await q('DELETE FROM page_navigation WHERE id = ?', [navDel[1]]); return sendJSON(res, 200, { ok: true }); } catch(e) { return sendJSON(res, 500, { error: e.message }); } }
 
   if (path === '/api/admin/password' && method === 'POST') { if (!adminAuth()) return;
-  if (path === '/api/admin/upload' && method === 'POST') { 
-    if (!adminAuth()) return; 
+  if (path === '/api/admin/upload' && method === 'POST') {
+    if (!adminAuth()) return;
     try {
-      const formData = await multer.parse(req);
-      const file = formData.files.image;
-      if (!file) return sendJSON(res, 400, { error: 'No file uploaded' });
-      return sendJSON(res, 200, { url: file.path });
+      const body = await parseBody(req);
+      if (!body.data) return sendJSON(res, 400, { error: 'No file data' });
+      const ext = body.type ? body.type.split('/')[1] : 'png';
+      const allowedExts = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+      if (!allowedExts.includes(ext)) return sendJSON(res, 400, { error: 'Invalid file type: ' + ext });
+      const uniqueName = Date.now() + '-' + Math.random().toString(36).substr(2, 9) + '.' + ext;
+      const uploadDir = '/app/uploads';
+      if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+      fs.writeFileSync(uploadDir + '/' + uniqueName, Buffer.from(body.data, 'base64'));
+      return sendJSON(res, 200, { url: '/uploads/' + uniqueName });
     } catch(e) { return sendJSON(res, 400, { error: e.message }); }
   }
  const b = await parseBody(req); if (!b.password || b.password.length < 6) return sendJSON(res, 400, { error: 'Min 6 chars' }); data.users[0].password = crypto.createHash('sha256').update(b.password).digest('hex'); fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2)); return sendJSON(res, 200, { ok: true }); }
