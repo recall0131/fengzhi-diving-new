@@ -88,12 +88,29 @@ export default function DestinationsPage() {
   const t = (zh: string, en: string) => (isZh ? zh : en);
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/destinations')
-      .then(r => r.json())
-      .then(data => { setDestinations(Array.isArray(data) ? data : []); setLoading(false); })
-      .catch(() => setLoading(false));
+    const controller = new AbortController();
+    setLoading(true);
+    setError(null);
+    
+    fetch('/api/destinations', { signal: controller.signal })
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then(data => {
+        setDestinations(Array.isArray(data) ? data : []);
+        setLoading(false);
+      })
+      .catch(err => {
+        if (err.name === 'AbortError') return;
+        setError(err.message || 'Failed to load destinations');
+        setLoading(false);
+      });
+
+    return () => controller.abort();
   }, []);
 
   return (
@@ -118,6 +135,11 @@ export default function DestinationsPage() {
               {[1,2,3,4,5,6].map(i => (
                 <div key={i} className="h-72 bg-gray-200 rounded-lg animate-pulse" />
               ))}
+            </div>
+          ) : error ? (
+            <div className="text-center py-12">
+              <p className="text-red-500 mb-2">{t('加载失败', 'Failed to load')}</p>
+              <p className="text-gray-400 text-sm">{error}</p>
             </div>
           ) : destinations.length === 0 ? (
             <p className="text-center text-gray-400 py-12">{t('暂无目的地数据', 'No destinations available')}</p>

@@ -112,7 +112,7 @@ export default function Footer({ lang }: { lang: string }) {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-500 text-center md:text-left text-sm">
-              © 2024 {isZh ? '奉旨潜水' : 'Imperial Diving'} — {isZh ? '官方网站' : 'Official Website'} | All Rights Reserved
+              © {new Date().getFullYear()} {isZh ? '奉旨潜水' : 'Imperial Diving'} — {isZh ? '官方网站' : 'Official Website'} | All Rights Reserved
             </p>
             <div className="flex items-center space-x-2 text-gray-500 text-sm">
               <span>{isZh ? 'PADI 国际认证潜水中心' : 'PADI Certified Diving Center'}</span>

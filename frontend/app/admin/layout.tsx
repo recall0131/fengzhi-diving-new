@@ -26,10 +26,12 @@ const navItems = [
   { href: '/admin/equipment', label: '装备租售', sub: 'Equipment', iconPath: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4' },
 ];
 
+// Login page has NO layout wrapper - rendered directly
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [checking, setChecking] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Load Inter font
@@ -39,38 +41,79 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     link.rel = 'stylesheet';
     document.head.appendChild(link);
     document.body.style.fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, sans-serif";
-    return () => { document.head.removeChild(link); };
+    return () => {
+      if (document.head.contains(link)) document.head.removeChild(link);
+    };
   }, []);
 
+  // Auth check - only run on non-login pages
   useEffect(() => {
-    if (pathname === '/admin/login') { setChecking(false); return; }
-    fetch('/api/admin/auth/me')
-      .then(r => r.json())
-      .then(data => { if (!data.authenticated) router.push('/admin/login'); else setChecking(false); })
-      .catch(() => router.push('/admin/login'));
+    // Skip auth check for login page entirely
+    if (pathname === '/admin/login') {
+      setChecking(false);
+      return;
+    }
+
+    // Check auth status
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/admin/auth/me');
+        const data = await res.json();
+        if (data.authenticated) {
+          setIsAuthenticated(true);
+          setChecking(false);
+        } else {
+          router.push('/admin/login');
+        }
+      } catch {
+        router.push('/admin/login');
+      }
+    };
+
+    checkAuth();
   }, [pathname, router]);
 
   async function handleLogout() {
-    await fetch('/api/admin/auth/logout', { method: 'POST' });
+    try {
+      await fetch('/api/admin/auth/logout', { method: 'POST' });
+    } catch {}
     router.push('/admin/login');
   }
 
+  // Login page - no layout wrapper
+  if (pathname === '/admin/login') {
+    return <>{children}</>;
+  }
+
+  // Loading state
   if (checking) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex items-center justify-center" style={{background: PADI.bg}}>
         <div className="text-center">
-          <div className="w-12 h-12 rounded-full border-4 border-t-transparent mx-auto mb-4" style={{borderColor: `${PADI.blue} transparent transparent transparent`, animation: 'spin 0.8s linear infinite'}} />
-          <p style={{color: PADI.gray, fontSize: '14px', fontFamily: "'Inter', sans-serif"}}>加载中...</p>
-          <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+          <div 
+            className="w-12 h-12 rounded-full border-4 border-t-transparent mx-auto mb-4 animate-spin" 
+            style={{borderColor: `${PADI.blue} transparent transparent transparent`}} 
+          />
+          <p style={{color: PADI.gray, fontSize: '14px', fontFamily: 'Inter, sans-serif'}}>加载中...</p>
         </div>
       </div>
     );
   }
 
-  if (pathname === '/admin/login') return <>{children}</>;
+  // Not authenticated - will redirect
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
-    <div className="min-h-screen flex bg-gray-100">
+    <div className="min-h-screen flex" style={{background: PADI.bg}}>
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
       {/* Sidebar */}
       <aside className={`fixed inset-y-0 left-0 z-50 w-64 shadow-2xl flex flex-col transform transition-transform duration-200 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
@@ -78,88 +121,63 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Brand */}
         <div className="px-5 py-5 border-b" style={{borderColor: 'rgba(255,255,255,0.06)'}}>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-lg" style={{background: PADI.yellow, color: PADI.dark}}>
-              P
-            </div>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-xl" style={{background: PADI.yellow, color: PADI.dark}}>P</div>
             <div>
-              <div className="text-white font-bold text-lg leading-tight tracking-tight">Imperial</div>
-              <div className="text-white/30 text-xs tracking-widest uppercase">Diving Center</div>
+              <div className="text-white font-bold text-lg leading-tight">Imperial Diving</div>
+              <div className="text-white/40 text-xs tracking-widest uppercase">管理后台</div>
             </div>
           </div>
         </div>
 
-        {/* Nav section label */}
-        <div className="px-5 pt-5 pb-2">
-          <p className="text-xs font-semibold uppercase tracking-widest text-white/20">Navigation</p>
-        </div>
-
         {/* Nav */}
-        <nav className="flex-1 px-3 pb-4">
+        <nav className="flex-1 py-4 overflow-y-auto">
           {navItems.map(item => {
-            const active = pathname === item.href;
+            const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href));
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setSidebarOpen(false)}
-                className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium mb-0.5 transition-all duration-150 ${
-                  active ? 'text-white shadow-lg' : 'text-white/45 hover:text-white/80 hover:bg-white/5'
-                }`}
-                style={active ? {background: PADI.blue} : {}}
-              >
-                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={active ? 2 : 1.5} d={item.iconPath} />
+              <Link key={item.href} href={item.href}
+                className={`flex items-center gap-3 mx-3 px-3 py-2.5 rounded-lg mb-1 transition-all ${isActive ? 'text-white' : 'text-white/50 hover:text-white/80'}`}
+                style={isActive ? {background: `${PADI.blue}20`} : {}}
+                onClick={() => setSidebarOpen(false)}>
+                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d={item.iconPath} />
                 </svg>
-                <span className="flex-1">{item.label}</span>
-                {active && <span className="w-1.5 h-1.5 rounded-full bg-white/70 flex-shrink-0" />}
+                <span className="text-sm font-medium">{item.label}</span>
               </Link>
             );
           })}
         </nav>
 
-        {/* Bottom links */}
+        {/* Logout */}
         <div className="p-4 border-t" style={{borderColor: 'rgba(255,255,255,0.06)'}}>
-          <Link href="/" target="_blank" className="flex items-center gap-2.5 text-sm text-white/25 hover:text-white/50 py-1.5 transition-colors mb-1">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          <button onClick={handleLogout}
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-white/50 hover:text-white/80 hover:bg-white/5 transition-all">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
             </svg>
-            访问前台网站
-          </Link>
-          <button onClick={handleLogout} className="flex items-center gap-2.5 text-sm text-white/25 hover:text-red-400 py-1.5 w-full transition-colors">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
-            退出登录
+            <span className="text-sm font-medium">退出登录</span>
           </button>
         </div>
       </aside>
 
-      {sidebarOpen && <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />}
-
       {/* Main content */}
-      <div className="flex-1 lg:pl-64 flex flex-col min-h-screen">
+      <div className="flex-1 lg:ml-64">
         {/* Top bar */}
-        <header className="h-14 bg-white flex items-center px-6 shadow-sm flex-shrink-0 sticky top-0 z-20 border-b" style={{borderColor: PADI.border}}>
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden p-1.5 -ml-1.5 rounded-lg hover:bg-gray-100 transition-colors mr-3">
-            <svg className="w-5 h-5" style={{color: PADI.gray}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        <header className="h-14 bg-white border-b flex items-center justify-between px-4 lg:px-6" style={{borderColor: PADI.border}}>
+          <button className="lg:hidden p-2 rounded-lg hover:bg-gray-100" onClick={() => setSidebarOpen(true)}>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <div className="flex-1">
-            <h2 className="text-sm font-semibold" style={{color: '#1E293B'}}>
-              {navItems.find(n => n.href === pathname)?.label || '管理后台'}
-            </h2>
+          <div className="text-sm font-medium" style={{color: PADI.gray}}>
+            {navItems.find(n => pathname === n.href || (n.href !== '/admin' && pathname.startsWith(n.href)))?.label || '管理后台'}
           </div>
           <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium" style={{background: PADI.blueLight, color: PADI.blue}}>
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{background: PADI.blue}} />
-              运行正常
-            </div>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{background: PADI.blue}}>A</div>
           </div>
         </header>
 
         {/* Page content */}
-        <main className="flex-1 p-6 lg:p-8">
+        <main className="p-4 lg:p-6">
           {children}
         </main>
       </div>

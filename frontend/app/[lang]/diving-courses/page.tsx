@@ -36,16 +36,34 @@ export default function DivingCoursesPage() {
   const t = (zh: string, en: string) => (isZh ? zh : en);
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/courses')
-      .then(r => r.json())
-      .then(data => { setCourses(Array.isArray(data) ? data : []); setLoading(false); })
-      .catch(() => setLoading(false));
+    const controller = new AbortController();
+    setLoading(true);
+    setError(null);
+    
+    fetch('/api/courses', { signal: controller.signal })
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then(data => {
+        setCourses(Array.isArray(data) ? data : []);
+        setLoading(false);
+      })
+      .catch(err => {
+        if (err.name === 'AbortError') return;
+        setError(err.message || 'Failed to load courses');
+        setLoading(false);
+      });
+
+    return () => controller.abort();
   }, []);
 
-  const mainCourses = courses.filter(c => c.price > 0 && c.price < 5000);
-  const extraCourses = courses.filter(c => c.price >= 5000 || !c.price);
+  const safeCourses = courses.filter(c => typeof c.price === 'number' && c.price > 0);
+  const mainCourses = safeCourses.filter(c => c.price < 5000);
+  const extraCourses = safeCourses.filter(c => c.price >= 5000);
 
   return (
     <div className="pt-20">
@@ -94,6 +112,11 @@ export default function DivingCoursesPage() {
                   </div>
                 </div>
               ))
+            ) : error ? (
+              <div className="col-span-3 text-center py-12">
+                <p className="text-red-500 mb-2">{t('加载失败', 'Failed to load')}</p>
+                <p className="text-gray-400 text-sm">{error}</p>
+              </div>
             ) : mainCourses.length === 0 ? (
               <p className="col-span-3 text-center text-gray-400 py-12">{t('暂无课程数据', 'No courses available')}</p>
             ) : mainCourses.map(course => (

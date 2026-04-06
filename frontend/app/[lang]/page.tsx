@@ -82,7 +82,7 @@ export default function Page() {
             {[
               { num: '1000+', label: t('学员人数', 'Certified Students') },
               { num: '50+', label: t('认证教练', 'PADI Instructors') },
-              { num: '6年+', label: t('教学经验', 'Years of Experience') },
+              { num: lang === 'zh' ? '6年+' : '6+', label: t('教学经验', 'Years of Experience') },
             ].map((s, i) => (
               <div key={i} className="py-12 px-10 text-center">
                 <div className="text-4xl font-bold text-white mb-2 tracking-tight">{s.num}</div>
@@ -246,7 +246,7 @@ export default function Page() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-600 text-xs">
-            © 2024 {t('奉旨潜水', 'Imperial Diving')} · PADI {t('国际认证潜水中心', 'Certified Dive Center')}
+            © {new Date().getFullYear()} {t('奉旨潜水', 'Imperial Diving')} · PADI {t('国际认证潜水中心', 'Certified Dive Center')}
           </div>
         </div>
       </footer>
